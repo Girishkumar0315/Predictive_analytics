@@ -996,6 +996,7 @@ HTML_CONTENT = """<!DOCTYPE html>
                     <span class="font-bold text-slate-900">8.36x salary disparity across 28 tech hubs</span>
                   </div>
                 </div>
+              </div>
               <div class="lg:col-span-5 space-y-2">
                 <img src="/figures/fig_distinct_o1_lollipop.png" alt="Country Median Salary (Lollipop)" class="rounded-xl border border-slate-200 shadow-sm w-full hover:scale-105 transition duration-300 cursor-pointer" onclick="openModal(this.src, 'Objective 1: Global Salary Divide (Lollipop Stem Ranking)')">
                 <p class="text-[11px] text-slate-500 text-center font-medium">Chart Type: <strong>Lollipop Stem Plot</strong> showing median pay across 10 major economies.</p>
@@ -1032,6 +1033,7 @@ HTML_CONTENT = """<!DOCTYPE html>
                     <span class="font-bold text-slate-900">Plateaus at ~24.1 years of experience</span>
                   </div>
                 </div>
+              </div>
               <div class="lg:col-span-5 space-y-2">
                 <img src="/figures/fig_distinct_o2_curve.png" alt="Experience Trajectory Curve" class="rounded-xl border border-slate-200 shadow-sm w-full hover:scale-105 transition duration-300 cursor-pointer" onclick="openModal(this.src, 'Objective 2: Career Experience vs Wage Trajectory (Diminishing Returns)')">
                 <p class="text-[11px] text-slate-500 text-center font-medium">Chart Type: <strong>Continuous Area & Line Trajectory</strong> with milestone flags and plateau band.</p>
@@ -1068,6 +1070,7 @@ HTML_CONTENT = """<!DOCTYPE html>
                     <span class="font-bold text-slate-900">+3.1% modest premium</span>
                   </div>
                 </div>
+              </div>
               <div class="lg:col-span-5 space-y-2">
                 <img src="/figures/fig_distinct_o3_forest.png" alt="Adjusted Pay Forest Plot" class="rounded-xl border border-slate-200 shadow-sm w-full hover:scale-105 transition duration-300 cursor-pointer" onclick="openModal(this.src, 'Objective 3: Econometric Forest Plot (Point Estimates & 95% CIs)')">
                 <p class="text-[11px] text-slate-500 text-center font-medium">Chart Type: <strong>Econometric Forest Plot</strong> with diamond points and 95% CI whiskers.</p>
@@ -1104,6 +1107,7 @@ HTML_CONTENT = """<!DOCTYPE html>
                     <span class="font-bold text-slate-900">61.8% across 60,907 respondents</span>
                   </div>
                 </div>
+              </div>
               <div class="lg:col-span-5 space-y-2">
                 <img src="/figures/fig_distinct_o4_heatmap.png" alt="AI Adoption Heatmap" class="rounded-xl border border-slate-200 shadow-sm w-full hover:scale-105 transition duration-300 cursor-pointer" onclick="openModal(this.src, 'Objective 4: AI Adoption Demographic Heatmap (Age vs Role Segments)')">
                 <p class="text-[11px] text-slate-500 text-center font-medium">Chart Type: <strong>2D Demographic Heatmap Matrix</strong> visualizing age-role adoption rates.</p>
@@ -1140,6 +1144,7 @@ HTML_CONTENT = """<!DOCTYPE html>
                     <span class="font-bold text-rose-600">Only 12.3% express job threat fear</span>
                   </div>
                 </div>
+              </div>
               <div class="lg:col-span-5 space-y-2">
                 <img src="/figures/fig_distinct_o5_barchart.png" alt="The AI Trust Paradox Bar Chart" class="rounded-xl border border-slate-200 shadow-sm w-full hover:scale-105 transition duration-300 cursor-pointer" onclick="openModal(this.src, 'Objective 5: The AI Trust Paradox (Comparative Bar Chart)')">
                 <p class="text-[11px] text-slate-500 text-center font-medium">Chart Type: <strong>Comparative Diagnostic Bar Chart</strong> contrasting sentiment, daily adoption, accuracy skepticism, and job fear.</p>
@@ -1176,6 +1181,7 @@ HTML_CONTENT = """<!DOCTYPE html>
                     <span class="font-bold text-slate-900">Remaining 10.3% collective weight</span>
                   </div>
                 </div>
+              </div>
               <div class="lg:col-span-5 space-y-2">
                 <img src="/figures/fig_distinct_o6_donut.png" alt="Feature Importance Donut" class="rounded-xl border border-slate-200 shadow-sm w-full hover:scale-105 transition duration-300 cursor-pointer" onclick="openModal(this.src, 'Objective 6: ML Feature Importance (Predictive Weight Allocation)')">
                 <p class="text-[11px] text-slate-500 text-center font-medium">Chart Type: <strong>Proportional Donut Ring Chart</strong> showing feature importance allocations.</p>
