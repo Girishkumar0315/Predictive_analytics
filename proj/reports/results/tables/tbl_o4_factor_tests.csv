@@ -1,0 +1,11 @@
+label,k,n,chi2,dof,p,cramers_v
+Age bracket,7,60630,1574.1137,6,0.0,0.1608
+Professional experience,5,49722,1220.6072,4,0.0,0.1564
+Job role,26,56641,1257.4025,25,0.0,0.1475
+Country,39,51116,1014.5808,38,0.0,0.1382
+Coding relationship,5,60907,433.9402,4,0.0,0.084
+Organisation size,10,46343,288.2539,9,0.0,0.0776
+Purchasing influence,3,46301,157.592,2,0.0,0.058
+Education,8,58896,184.3988,7,0.0,0.0549
+Work arrangement,3,51100,38.6419,2,0.0,0.0268
+Stack Overflow visits,5,58286,29.916,4,0.0,0.0211

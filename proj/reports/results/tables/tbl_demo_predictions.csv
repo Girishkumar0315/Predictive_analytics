@@ -1,0 +1,5 @@
+profile,predicted_salary_usd,p_uses_ai
+"Mid-level full-stack dev, India",18000.0,0.704
+"Mid-level full-stack dev, USA",115700.0,0.626
+"Senior engineering manager, Germany",124300.0,0.523
+"Student-age Python learner, Brazil",4600.0,0.785

@@ -1,0 +1,7 @@
+model,cv_rmse_mean,cv_rmse_std,cv_mae_mean,cv_mae_std,cv_r2_mean,cv_r2_std,seconds,test_R2,test_RMSE_log,test_MAE_log,test_MAE_USD,test_MdAPE_pct,test_Within25_pct,tuned_params
+Baseline: global median,1.0649,0.0127,0.7541,0.0101,-0.0346,0.0039,0.0563,-0.0315,1.0482,0.7513,49965.4931,48.8362,25.7273,-
+Baseline: country median,0.7632,0.0149,0.5238,0.0111,0.4685,0.0129,0.095,0.4763,0.7469,0.5187,34722.3708,34.5455,37.1724,-
+Ridge regression,0.6631,0.0106,0.4506,0.0073,0.5988,0.0061,6.8934,0.6017,0.6514,0.4401,29658.9662,29.3604,44.6021,"{""m__alpha"": 1}"
+Random Forest,0.6472,0.008,0.4282,0.0045,0.6178,0.0079,95.1244,0.6189,0.6371,0.4233,28922.6055,27.2271,46.3813,"{""m__min_samples_leaf"": 20, ""m__max_features"": 0.5, ""m__max_depth"": 12}"
+HistGradientBoosting,0.6405,0.0085,0.4238,0.0051,0.6256,0.0084,41.8306,0.6229,0.6338,0.4232,28817.2982,27.5565,46.2852,"{""m__min_samples_leaf"": 50, ""m__max_leaf_nodes"": 8, ""m__learning_rate"": 0.02, ""m__l2_regularization"": 1}"
+LightGBM,0.6386,0.0083,0.4223,0.0055,0.6279,0.007,27.69,0.6244,0.6326,0.42,28584.5017,27.3951,46.5497,"{""m__subsample_freq"": 1, ""m__subsample"": 0.9, ""m__reg_lambda"": 1, ""m__num_leaves"": 7, ""m__min_child_samples"": 50, ""m__learning_rate"": 0.04, ""m__colsample_bytree"": 0.8}"

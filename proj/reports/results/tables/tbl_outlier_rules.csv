@@ -1,0 +1,7 @@
+scale,rule,n_flagged,pct_flagged
+USD,Tukey IQR fences (1.5 x IQR),978,4.173245146148923
+USD,Z-score |z| > 3,89,0.3797738425432046
+USD,Outside 1st-99th percentile,470,2.0055472583742264
+log(USD),Tukey IQR fences (1.5 x IQR),1723,7.3522509067633885
+log(USD),Z-score |z| > 3,451,1.9244719436739919
+log(USD),Outside 1st-99th percentile,470,2.0055472583742264

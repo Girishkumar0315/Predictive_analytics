@@ -1,0 +1,311 @@
+{
+ "figures": [
+  {
+   "file": "fig01_missingness.png",
+   "caption": "Percentage of missing responses per variable (red = more than 30 % missing).",
+   "objective": "EDA"
+  },
+  {
+   "file": "fig02_comp_distribution.png",
+   "caption": "Distribution of annual compensation: heavily right-skewed in USD (a), far less skewed after a log transform (b), with extreme tails visible in (c).",
+   "objective": "EDA"
+  },
+  {
+   "file": "fig03_cohort_attrition.png",
+   "caption": "Rows retained at each step of salary-cohort construction.",
+   "objective": "EDA"
+  },
+  {
+   "file": "fig04_univariate_profile.png",
+   "caption": "Univariate profile of the 20,794 professional developers in the salary cohort.",
+   "objective": "EDA"
+  },
+  {
+   "file": "fig05_group_medians.png",
+   "caption": "Raw (unadjusted) median compensation by work arrangement, organisation size and education. Country mix confounds these gaps (see O3).",
+   "objective": "EDA"
+  },
+  {
+   "file": "fig06_spearman_corr.png",
+   "caption": "Spearman rank-correlation matrix of numeric and ordinal variables including log-compensation.",
+   "objective": "EDA"
+  },
+  {
+   "file": "fig07_cramers_v.png",
+   "caption": "Bias-corrected Cram\u00e9r's V between categorical variables (0 = independent, 1 = perfectly associated).",
+   "objective": "EDA"
+  },
+  {
+   "file": "fig08_normality_checks.png",
+   "caption": "Q\u2013Q plot of log-salary (a) and country-wise densities (b): log-salary is left-skewed and heavy-tailed rather than normal, with unequal location and spread across countries.",
+   "objective": "EDA"
+  },
+  {
+   "file": "fig09_country_boxplot.png",
+   "caption": "Distribution of annual compensation (USD, log axis) by country, ordered by median. India is highlighted in orange.",
+   "objective": "O1"
+  },
+  {
+   "file": "fig10_country_median_ci.png",
+   "caption": "Median annual compensation with 95 % bootstrap confidence intervals; labels give the ratio to the USA median.",
+   "objective": "O1"
+  },
+  {
+   "file": "fig11_experience_vs_pay.png",
+   "caption": "Relationship between professional experience and pay: hexbin density with LOWESS trend (a) and median pay by experience band for selected countries with 95 % bootstrap CIs (b).",
+   "objective": "O2"
+  },
+  {
+   "file": "fig12_experience_marginal.png",
+   "caption": "Quadratic log-linear model: cumulative premium with 95 % CI (a) and marginal percentage return per additional year, pooled and by country (b).",
+   "objective": "O2"
+  },
+  {
+   "file": "fig13_role_effects.png",
+   "caption": "Adjusted pay difference by job role relative to full-stack developers (country and experience held constant; 95 % HC3 CIs; grey = not significant at 5 %).",
+   "objective": "O3"
+  },
+  {
+   "file": "fig14_workmode_org_edu_effects.png",
+   "caption": "Adjusted pay differences by work arrangement (a), organisation size (b) and education (c).",
+   "objective": "O3"
+  },
+  {
+   "file": "fig15_variance_decomposition.png",
+   "caption": "Cumulative R\u00b2 and incremental \u0394R\u00b2 as predictor blocks are added to the OLS model for log-compensation.",
+   "objective": "O3"
+  },
+  {
+   "file": "fig16_ai_adoption_factors.png",
+   "caption": "AI-tool adoption in the development process by age (a), experience (b), organisation size (c) and Stack Overflow visit frequency (d); labels show % currently using AI.",
+   "objective": "O4"
+  },
+  {
+   "file": "fig17_ai_adoption_country_role.png",
+   "caption": "AI adoption rate with 95 % Wilson CIs by country (a) and job role (b); dashed line = overall adoption; India in orange.",
+   "objective": "O4"
+  },
+  {
+   "file": "fig18_ai_cramers_v.png",
+   "caption": "Strength of association (Cram\u00e9r's V) between AI adoption and each descriptive factor.",
+   "objective": "O4"
+  },
+  {
+   "file": "fig19_ai_role_age_heatmap.png",
+   "caption": "AI adoption by job role and age bracket (blank = fewer than 30 respondents).",
+   "objective": "O4"
+  },
+  {
+   "file": "fig20_ai_attitudes_distribution.png",
+   "caption": "Distribution of attitudes towards AI among respondents who use or plan to use AI tools.",
+   "objective": "O5"
+  },
+  {
+   "file": "fig21_trust_sentiment_by_experience.png",
+   "caption": "Trust in AI accuracy (a) and sentiment (b) across experience bands (100 % stacked; red = negative, blue = positive).",
+   "objective": "O5"
+  },
+  {
+   "file": "fig22_threat_by_role_age.png",
+   "caption": "Share of respondents who see AI as a threat to their own job, by job role (a) and age (b); dashed line = overall.",
+   "objective": "O5"
+  },
+  {
+   "file": "fig23_attitude_correlations.png",
+   "caption": "Spearman correlation matrix of AI attitude scores with experience and age.",
+   "objective": "O5"
+  },
+  {
+   "file": "fig24_regression_model_comparison.png",
+   "caption": "Regression model comparison: cross-validated RMSE with \u00b11 SD (a), hold-out R\u00b2 (b) and hold-out MAE in USD (c). Grey = baselines, orange = selected model.",
+   "objective": "O6"
+  },
+  {
+   "file": "fig25_regression_diagnostics.png",
+   "caption": "Diagnostics of the selected regression model on the hold-out set: predicted vs actual pay (a), residual distribution (b) and residuals vs fitted values with LOWESS (c).",
+   "objective": "O6"
+  },
+  {
+   "file": "fig26_learning_curve.png",
+   "caption": "Learning curve of the tuned gradient-boosting model: the validation error is still slowly falling, so more data would help slightly.",
+   "objective": "O6"
+  },
+  {
+   "file": "fig27_classification_model_comparison.png",
+   "caption": "Classification model comparison: cross-validated ROC-AUC (a), hold-out F1 (b) and hold-out ROC-AUC (c). Grey = baseline, orange = selected model.",
+   "objective": "O7"
+  },
+  {
+   "file": "fig28_roc_pr_curves.png",
+   "caption": "ROC curves with AUC in the legend (a) and precision\u2013recall curves (b) for all classifiers on the hold-out set.",
+   "objective": "O7"
+  },
+  {
+   "file": "fig29_confusion_calibration_threshold.png",
+   "caption": "Selected classifier on the hold-out set: normalised confusion matrix at the balanced-accuracy threshold (a), calibration curve (b) and precision/recall/F1 versus decision threshold (c).",
+   "objective": "O7"
+  },
+  {
+   "file": "fig30_perm_importance_salary.png",
+   "caption": "Permutation importance for the selected salary model (LightGBM).",
+   "objective": "O8"
+  },
+  {
+   "file": "fig31_perm_importance_ai.png",
+   "caption": "Permutation importance for the selected AI-adoption model (LightGBM).",
+   "objective": "O8"
+  },
+  {
+   "file": "fig32_shap_salary.png",
+   "caption": "SHAP summary of the LightGBM salary model: each dot is a respondent; colour = feature value; x = effect on predicted log-compensation.",
+   "objective": "O8"
+  },
+  {
+   "file": "fig33_shap_ai.png",
+   "caption": "SHAP summary of the LightGBM AI-adoption model (effect on log-odds of using AI).",
+   "objective": "O8"
+  },
+  {
+   "file": "fig34_partial_dependence.png",
+   "caption": "Partial dependence: average predicted pay as professional experience is varied, by country (a); average predicted AI-adoption probability as age is varied (b).",
+   "objective": "O8"
+  },
+  {
+   "file": "fig35_salary_error_by_segment.png",
+   "caption": "Hold-out error of the salary model by country (a), experience band (b) and job role (c); India highlighted in orange.",
+   "objective": "O8"
+  },
+  {
+   "file": "fig36_ai_error_by_segment.png",
+   "caption": "Hold-out ROC-AUC of the AI-adoption classifier within age brackets (a), countries (b) and roles (c); dashed line = overall AUC.",
+   "objective": "O8"
+  }
+ ],
+ "tables": [
+  {
+   "file": "tbl_data_dictionary.csv",
+   "caption": "Data dictionary of the 28 raw survey variables",
+   "objective": "EDA"
+  },
+  {
+   "file": "tbl_missing.csv",
+   "caption": "Missing values per variable",
+   "objective": "EDA"
+  },
+  {
+   "file": "tbl_inconsistencies.csv",
+   "caption": "Logical inconsistencies and suspicious values",
+   "objective": "EDA"
+  },
+  {
+   "file": "tbl_outlier_rules.csv",
+   "caption": "Outliers flagged in annual compensation by three rules, raw vs log scale",
+   "objective": "EDA"
+  },
+  {
+   "file": "tbl_cohort_attrition.csv",
+   "caption": "Row attrition at each cleaning step for the salary cohort",
+   "objective": "EDA"
+  },
+  {
+   "file": "tbl_descriptives.csv",
+   "caption": "Descriptive statistics of numeric variables in the salary cohort",
+   "objective": "EDA"
+  },
+  {
+   "file": "tbl_vif.csv",
+   "caption": "Variance inflation factors of numeric predictors",
+   "objective": "EDA"
+  },
+  {
+   "file": "tbl_feature_engineering.csv",
+   "caption": "Engineered features and their justification",
+   "objective": "EDA"
+  },
+  {
+   "file": "tbl_o1_country_stats.csv",
+   "caption": "Median annual compensation (USD) by country with 95 % bootstrap CI and India-vs-country effect sizes",
+   "objective": "O1"
+  },
+  {
+   "file": "tbl_o2_marginal.csv",
+   "caption": "Estimated % change in pay per additional year of professional experience (country fixed effects)",
+   "objective": "O2"
+  },
+  {
+   "file": "tbl_o3_nested_models.csv",
+   "caption": "Nested OLS models: incremental explanatory power of each predictor block",
+   "objective": "O3"
+  },
+  {
+   "file": "tbl_o3_adjusted_effects.csv",
+   "caption": "Adjusted percentage effects on annual compensation (HC3 robust 95 % CI)",
+   "objective": "O3"
+  },
+  {
+   "file": "tbl_o4_factor_tests.csv",
+   "caption": "Chi-square tests of AI adoption against each factor, ranked by Cram\u00e9r's V",
+   "objective": "O4"
+  },
+  {
+   "file": "tbl_o5_conditionality.csv",
+   "caption": "Share of respondents answering each AI follow-up question, by their AI-use answer (percent)",
+   "objective": "O5"
+  },
+  {
+   "file": "tbl_leakage_register.csv",
+   "caption": "Columns excluded from predictors and the reason (leakage register)",
+   "objective": "O6"
+  },
+  {
+   "file": "tbl_o6_model_comparison.csv",
+   "caption": "Regression models: 5-fold CV (train) and hold-out test metrics",
+   "objective": "O6"
+  },
+  {
+   "file": "tbl_o6_outlier_sensitivity.csv",
+   "caption": "Sensitivity of HistGradientBoosting CV performance to the outlier policy",
+   "objective": "O6"
+  },
+  {
+   "file": "tbl_o7_model_comparison.csv",
+   "caption": "Classification models: 5-fold CV (train) and hold-out test metrics",
+   "objective": "O7"
+  },
+  {
+   "file": "tbl_o8_perm_importance_salary.csv",
+   "caption": "Permutation importance of raw predictors - salary model",
+   "objective": "O8"
+  },
+  {
+   "file": "tbl_o8_perm_importance_ai.csv",
+   "caption": "Permutation importance of raw predictors - AI-adoption model",
+   "objective": "O8"
+  },
+  {
+   "file": "tbl_o8_error_by_country.csv",
+   "caption": "Salary-model error by country (hold-out, n >= 40)",
+   "objective": "O8"
+  },
+  {
+   "file": "tbl_o8_worst_predictions.csv",
+   "caption": "The eight largest salary-prediction errors on the hold-out set",
+   "objective": "O8"
+  },
+  {
+   "file": "tbl_o8_clf_error_country.csv",
+   "caption": "AI-adoption model: hold-out accuracy and AUC by country",
+   "objective": "O8"
+  },
+  {
+   "file": "tbl_demo_predictions.csv",
+   "caption": "Example predictions of the saved models for illustrative profiles",
+   "objective": "O8"
+  },
+  {
+   "file": "tbl_objective_mapping.csv",
+   "caption": "Objective-to-evidence mapping with headline results",
+   "objective": "All"
+  }
+ ]
+}

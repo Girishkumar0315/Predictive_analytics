@@ -1,0 +1,29 @@
+variable,description,type,role,missing_%
+response_id,Respondent identifier,ID,Excluded,0.0
+main_branch,Professional coding level of respondent,Nominal (5),Predictor (AI task) / filter,0.0
+age,Age bracket,Ordinal (8),Predictor (as age_mid),0.0
+remote_work,Current work situation (remote / hybrid / in-person),Nominal (3),Predictor,16.2
+ed_level,Highest formal education completed,Ordinal (8),Predictor,7.1
+years_code,Total years coded (incl. education); >50 coded as 51,Numeric,Predictor,8.5
+years_code_pro,Years coded professionally; >50 coded as 51,Numeric,Predictor,21.1
+dev_type,Best description of current job,Nominal (34),Predictor,9.2
+org_size,Number of people in the organisation,Ordinal (10),Predictor,27.4
+purchase_influence,Influence over technology purchases,Ordinal (3),Predictor,27.6
+buildvs_buy,Customisation needed in last tool recommendation,Nominal (3),Predictor,33.7
+country,Country of residence,Nominal (≈185),Predictor,9.9
+currency,Day-to-day currency,Nominal,Excluded (duplicates country),28.7
+comp_total,Total annual compensation in local currency,Numeric,Excluded (target twin),48.4
+so_visit_freq,Stack Overflow visit frequency,Ordinal (5),Predictor,9.0
+so_account,Has a Stack Overflow account,Nominal (3),Predictor,9.0
+so_part_freq,Stack Overflow Q&A participation frequency,Ordinal (6),Predictor,30.9
+so_comm,Feels part of the Stack Overflow community,Ordinal (6),Predictor,9.6
+ai_select,Currently uses AI tools in development,Ordinal (3),Target (O7) / Predictor (O6),6.9
+ai_sent,Stance on AI tools in workflow,Ordinal (6),Analysis-only (conditional question),29.9
+ai_acc,Trust in accuracy of AI output,Ordinal (5),Analysis-only (conditional question),43.0
+ai_complex,AI performance on complex tasks,Ordinal (5),Analysis-only (conditional question),43.4
+ai_threat,Believes AI is a threat to own job,Nominal (3),Analysis-only (conditional question),31.7
+survey_length,Opinion on survey length,Nominal (3),Excluded,14.1
+survey_ease,Opinion on survey difficulty,Nominal (3),Excluded,14.1
+converted_comp_yearly,Annual compensation converted to USD,Numeric,Target (O6),64.2
+r_used,Used the R language last year (flag),Binary,Predictor,8.7
+r_want_to_use,Wants to use R next year (flag),Binary,Excluded (not relevant),14.8

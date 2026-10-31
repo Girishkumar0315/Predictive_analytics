@@ -1,0 +1,5 @@
+ai_select answer,ai_sent,ai_acc,ai_complex,ai_threat
+(unanswered),0.0,0.0,0.0,0.0
+"No, and I don't plan to",0.0,0.0,0.0,0.0
+"No, but I plan to soon",99.2,0.0,0.0,99.4
+Yes,99.7,99.0,98.3,96.5

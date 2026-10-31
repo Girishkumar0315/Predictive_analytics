@@ -1,0 +1,35 @@
+var,term,pct,pct_lo,pct_hi,p
+dev_g,AI developer,19.991,7.639,33.76,0.001
+dev_g,Academic researcher,-28.499,-36.879,-19.006,0.0
+dev_g,Back-end dev,14.65,11.715,17.662,0.0
+dev_g,Cloud infra engineer,29.177,17.353,42.193,0.0
+dev_g,Data engineer,15.085,8.714,21.83,0.0
+dev_g,Data scientist/ML,21.535,14.416,29.097,0.0
+dev_g,Desktop/enterprise dev,0.969,-3.366,5.497,0.667
+dev_g,DevOps specialist,13.039,5.232,21.425,0.001
+dev_g,Embedded dev,11.001,6.282,15.929,0.0
+dev_g,Engineering manager,41.236,33.194,49.763,0.0
+dev_g,Front-end dev,1.482,-3.001,6.173,0.523
+dev_g,Game/graphics dev,7.913,-2.775,19.776,0.152
+dev_g,Mobile dev,5.548,-0.594,12.069,0.078
+dev_g,Other,20.702,13.429,28.442,0.0
+dev_g,Other (rare roles),7.428,1.795,13.372,0.009
+dev_g,QA/test dev,12.934,1.55,25.594,0.025
+dev_g,R&D role,15.763,8.308,23.731,0.0
+dev_g,Senior executive,56.766,42.014,73.05,0.0
+org_short,"1,000 to 4,999",8.084,4.529,11.759,0.0
+org_short,10 to 19,-11.91,-15.361,-8.319,0.0
+org_short,"10,000 or more",18.564,14.728,22.529,0.0
+org_short,2 to 9,-19.325,-22.534,-15.982,0.0
+org_short,20 to 99,-2.38,-5.122,0.442,0.098
+org_short,"5,000 to 9,999",13.862,8.818,19.139,0.0
+org_short,500 to 999,6.185,2.047,10.491,0.003
+org_short,Just me,-13.352,-18.649,-7.71,0.0
+remote_work,Hybrid,14.302,11.121,17.574,0.0
+remote_work,Remote,29.108,25.159,33.181,0.0
+ed_short,Associate,-10.264,-14.595,-5.713,0.0
+ed_short,Doctorate/Prof.,10.801,5.671,16.179,0.0
+ed_short,Master's,11.955,9.31,14.664,0.0
+ed_short,Primary,-8.94,-22.705,7.276,0.263
+ed_short,Secondary,-14.05,-17.815,-10.113,0.0
+ed_short,Some college,-7.166,-9.961,-4.285,0.0

@@ -1,0 +1,9 @@
+step,rows,rows_removed
+All respondents,65437,0
+Professional developers (main_branch = 1),50207,15230
+Reported converted yearly compensation,21549,28658
+Country available,21549,0
+"Absolute plausibility bounds USD 1,000-1,000,000",21007,542
+Within-country 3 x IQR fences on log(comp),20796,211
+Inconsistent professional-years values blanked (rows kept),20796,0
+Exact duplicate rows removed,20794,2

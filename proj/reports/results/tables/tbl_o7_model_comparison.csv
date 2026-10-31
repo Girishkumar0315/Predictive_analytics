@@ -1,0 +1,6 @@
+model,cv_roc_auc_mean,cv_roc_auc_std,cv_f1_mean,cv_f1_std,cv_accuracy_mean,cv_accuracy_std,seconds,test_Accuracy,test_BalAcc,test_Precision,test_Recall,test_F1,test_ROC_AUC,test_PR_AUC,test_Brier,tuned_params
+Baseline: majority class,0.5,0.0,0.7642,0.0,0.6183,0.0,0.1993,0.6184,0.5,0.6184,1.0,0.7642,0.5,0.6184,0.236,-
+Logistic Regression,0.6664,0.0076,0.7545,0.0051,0.6514,0.0061,53.7307,0.6552,0.5881,0.6701,0.8715,0.7576,0.6661,0.7526,0.2168,"{""m__C"": 0.1}"
+Random Forest,0.6629,0.0064,0.7561,0.0045,0.6501,0.0052,310.2336,0.649,0.5797,0.6647,0.8724,0.7545,0.6593,0.7467,0.2184,"{""m__min_samples_leaf"": 20, ""m__max_features"": 0.3, ""m__max_depth"": 16}"
+HistGradientBoosting,0.6689,0.0063,0.7562,0.0034,0.6527,0.0042,92.1727,0.6524,0.5862,0.6692,0.8661,0.755,0.6644,0.7506,0.2173,"{""m__min_samples_leaf"": 50, ""m__max_leaf_nodes"": 8, ""m__learning_rate"": 0.04, ""m__l2_regularization"": 0}"
+LightGBM,0.6707,0.0063,0.7553,0.0033,0.6532,0.004,84.0575,0.6547,0.5888,0.6708,0.8669,0.7564,0.669,0.7549,0.2163,"{""m__subsample_freq"": 1, ""m__subsample"": 0.7, ""m__reg_lambda"": 0, ""m__num_leaves"": 7, ""m__min_child_samples"": 20, ""m__learning_rate"": 0.04, ""m__colsample_bytree"": 0.6}"

@@ -1,0 +1,3454 @@
+{
+ "environment": {
+  "python": "3.12.3",
+  "pandas": "3.0.2",
+  "numpy": "2.4.4",
+  "scipy": "1.17.1",
+  "sklearn": "1.8.0",
+  "statsmodels": "0.15.0",
+  "lightgbm": "4.7.0",
+  "seed": 42
+ },
+ "dataset": {
+  "rows": 65437,
+  "cols": 28,
+  "n_countries": 185,
+  "n_questions": 24,
+  "memory_mb": 21.270546
+ },
+ "missing": {
+  "worst": {
+   "converted_comp_yearly": 64.2,
+   "comp_total": 48.4,
+   "ai_complex": 43.4,
+   "ai_acc": 43.0,
+   "buildvs_buy": 33.7,
+   "ai_threat": 31.7
+  },
+  "overall_cell_pct": 21.00821881832625
+ },
+ "duplicates": {
+  "n_duplicate_rows_incl_first": 2752,
+  "n_removable": 2270,
+  "mean_answered_questions_dups": 4.493822674418604,
+  "mean_answered_questions_all": 21.32778091905191,
+  "id_unique": true
+ },
+ "inconsistencies": {
+  "Professional years > total years coded": 504,
+  "Professional years impossible for stated age bracket (age_upper - 14)": 119,
+  "Total years coded impossible for stated age bracket (age_upper - 4)": 31,
+  "Compensation below USD 1,000 per year": 545,
+  "Compensation above USD 1,000,000 per year": 41,
+  "comp_total present but converted_comp_yearly missing (currency conversion failed)": 10305,
+  "Non-professional respondents reporting a salary": 1886,
+  "Age = 'Prefer not to say'": 322,
+  "Organisation size = 'I don't know' (treated as missing)": 1068,
+  "years_code / years_code_pro top-coded at 51 (more than 50 years)": 255
+ },
+ "outliers": [
+  {
+   "scale": "USD",
+   "rule": "Tukey IQR fences (1.5 x IQR)",
+   "n_flagged": 978,
+   "pct_flagged": 4.173245146148923
+  },
+  {
+   "scale": "USD",
+   "rule": "Z-score |z| > 3",
+   "n_flagged": 89,
+   "pct_flagged": 0.3797738425432046
+  },
+  {
+   "scale": "USD",
+   "rule": "Outside 1st-99th percentile",
+   "n_flagged": 470,
+   "pct_flagged": 2.0055472583742264
+  },
+  {
+   "scale": "log(USD)",
+   "rule": "Tukey IQR fences (1.5 x IQR)",
+   "n_flagged": 1723,
+   "pct_flagged": 7.3522509067633885
+  },
+  {
+   "scale": "log(USD)",
+   "rule": "Z-score |z| > 3",
+   "n_flagged": 451,
+   "pct_flagged": 1.9244719436739919
+  },
+  {
+   "scale": "log(USD)",
+   "rule": "Outside 1st-99th percentile",
+   "n_flagged": 470,
+   "pct_flagged": 2.0055472583742264
+  }
+ ],
+ "comp_stats_raw": {
+  "n": 23435,
+  "mean": 86155.28726264134,
+  "median": 65000.0,
+  "sd": 186756.97308629754,
+  "max": 16256603.0,
+  "skew": 52.918357801711664,
+  "kurt": 3949.9342876259952,
+  "skew_log": -2.3260970762009965
+ },
+ "cohort": {
+  "n": 20794,
+  "n_countries": 160,
+  "attrition": [
+   {
+    "step": "All respondents",
+    "rows": 65437,
+    "rows_removed": 0
+   },
+   {
+    "step": "Professional developers (main_branch = 1)",
+    "rows": 50207,
+    "rows_removed": 15230
+   },
+   {
+    "step": "Reported converted yearly compensation",
+    "rows": 21549,
+    "rows_removed": 28658
+   },
+   {
+    "step": "Country available",
+    "rows": 21549,
+    "rows_removed": 0
+   },
+   {
+    "step": "Absolute plausibility bounds USD 1,000-1,000,000",
+    "rows": 21007,
+    "rows_removed": 542
+   },
+   {
+    "step": "Within-country 3 x IQR fences on log(comp)",
+    "rows": 20796,
+    "rows_removed": 211
+   },
+   {
+    "step": "Inconsistent professional-years values blanked (rows kept)",
+    "rows": 20796,
+    "rows_removed": 0
+   },
+   {
+    "step": "Exact duplicate rows removed",
+    "rows": 20794,
+    "rows_removed": 2
+   }
+  ],
+  "n_india": 966,
+  "n_usa": 4211
+ },
+ "ai_cohort": {
+  "n": 60907,
+  "adoption_rate": 61.83525703121152,
+  "dist": {
+   "Yes": 37662,
+   "No, and I don't plan to": 14837,
+   "No, but I plan to soon": 8408,
+   "nan": 4530
+  }
+ },
+ "descriptives": {
+  "years_code": {
+   "count": 20756.0,
+   "mean": 15.249,
+   "std": 9.791,
+   "min": 0.0,
+   "25%": 8.0,
+   "50%": 12.0,
+   "75%": 20.0,
+   "max": 51.0,
+   "skew": 1.159
+  },
+  "years_code_pro": {
+   "count": 20571.0,
+   "mean": 10.374,
+   "std": 8.561,
+   "min": 0.0,
+   "25%": 4.0,
+   "50%": 8.0,
+   "75%": 14.0,
+   "max": 51.0,
+   "skew": 1.371
+  },
+  "converted_comp_yearly": {
+   "count": 20794.0,
+   "mean": 84886.671,
+   "std": 76107.461,
+   "min": 1000.0,
+   "25%": 37592.0,
+   "50%": 68733.5,
+   "75%": 110000.0,
+   "max": 1000000.0,
+   "skew": 3.222
+  },
+  "log_comp": {
+   "count": 20794.0,
+   "mean": 10.946,
+   "std": 1.044,
+   "min": 6.908,
+   "25%": 10.535,
+   "50%": 11.138,
+   "75%": 11.608,
+   "max": 13.816,
+   "skew": -1.142
+  },
+  "age_mid": {
+   "count": 20785.0,
+   "mean": 34.19,
+   "std": 9.687,
+   "min": 16.0,
+   "25%": 29.5,
+   "50%": 29.5,
+   "75%": 39.5,
+   "max": 67.0,
+   "skew": 0.865
+  },
+  "org_mid": {
+   "count": 20508.0,
+   "mean": 2595.023,
+   "std": 4874.539,
+   "min": 1.0,
+   "25%": 60.0,
+   "50%": 300.0,
+   "75%": 3000.0,
+   "max": 15000.0,
+   "skew": 1.938
+  }
+ },
+ "corr_with_logcomp": {
+  "years_code": 0.468,
+  "years_code_pro": 0.477,
+  "age_mid": 0.409,
+  "org_log": 0.195,
+  "ed_rank": 0.09,
+  "so_visit_rank": -0.118,
+  "exp_gap": 0.133,
+  "pro_share": 0.283
+ },
+ "vif": [
+  {
+   "variable": "years_code",
+   "VIF": 7.07
+  },
+  {
+   "variable": "years_code_pro",
+   "VIF": 8.52
+  },
+  {
+   "variable": "age_mid",
+   "VIF": 3.57
+  },
+  {
+   "variable": "org_log",
+   "VIF": 1.01
+  },
+  {
+   "variable": "ed_rank",
+   "VIF": 1.04
+  },
+  {
+   "variable": "so_visit_rank",
+   "VIF": 1.01
+  }
+ ],
+ "assumptions": {
+  "dagostino_k2": 938.7207388205943,
+  "dagostino_p": 1.4433828508241878e-204,
+  "skew_logcomp": -1.1422476552575438,
+  "kurt_logcomp": 1.7860783204204358,
+  "levene_W": 385.4423447447817,
+  "levene_p": 0.0
+ },
+ "O1": {
+  "top_countries": [
+   "USA",
+   "Germany",
+   "UK",
+   "Ukraine",
+   "India",
+   "France",
+   "Canada",
+   "Brazil",
+   "Poland",
+   "Netherlands",
+   "Spain",
+   "Italy",
+   "Australia",
+   "Sweden",
+   "Switzerland",
+   "Austria",
+   "Czechia",
+   "Russia",
+   "Norway",
+   "Israel",
+   "Belgium",
+   "Denmark",
+   "Portugal",
+   "Turkey",
+   "Romania",
+   "Greece",
+   "South Africa",
+   "Finland"
+  ],
+  "n_top": 17389,
+  "H": 9238.17754709689,
+  "p": 0.0,
+  "epsilon2": 0.5312961552275643,
+  "eta2_top": 0.48641210982381855,
+  "R2_country_all": 0.506973187020673,
+  "adjR2_country_all": 0.5031740563012916,
+  "n_all_countries": 160,
+  "india_median": 17945.0,
+  "india_n": 966,
+  "india_rank": 28,
+  "n_ranked": 28,
+  "usa_median": 148000.0,
+  "india_usa_ratio": 0.12125,
+  "india_usa_ratio_ci": [
+   0.10579965306122449,
+   0.12893010793426282
+  ],
+  "max_country": {
+   "country": "USA",
+   "median_usd": 148000.0
+  },
+  "min_country": {
+   "country": "India",
+   "median_usd": 17945.0
+  },
+  "india_sig_lower_than": 27,
+  "india_sig_higher_than": 0,
+  "top_over_bottom": 8.24742268041237
+ },
+ "O2": {
+  "n": 20571,
+  "spearman_all": {
+   "rho": 0.47665292907853113,
+   "p": 0.0,
+   "n": 20571,
+   "ci_low": 0.4653806228241997,
+   "ci_high": 0.48777064147067645
+  },
+  "spearman_by_country": {
+   "USA": {
+    "rho": 0.44065841234072306,
+    "p": 3.3995320430579576e-198,
+    "n": 4181,
+    "ci_low": 0.4143945003298226,
+    "ci_high": 0.4661889703722219
+   },
+   "India": {
+    "rho": 0.6172148426688939,
+    "p": 4.2601953101330643e-100,
+    "n": 943,
+    "ci_low": 0.5735046308325761,
+    "ci_high": 0.6574206424488002
+   },
+   "Germany": {
+    "rho": 0.5469097674076618,
+    "p": 4.413946301600169e-136,
+    "n": 1737,
+    "ci_low": 0.5109901233302596,
+    "ci_high": 0.5809227535701782
+   },
+   "UK": {
+    "rho": 0.44782297893978346,
+    "p": 8.852001590016384e-63,
+    "n": 1252,
+    "ci_low": 0.3996118167620002,
+    "ci_high": 0.4935635992060807
+   },
+   "Ukraine": {
+    "rho": 0.35229747457180216,
+    "p": 2.7532715855032985e-35,
+    "n": 1162,
+    "ci_low": 0.29773971570334756,
+    "ci_high": 0.40456145886340195
+   },
+   "France": {
+    "rho": 0.5697664516003648,
+    "p": 1.3040425392363067e-72,
+    "n": 830,
+    "ci_low": 0.5189719573409989,
+    "ci_high": 0.6165512710486726
+   },
+   "Canada": {
+    "rho": 0.4826986085756497,
+    "p": 1.0731493740989399e-47,
+    "n": 796,
+    "ci_low": 0.4241314377374337,
+    "ci_high": 0.5372448315253904
+   }
+  },
+  "spearman_boot_ci": [
+   0.4664938553821583,
+   0.48685441605667656
+  ],
+  "beta1": 0.0883952223457017,
+  "beta2": -0.0018572568978947946,
+  "peak_years": 23.797252401080836,
+  "r2_quad": 0.5882380549740631,
+  "p_beta1": 0.0,
+  "p_beta2": 1.5436260644400284e-240,
+  "marginal": [
+   {
+    "years": 0,
+    "pct_per_year": 9.24,
+    "ci_low": 8.85,
+    "ci_high": 9.63
+   },
+   {
+    "years": 2,
+    "pct_per_year": 8.43,
+    "ci_low": 8.09,
+    "ci_high": 8.77
+   },
+   {
+    "years": 5,
+    "pct_per_year": 7.23,
+    "ci_low": 6.96,
+    "ci_high": 7.5
+   },
+   {
+    "years": 10,
+    "pct_per_year": 5.26,
+    "ci_low": 5.09,
+    "ci_high": 5.43
+   },
+   {
+    "years": 15,
+    "pct_per_year": 3.32,
+    "ci_low": 3.21,
+    "ci_high": 3.43
+   },
+   {
+    "years": 20,
+    "pct_per_year": 1.42,
+    "ci_low": 1.27,
+    "ci_high": 1.57
+   },
+   {
+    "years": 30,
+    "pct_per_year": -2.28,
+    "ci_low": -2.61,
+    "ci_high": -1.95
+   }
+  ],
+  "interaction_linear": {
+   "coef": 0.15638502910680957,
+   "p": 1.7322001453624503e-09,
+   "coef_sq": -0.004603224808415687,
+   "p_sq": 0.0023949183362648764
+  },
+  "separate_fits": {
+   "USA": {
+    "b1": 0.058122740234663114,
+    "b2": -0.001129962258786472,
+    "r2": 0.18538926165463,
+    "pct_at_5": 4.793663118776936,
+    "pct_at_0": 5.984507336025446
+   },
+   "India": {
+    "b1": 0.21450776934146848,
+    "b2": -0.00573318706720191,
+    "r2": 0.3381608599005079,
+    "pct_at_5": 17.020143267375374,
+    "pct_at_0": 23.925174910709067
+   },
+   "Germany": {
+    "b1": 0.07360616641474486,
+    "b2": -0.001474868554784467,
+    "r2": 0.2634670951358823,
+    "pct_at_5": 6.06240707449992,
+    "pct_at_0": 7.638280630942451
+   },
+   "UK": {
+    "b1": 0.06851297782709115,
+    "b2": -0.001429091916111256,
+    "r2": 0.20476943211797483,
+    "pct_at_5": 5.571900768272164,
+    "pct_at_0": 7.09145230043049
+   }
+  }
+ },
+ "O3": {
+  "n": 20084,
+  "nested": [
+   {
+    "model": "M0: country only",
+    "R2": 0.4487,
+    "adj_R2": 0.4478,
+    "delta_R2": 0.4487,
+    "p_F_block": 0.0,
+    "n": 20084
+   },
+   {
+    "model": "M1: + experience",
+    "R2": 0.5403,
+    "adj_R2": 0.5395,
+    "delta_R2": 0.0916,
+    "p_F_block": 0.0,
+    "n": 20084
+   },
+   {
+    "model": "M2: + job role",
+    "R2": 0.5525,
+    "adj_R2": 0.5513,
+    "delta_R2": 0.0122,
+    "p_F_block": 0.0,
+    "n": 20084
+   },
+   {
+    "model": "M3: + organisation size",
+    "R2": 0.5628,
+    "adj_R2": 0.5614,
+    "delta_R2": 0.0103,
+    "p_F_block": 0.0,
+    "n": 20084
+   },
+   {
+    "model": "M4: + work arrangement",
+    "R2": 0.569,
+    "adj_R2": 0.5676,
+    "delta_R2": 0.0062,
+    "p_F_block": 0.0,
+    "n": 20084
+   },
+   {
+    "model": "M5: + education",
+    "R2": 0.5739,
+    "adj_R2": 0.5724,
+    "delta_R2": 0.0049,
+    "p_F_block": 0.0,
+    "n": 20084
+   }
+  ],
+  "partial_eta2": {
+   "country_g": 0.4355,
+   "dev_g": 0.0187,
+   "org_short": 0.0223,
+   "remote_work": 0.0146,
+   "ed_short": 0.0114,
+   "years_code_pro": 0.1017,
+   "years_pro_sq": 0.0567
+  },
+  "final_R2": 0.5738889541644316,
+  "final_adjR2": 0.572398534276934,
+  "ref": {
+   "dev": "Full-stack dev",
+   "rem": "In-person",
+   "org": "100 to 499",
+   "ed": "Bachelor's"
+  },
+  "raw_remote_median": {
+   "Hybrid": 69814.0,
+   "In-person": 46923.0,
+   "Remote": 77484.0
+  },
+  "n_roles": 19,
+  "adj": [
+   {
+    "var": "dev_g",
+    "term": "AI developer",
+    "pct": 19.991,
+    "pct_lo": 7.639,
+    "pct_hi": 33.76,
+    "p": 0.001
+   },
+   {
+    "var": "dev_g",
+    "term": "Academic researcher",
+    "pct": -28.499,
+    "pct_lo": -36.879,
+    "pct_hi": -19.006,
+    "p": 0.0
+   },
+   {
+    "var": "dev_g",
+    "term": "Back-end dev",
+    "pct": 14.65,
+    "pct_lo": 11.715,
+    "pct_hi": 17.662,
+    "p": 0.0
+   },
+   {
+    "var": "dev_g",
+    "term": "Cloud infra engineer",
+    "pct": 29.177,
+    "pct_lo": 17.353,
+    "pct_hi": 42.193,
+    "p": 0.0
+   },
+   {
+    "var": "dev_g",
+    "term": "Data engineer",
+    "pct": 15.085,
+    "pct_lo": 8.714,
+    "pct_hi": 21.83,
+    "p": 0.0
+   },
+   {
+    "var": "dev_g",
+    "term": "Data scientist/ML",
+    "pct": 21.535,
+    "pct_lo": 14.416,
+    "pct_hi": 29.097,
+    "p": 0.0
+   },
+   {
+    "var": "dev_g",
+    "term": "Desktop/enterprise dev",
+    "pct": 0.969,
+    "pct_lo": -3.366,
+    "pct_hi": 5.497,
+    "p": 0.667
+   },
+   {
+    "var": "dev_g",
+    "term": "DevOps specialist",
+    "pct": 13.039,
+    "pct_lo": 5.232,
+    "pct_hi": 21.425,
+    "p": 0.001
+   },
+   {
+    "var": "dev_g",
+    "term": "Embedded dev",
+    "pct": 11.001,
+    "pct_lo": 6.282,
+    "pct_hi": 15.929,
+    "p": 0.0
+   },
+   {
+    "var": "dev_g",
+    "term": "Engineering manager",
+    "pct": 41.236,
+    "pct_lo": 33.194,
+    "pct_hi": 49.763,
+    "p": 0.0
+   },
+   {
+    "var": "dev_g",
+    "term": "Front-end dev",
+    "pct": 1.482,
+    "pct_lo": -3.001,
+    "pct_hi": 6.173,
+    "p": 0.523
+   },
+   {
+    "var": "dev_g",
+    "term": "Game/graphics dev",
+    "pct": 7.913,
+    "pct_lo": -2.775,
+    "pct_hi": 19.776,
+    "p": 0.152
+   },
+   {
+    "var": "dev_g",
+    "term": "Mobile dev",
+    "pct": 5.548,
+    "pct_lo": -0.594,
+    "pct_hi": 12.069,
+    "p": 0.078
+   },
+   {
+    "var": "dev_g",
+    "term": "Other",
+    "pct": 20.702,
+    "pct_lo": 13.429,
+    "pct_hi": 28.442,
+    "p": 0.0
+   },
+   {
+    "var": "dev_g",
+    "term": "Other (rare roles)",
+    "pct": 7.428,
+    "pct_lo": 1.795,
+    "pct_hi": 13.372,
+    "p": 0.009
+   },
+   {
+    "var": "dev_g",
+    "term": "QA/test dev",
+    "pct": 12.934,
+    "pct_lo": 1.55,
+    "pct_hi": 25.594,
+    "p": 0.025
+   },
+   {
+    "var": "dev_g",
+    "term": "R&D role",
+    "pct": 15.763,
+    "pct_lo": 8.308,
+    "pct_hi": 23.731,
+    "p": 0.0
+   },
+   {
+    "var": "dev_g",
+    "term": "Senior executive",
+    "pct": 56.766,
+    "pct_lo": 42.014,
+    "pct_hi": 73.05,
+    "p": 0.0
+   },
+   {
+    "var": "org_short",
+    "term": "1,000 to 4,999",
+    "pct": 8.084,
+    "pct_lo": 4.529,
+    "pct_hi": 11.759,
+    "p": 0.0
+   },
+   {
+    "var": "org_short",
+    "term": "10 to 19",
+    "pct": -11.91,
+    "pct_lo": -15.361,
+    "pct_hi": -8.319,
+    "p": 0.0
+   },
+   {
+    "var": "org_short",
+    "term": "10,000 or more",
+    "pct": 18.564,
+    "pct_lo": 14.728,
+    "pct_hi": 22.529,
+    "p": 0.0
+   },
+   {
+    "var": "org_short",
+    "term": "2 to 9",
+    "pct": -19.325,
+    "pct_lo": -22.534,
+    "pct_hi": -15.982,
+    "p": 0.0
+   },
+   {
+    "var": "org_short",
+    "term": "20 to 99",
+    "pct": -2.38,
+    "pct_lo": -5.122,
+    "pct_hi": 0.442,
+    "p": 0.098
+   },
+   {
+    "var": "org_short",
+    "term": "5,000 to 9,999",
+    "pct": 13.862,
+    "pct_lo": 8.818,
+    "pct_hi": 19.139,
+    "p": 0.0
+   },
+   {
+    "var": "org_short",
+    "term": "500 to 999",
+    "pct": 6.185,
+    "pct_lo": 2.047,
+    "pct_hi": 10.491,
+    "p": 0.003
+   },
+   {
+    "var": "org_short",
+    "term": "Just me",
+    "pct": -13.352,
+    "pct_lo": -18.649,
+    "pct_hi": -7.71,
+    "p": 0.0
+   },
+   {
+    "var": "remote_work",
+    "term": "Hybrid",
+    "pct": 14.302,
+    "pct_lo": 11.121,
+    "pct_hi": 17.574,
+    "p": 0.0
+   },
+   {
+    "var": "remote_work",
+    "term": "Remote",
+    "pct": 29.108,
+    "pct_lo": 25.159,
+    "pct_hi": 33.181,
+    "p": 0.0
+   },
+   {
+    "var": "ed_short",
+    "term": "Associate",
+    "pct": -10.264,
+    "pct_lo": -14.595,
+    "pct_hi": -5.713,
+    "p": 0.0
+   },
+   {
+    "var": "ed_short",
+    "term": "Doctorate/Prof.",
+    "pct": 10.801,
+    "pct_lo": 5.671,
+    "pct_hi": 16.179,
+    "p": 0.0
+   },
+   {
+    "var": "ed_short",
+    "term": "Master's",
+    "pct": 11.955,
+    "pct_lo": 9.31,
+    "pct_hi": 14.664,
+    "p": 0.0
+   },
+   {
+    "var": "ed_short",
+    "term": "Primary",
+    "pct": -8.94,
+    "pct_lo": -22.705,
+    "pct_hi": 7.276,
+    "p": 0.263
+   },
+   {
+    "var": "ed_short",
+    "term": "Secondary",
+    "pct": -14.05,
+    "pct_lo": -17.815,
+    "pct_hi": -10.113,
+    "p": 0.0
+   },
+   {
+    "var": "ed_short",
+    "term": "Some college",
+    "pct": -7.166,
+    "pct_lo": -9.961,
+    "pct_hi": -4.285,
+    "p": 0.0
+   }
+  ]
+ },
+ "O4": {
+  "n": 60907,
+  "overall_rate": 61.83525703121152,
+  "factors": [
+   {
+    "factor": "age",
+    "label": "Age bracket",
+    "k": 7,
+    "n": 60630,
+    "chi2": 1574.1137,
+    "dof": 6,
+    "p": 0.0,
+    "cramers_v": 0.1608
+   },
+   {
+    "factor": "exp_band",
+    "label": "Professional experience",
+    "k": 5,
+    "n": 49722,
+    "chi2": 1220.6072,
+    "dof": 4,
+    "p": 0.0,
+    "cramers_v": 0.1564
+   },
+   {
+    "factor": "dev_type",
+    "label": "Job role",
+    "k": 26,
+    "n": 56641,
+    "chi2": 1257.4025,
+    "dof": 25,
+    "p": 0.0,
+    "cramers_v": 0.1475
+   },
+   {
+    "factor": "country",
+    "label": "Country",
+    "k": 39,
+    "n": 51116,
+    "chi2": 1014.5808,
+    "dof": 38,
+    "p": 0.0,
+    "cramers_v": 0.1382
+   },
+   {
+    "factor": "main_branch",
+    "label": "Coding relationship",
+    "k": 5,
+    "n": 60907,
+    "chi2": 433.9402,
+    "dof": 4,
+    "p": 0.0,
+    "cramers_v": 0.084
+   },
+   {
+    "factor": "org_short",
+    "label": "Organisation size",
+    "k": 10,
+    "n": 46343,
+    "chi2": 288.2539,
+    "dof": 9,
+    "p": 0.0,
+    "cramers_v": 0.0776
+   },
+   {
+    "factor": "purchase_influence",
+    "label": "Purchasing influence",
+    "k": 3,
+    "n": 46301,
+    "chi2": 157.592,
+    "dof": 2,
+    "p": 0.0,
+    "cramers_v": 0.058
+   },
+   {
+    "factor": "ed_short",
+    "label": "Education",
+    "k": 8,
+    "n": 58896,
+    "chi2": 184.3988,
+    "dof": 7,
+    "p": 0.0,
+    "cramers_v": 0.0549
+   },
+   {
+    "factor": "remote_work",
+    "label": "Work arrangement",
+    "k": 3,
+    "n": 51100,
+    "chi2": 38.6419,
+    "dof": 2,
+    "p": 0.0,
+    "cramers_v": 0.0268
+   },
+   {
+    "factor": "so_visit_freq",
+    "label": "Stack Overflow visits",
+    "k": 5,
+    "n": 58286,
+    "chi2": 29.916,
+    "dof": 4,
+    "p": 0.0,
+    "cramers_v": 0.0211
+   }
+  ],
+  "india": {
+   "n": 4161,
+   "rate": 67.94039894256188,
+   "vs_rest": {
+    "p1": 0.6794039894256189,
+    "p2": 0.6138758679025834,
+    "diff": 0.06552812152303544,
+    "z": 8.39868596064861,
+    "p": 4.515025054526484e-17
+   },
+   "vs_usa": {
+    "p1": 0.6794039894256189,
+    "p2": 0.5424961367148441,
+    "diff": 0.13690785271077477,
+    "z": 15.241797891265803,
+    "p": 1.8666237329349904e-52
+   },
+   "usa_rate": 54.24961367148441,
+   "rest_rate": 61.38758679025834
+  },
+  "by_age": [
+   {
+    "age": "18-24",
+    "sum": 8975.0,
+    "count": 12749,
+    "rate": 70.4,
+    "lo": 69.6,
+    "hi": 71.18
+   },
+   {
+    "age": "25-34",
+    "sum": 14530.0,
+    "count": 22160,
+    "rate": 65.57,
+    "lo": 64.94,
+    "hi": 66.19
+   },
+   {
+    "age": "35-44",
+    "sum": 8184.0,
+    "count": 14124,
+    "rate": 57.94,
+    "lo": 57.13,
+    "hi": 58.76
+   },
+   {
+    "age": "45-54",
+    "sum": 3158.0,
+    "count": 6002,
+    "rate": 52.62,
+    "lo": 51.35,
+    "hi": 53.88
+   },
+   {
+    "age": "55-64",
+    "sum": 1016.0,
+    "count": 2485,
+    "rate": 40.89,
+    "lo": 38.97,
+    "hi": 42.83
+   },
+   {
+    "age": "65+",
+    "sum": 240.0,
+    "count": 744,
+    "rate": 32.26,
+    "lo": 29.0,
+    "hi": 35.7
+   },
+   {
+    "age": "<18",
+    "sum": 1436.0,
+    "count": 2366,
+    "rate": 60.69,
+    "lo": 58.71,
+    "hi": 62.64
+   }
+  ],
+  "by_exp": [
+   {
+    "exp_band": "0-2",
+    "sum": 6616.0,
+    "count": 9293,
+    "rate": 71.19,
+    "lo": 70.26,
+    "hi": 72.11
+   },
+   {
+    "exp_band": "3-5",
+    "sum": 7084.0,
+    "count": 10351,
+    "rate": 68.44,
+    "lo": 67.54,
+    "hi": 69.33
+   },
+   {
+    "exp_band": "6-10",
+    "sum": 7593.0,
+    "count": 12228,
+    "rate": 62.1,
+    "lo": 61.23,
+    "hi": 62.95
+   },
+   {
+    "exp_band": "11-20",
+    "sum": 6294.0,
+    "count": 11262,
+    "rate": 55.89,
+    "lo": 54.97,
+    "hi": 56.8
+   },
+   {
+    "exp_band": "21+",
+    "sum": 3179.0,
+    "count": 6588,
+    "rate": 48.25,
+    "lo": 47.05,
+    "hi": 49.46
+   }
+  ],
+  "by_branch": [
+   {
+    "main_branch": "I am a developer by profession",
+    "sum": 29638.0,
+    "count": 46853,
+    "rate": 63.26,
+    "lo": 62.82,
+    "hi": 63.69
+   },
+   {
+    "main_branch": "I am learning to code",
+    "sum": 2280.0,
+    "count": 3444,
+    "rate": 66.2,
+    "lo": 64.61,
+    "hi": 67.76
+   },
+   {
+    "main_branch": "I am not primarily a developer, but I write code sometimes as part of my work/studies",
+    "sum": 3496.0,
+    "count": 6075,
+    "rate": 57.55,
+    "lo": 56.3,
+    "hi": 58.79
+   },
+   {
+    "main_branch": "I code primarily as a hobby",
+    "sum": 1628.0,
+    "count": 3118,
+    "rate": 52.21,
+    "lo": 50.46,
+    "hi": 53.96
+   },
+   {
+    "main_branch": "I used to be a developer by profession, but no longer am",
+    "sum": 620.0,
+    "count": 1417,
+    "rate": 43.75,
+    "lo": 41.19,
+    "hi": 46.35
+   }
+  ],
+  "by_so": [
+   {
+    "so_visit_freq": "A few times per month or weekly",
+    "sum": 8519.0,
+    "count": 14118,
+    "rate": 60.34,
+    "lo": 59.53,
+    "hi": 61.15
+   },
+   {
+    "so_visit_freq": "A few times per week",
+    "sum": 11701.0,
+    "count": 18819,
+    "rate": 62.18,
+    "lo": 61.48,
+    "hi": 62.87
+   },
+   {
+    "so_visit_freq": "Daily or almost daily",
+    "sum": 8817.0,
+    "count": 14302,
+    "rate": 61.65,
+    "lo": 60.85,
+    "hi": 62.44
+   },
+   {
+    "so_visit_freq": "Less than once per month or monthly",
+    "sum": 2100.0,
+    "count": 3627,
+    "rate": 57.9,
+    "lo": 56.28,
+    "hi": 59.5
+   },
+   {
+    "so_visit_freq": "Multiple times per day",
+    "sum": 4526.0,
+    "count": 7420,
+    "rate": 61.0,
+    "lo": 59.88,
+    "hi": 62.1
+   }
+  ],
+  "by_org": [
+   {
+    "org_short": "1,000 to 4,999",
+    "sum": 3027.0,
+    "count": 5234,
+    "rate": 57.83,
+    "lo": 56.49,
+    "hi": 59.17
+   },
+   {
+    "org_short": "10 to 19",
+    "sum": 2631.0,
+    "count": 3980,
+    "rate": 66.11,
+    "lo": 64.62,
+    "hi": 67.56
+   },
+   {
+    "org_short": "10,000 or more",
+    "sum": 3105.0,
+    "count": 5422,
+    "rate": 57.27,
+    "lo": 55.95,
+    "hi": 58.58
+   },
+   {
+    "org_short": "100 to 499",
+    "sum": 5251.0,
+    "count": 8486,
+    "rate": 61.88,
+    "lo": 60.84,
+    "hi": 62.91
+   },
+   {
+    "org_short": "2 to 9",
+    "sum": 3185.0,
+    "count": 4715,
+    "rate": 67.55,
+    "lo": 66.2,
+    "hi": 68.87
+   },
+   {
+    "org_short": "20 to 99",
+    "sum": 6166.0,
+    "count": 9513,
+    "rate": 64.82,
+    "lo": 63.85,
+    "hi": 65.77
+   },
+   {
+    "org_short": "5,000 to 9,999",
+    "sum": 1048.0,
+    "count": 1827,
+    "rate": 57.36,
+    "lo": 55.08,
+    "hi": 59.61
+   },
+   {
+    "org_short": "500 to 999",
+    "sum": 1871.0,
+    "count": 3123,
+    "rate": 59.91,
+    "lo": 58.18,
+    "hi": 61.62
+   },
+   {
+    "org_short": "Don't know",
+    "sum": 518.0,
+    "count": 1019,
+    "rate": 50.83,
+    "lo": 47.77,
+    "hi": 53.89
+   },
+   {
+    "org_short": "Just me",
+    "sum": 1856.0,
+    "count": 3024,
+    "rate": 61.38,
+    "lo": 59.63,
+    "hi": 63.1
+   }
+  ],
+  "by_remote": [
+   {
+    "remote_work": "Hybrid",
+    "sum": 13318.0,
+    "count": 21494,
+    "rate": 61.96,
+    "lo": 61.31,
+    "hi": 62.61
+   },
+   {
+    "remote_work": "In-person",
+    "sum": 5962.0,
+    "count": 9933,
+    "rate": 60.02,
+    "lo": 59.06,
+    "hi": 60.98
+   },
+   {
+    "remote_work": "Remote",
+    "sum": 12526.0,
+    "count": 19673,
+    "rate": 63.67,
+    "lo": 63.0,
+    "hi": 64.34
+   }
+  ],
+  "by_role": [
+   {
+    "dev_type": "AI developer",
+    "sum": 435.0,
+    "count": 515,
+    "rate": 84.47,
+    "lo": 81.08,
+    "hi": 87.34
+   },
+   {
+    "dev_type": "Data scientist/ML",
+    "sum": 724.0,
+    "count": 999,
+    "rate": 72.47,
+    "lo": 69.62,
+    "hi": 75.15
+   },
+   {
+    "dev_type": "Senior executive",
+    "sum": 580.0,
+    "count": 822,
+    "rate": 70.56,
+    "lo": 67.35,
+    "hi": 73.57
+   },
+   {
+    "dev_type": "Front-end dev",
+    "sum": 2243.0,
+    "count": 3248,
+    "rate": 69.06,
+    "lo": 67.45,
+    "hi": 70.62
+   },
+   {
+    "dev_type": "Full-stack dev",
+    "sum": 11654.0,
+    "count": 17847,
+    "rate": 65.3,
+    "lo": 64.6,
+    "hi": 65.99
+   },
+   {
+    "dev_type": "Mobile dev",
+    "sum": 1283.0,
+    "count": 1968,
+    "rate": 65.19,
+    "lo": 63.06,
+    "hi": 67.27
+   },
+   {
+    "dev_type": "Engineering manager",
+    "sum": 783.0,
+    "count": 1253,
+    "rate": 62.49,
+    "lo": 59.77,
+    "hi": 65.13
+   },
+   {
+    "dev_type": "Back-end dev",
+    "sum": 5999.0,
+    "count": 9680,
+    "rate": 61.97,
+    "lo": 61.0,
+    "hi": 62.94
+   },
+   {
+    "dev_type": "Student",
+    "sum": 3094.0,
+    "count": 5030,
+    "rate": 61.51,
+    "lo": 60.16,
+    "hi": 62.85
+   },
+   {
+    "dev_type": "Cloud infra engineer",
+    "sum": 377.0,
+    "count": 619,
+    "rate": 60.9,
+    "lo": 57.0,
+    "hi": 64.67
+   },
+   {
+    "dev_type": "Data engineer",
+    "sum": 659.0,
+    "count": 1084,
+    "rate": 60.79,
+    "lo": 57.85,
+    "hi": 63.66
+   },
+   {
+    "dev_type": "QA/test dev",
+    "sum": 307.0,
+    "count": 512,
+    "rate": 59.96,
+    "lo": 55.66,
+    "hi": 64.12
+   },
+   {
+    "dev_type": "DevOps specialist",
+    "sum": 597.0,
+    "count": 1000,
+    "rate": 59.7,
+    "lo": 56.63,
+    "hi": 62.7
+   },
+   {
+    "dev_type": "Academic researcher",
+    "sum": 693.0,
+    "count": 1199,
+    "rate": 57.8,
+    "lo": 54.98,
+    "hi": 60.56
+   },
+   {
+    "dev_type": "Data/business analyst",
+    "sum": 295.0,
+    "count": 516,
+    "rate": 57.17,
+    "lo": 52.86,
+    "hi": 61.37
+   },
+   {
+    "dev_type": "Site reliability eng.",
+    "sum": 170.0,
+    "count": 305,
+    "rate": 55.74,
+    "lo": 50.13,
+    "hi": 61.21
+   },
+   {
+    "dev_type": "R&D role",
+    "sum": 499.0,
+    "count": 922,
+    "rate": 54.12,
+    "lo": 50.89,
+    "hi": 57.31
+   },
+   {
+    "dev_type": "Educator",
+    "sum": 190.0,
+    "count": 352,
+    "rate": 53.98,
+    "lo": 48.76,
+    "hi": 59.11
+   },
+   {
+    "dev_type": "Project manager",
+    "sum": 211.0,
+    "count": 407,
+    "rate": 51.84,
+    "lo": 46.99,
+    "hi": 56.66
+   },
+   {
+    "dev_type": "Other",
+    "sum": 1240.0,
+    "count": 2416,
+    "rate": 51.32,
+    "lo": 49.33,
+    "hi": 53.31
+   },
+   {
+    "dev_type": "Security professional",
+    "sum": 174.0,
+    "count": 352,
+    "rate": 49.43,
+    "lo": 44.24,
+    "hi": 54.63
+   },
+   {
+    "dev_type": "Game/graphics dev",
+    "sum": 332.0,
+    "count": 697,
+    "rate": 47.63,
+    "lo": 43.95,
+    "hi": 51.34
+   },
+   {
+    "dev_type": "Desktop/enterprise dev",
+    "sum": 1100.0,
+    "count": 2445,
+    "rate": 44.99,
+    "lo": 43.03,
+    "hi": 46.97
+   },
+   {
+    "dev_type": "Scientist",
+    "sum": 144.0,
+    "count": 326,
+    "rate": 44.17,
+    "lo": 38.88,
+    "hi": 49.6
+   },
+   {
+    "dev_type": "Embedded dev",
+    "sum": 691.0,
+    "count": 1590,
+    "rate": 43.46,
+    "lo": 41.04,
+    "hi": 45.91
+   },
+   {
+    "dev_type": "Sysadmin",
+    "sum": 230.0,
+    "count": 537,
+    "rate": 42.83,
+    "lo": 38.71,
+    "hi": 47.05
+   }
+  ],
+  "by_country": [
+   {
+    "country": "China",
+    "sum": 314.0,
+    "count": 396,
+    "rate": 79.29,
+    "lo": 75.03,
+    "hi": 82.99
+   },
+   {
+    "country": "Pakistan",
+    "sum": 322.0,
+    "count": 410,
+    "rate": 78.54,
+    "lo": 74.31,
+    "hi": 82.24
+   },
+   {
+    "country": "Nigeria",
+    "sum": 229.0,
+    "count": 302,
+    "rate": 75.83,
+    "lo": 70.69,
+    "hi": 80.31
+   },
+   {
+    "country": "Israel",
+    "sum": 435.0,
+    "count": 599,
+    "rate": 72.62,
+    "lo": 68.91,
+    "hi": 76.04
+   },
+   {
+    "country": "Ukraine",
+    "sum": 1930.0,
+    "count": 2668,
+    "rate": 72.34,
+    "lo": 70.61,
+    "hi": 74.0
+   },
+   {
+    "country": "Bangladesh",
+    "sum": 233.0,
+    "count": 324,
+    "rate": 71.91,
+    "lo": 66.79,
+    "hi": 76.53
+   },
+   {
+    "country": "Iran",
+    "sum": 283.0,
+    "count": 409,
+    "rate": 69.19,
+    "lo": 64.56,
+    "hi": 73.47
+   },
+   {
+    "country": "Turkey",
+    "sum": 372.0,
+    "count": 539,
+    "rate": 69.02,
+    "lo": 64.99,
+    "hi": 72.77
+   },
+   {
+    "country": "Indonesia",
+    "sum": 241.0,
+    "count": 350,
+    "rate": 68.86,
+    "lo": 63.82,
+    "hi": 73.48
+   },
+   {
+    "country": "South Africa",
+    "sum": 244.0,
+    "count": 356,
+    "rate": 68.54,
+    "lo": 63.54,
+    "hi": 73.14
+   },
+   {
+    "country": "India",
+    "sum": 2827.0,
+    "count": 4161,
+    "rate": 67.94,
+    "lo": 66.51,
+    "hi": 69.34
+   },
+   {
+    "country": "Brazil",
+    "sum": 902.0,
+    "count": 1367,
+    "rate": 65.98,
+    "lo": 63.43,
+    "hi": 68.45
+   },
+   {
+    "country": "Portugal",
+    "sum": 307.0,
+    "count": 466,
+    "rate": 65.88,
+    "lo": 61.46,
+    "hi": 70.04
+   },
+   {
+    "country": "Mexico",
+    "sum": 257.0,
+    "count": 393,
+    "rate": 65.39,
+    "lo": 60.56,
+    "hi": 69.93
+   },
+   {
+    "country": "Spain",
+    "sum": 728.0,
+    "count": 1115,
+    "rate": 65.29,
+    "lo": 62.45,
+    "hi": 68.03
+   },
+   {
+    "country": "Norway",
+    "sum": 289.0,
+    "count": 447,
+    "rate": 64.65,
+    "lo": 60.11,
+    "hi": 68.94
+   },
+   {
+    "country": "Greece",
+    "sum": 248.0,
+    "count": 386,
+    "rate": 64.25,
+    "lo": 59.35,
+    "hi": 68.87
+   },
+   {
+    "country": "Romania",
+    "sum": 277.0,
+    "count": 435,
+    "rate": 63.68,
+    "lo": 59.06,
+    "hi": 68.06
+   },
+   {
+    "country": "Poland",
+    "sum": 959.0,
+    "count": 1523,
+    "rate": 62.97,
+    "lo": 60.51,
+    "hi": 65.36
+   },
+   {
+    "country": "Belgium",
+    "sum": 326.0,
+    "count": 522,
+    "rate": 62.45,
+    "lo": 58.22,
+    "hi": 66.5
+   },
+   {
+    "country": "Argentina",
+    "sum": 213.0,
+    "count": 343,
+    "rate": 62.1,
+    "lo": 56.86,
+    "hi": 67.07
+   },
+   {
+    "country": "Czechia",
+    "sum": 442.0,
+    "count": 712,
+    "rate": 62.08,
+    "lo": 58.46,
+    "hi": 65.57
+   },
+   {
+    "country": "Finland",
+    "sum": 239.0,
+    "count": 385,
+    "rate": 62.08,
+    "lo": 57.13,
+    "hi": 66.78
+   },
+   {
+    "country": "Sweden",
+    "sum": 625.0,
+    "count": 1008,
+    "rate": 62.0,
+    "lo": 58.97,
+    "hi": 64.95
+   },
+   {
+    "country": "Bulgaria",
+    "sum": 196.0,
+    "count": 317,
+    "rate": 61.83,
+    "lo": 56.37,
+    "hi": 67.01
+   },
+   {
+    "country": "Austria",
+    "sum": 484.0,
+    "count": 787,
+    "rate": 61.5,
+    "lo": 58.05,
+    "hi": 64.84
+   },
+   {
+    "country": "Denmark",
+    "sum": 300.0,
+    "count": 498,
+    "rate": 60.24,
+    "lo": 55.88,
+    "hi": 64.45
+   },
+   {
+    "country": "Netherlands",
+    "sum": 868.0,
+    "count": 1441,
+    "rate": 60.24,
+    "lo": 57.68,
+    "hi": 62.73
+   },
+   {
+    "country": "Switzerland",
+    "sum": 513.0,
+    "count": 866,
+    "rate": 59.24,
+    "lo": 55.93,
+    "hi": 62.46
+   },
+   {
+    "country": "Canada",
+    "sum": 1213.0,
+    "count": 2084,
+    "rate": 58.21,
+    "lo": 56.07,
+    "hi": 60.31
+   },
+   {
+    "country": "Italy",
+    "sum": 761.0,
+    "count": 1332,
+    "rate": 57.13,
+    "lo": 54.46,
+    "hi": 59.77
+   },
+   {
+    "country": "Germany",
+    "sum": 2804.0,
+    "count": 4911,
+    "rate": 57.1,
+    "lo": 55.71,
+    "hi": 58.47
+   },
+   {
+    "country": "Hungary",
+    "sum": 224.0,
+    "count": 394,
+    "rate": 56.85,
+    "lo": 51.92,
+    "hi": 61.65
+   },
+   {
+    "country": "Australia",
+    "sum": 687.0,
+    "count": 1253,
+    "rate": 54.83,
+    "lo": 52.06,
+    "hi": 57.57
+   },
+   {
+    "country": "USA",
+    "sum": 5968.0,
+    "count": 11001,
+    "rate": 54.25,
+    "lo": 53.32,
+    "hi": 55.18
+   },
+   {
+    "country": "France",
+    "sum": 1135.0,
+    "count": 2094,
+    "rate": 54.2,
+    "lo": 52.06,
+    "hi": 56.33
+   },
+   {
+    "country": "New Zealand",
+    "sum": 211.0,
+    "count": 395,
+    "rate": 53.42,
+    "lo": 48.49,
+    "hi": 58.28
+   },
+   {
+    "country": "UK",
+    "sum": 1627.0,
+    "count": 3209,
+    "rate": 50.7,
+    "lo": 48.97,
+    "hi": 52.43
+   },
+   {
+    "country": "Russia",
+    "sum": 436.0,
+    "count": 918,
+    "rate": 47.49,
+    "lo": 44.28,
+    "hi": 50.73
+   }
+  ],
+  "plan_share": 13.804652995550592,
+  "never_share": 24.360089973237887
+ },
+ "O5_conditionality": {
+  "(unanswered)": {
+   "ai_sent": 0.0,
+   "ai_acc": 0.0,
+   "ai_complex": 0.0,
+   "ai_threat": 0.0
+  },
+  "No, and I don't plan to": {
+   "ai_sent": 0.0,
+   "ai_acc": 0.0,
+   "ai_complex": 0.0,
+   "ai_threat": 0.0
+  },
+  "No, but I plan to soon": {
+   "ai_sent": 99.2,
+   "ai_acc": 0.0,
+   "ai_complex": 0.0,
+   "ai_threat": 99.4
+  },
+  "Yes": {
+   "ai_sent": 99.7,
+   "ai_acc": 99.0,
+   "ai_complex": 98.3,
+   "ai_threat": 96.5
+  }
+ },
+ "O5": {
+  "n_att": 46070,
+  "n_users": 37662,
+  "dist": {
+   "Sentiment": {
+    "Favorable": 48.3,
+    "Very favorable": 23.6,
+    "Indifferent": 18.7,
+    "Unfavorable": 5.2,
+    "Unsure": 3.0,
+    "Very unfavorable": 1.2
+   },
+   "Trust in accuracy": {
+    "Somewhat trust": 40.3,
+    "Neither trust nor distrust": 26.6,
+    "Somewhat distrust": 22.5,
+    "Highly distrust": 7.9,
+    "Highly trust": 2.7
+   },
+   "Complex tasks": {
+    "Good, but not great at handling complex tasks": 32.7,
+    "Bad at handling complex tasks": 31.3,
+    "Neither good or bad at handling complex tasks": 20.8,
+    "Very poor at handling complex tasks": 11.9,
+    "Very well at handling complex tasks": 3.3
+   },
+   "Threat to job": {
+    "No": 68.1,
+    "I'm not sure": 19.9,
+    "Yes": 12.1
+   }
+  },
+  "spearman": {
+   "Favourability": {
+    "exp": {
+     "rho": -0.029163944987380168,
+     "p": 2.0766629852240325e-08,
+     "n": 36930,
+     "ci_low": -0.039962522551973224,
+     "ci_high": -0.018358555765748064
+    },
+    "age": {
+     "rho": -0.0013777759234409037,
+     "p": 0.7716586489897332,
+     "n": 44369,
+     "ci_low": -0.011240933894941603,
+     "ci_high": 0.008485650121132829
+    }
+   },
+   "Trust in AI accuracy": {
+    "exp": {
+     "rho": -0.05625673264815342,
+     "p": 3.397262080526215e-23,
+     "n": 31049,
+     "ci_low": -0.06800230990600577,
+     "ci_high": -0.04449556323989103
+    },
+    "age": {
+     "rho": -0.0203351340995694,
+     "p": 8.796970405130078e-05,
+     "n": 37185,
+     "ci_low": -0.03110236416363421,
+     "ci_high": -0.009563184981493347
+    }
+   },
+   "AI on complex tasks": {
+    "exp": {
+     "rho": -0.027557525442000273,
+     "p": 1.2753194012109496e-06,
+     "n": 30883,
+     "ci_low": -0.03936702930598896,
+     "ci_high": -0.015740324135835912
+    },
+    "age": {
+     "rho": -0.0029207004513243846,
+     "p": 0.5747560658497262,
+     "n": 36904,
+     "ci_low": -0.013735251948194936,
+     "ci_high": 0.007894534272797873
+    }
+   },
+   "Sees AI as threat (yes=1)": {
+    "exp": {
+     "rho": -0.02122672045452771,
+     "p": 3.690972607923236e-05,
+     "n": 37777,
+     "ci_low": -0.03190877156136982,
+     "ci_high": -0.0105398207627651
+    },
+    "age": {
+     "rho": -0.018708454779913324,
+     "p": 7.862240784951942e-05,
+     "n": 44540,
+     "ci_low": -0.028547555731558726,
+     "ci_high": -0.008865728972338428
+    }
+   }
+  },
+  "kruskal": {
+   "Favourability": {
+    "H": 34.93825823166718,
+    "p": 4.78299623216798e-07,
+    "eps2": 0.0009460927247330601
+   },
+   "Trust": {
+    "H": 114.41278153982493,
+    "p": 8.328193931265356e-24,
+    "eps2": 0.003685029036969368
+   }
+  },
+  "threat_tests": {
+   "exp_band": {
+    "chi2": 150.24549416896764,
+    "dof": 8,
+    "p": 1.7427068348869637e-28,
+    "n": 37777,
+    "cramers_v": 0.043391204096001564
+   },
+   "age": {
+    "chi2": 253.177551956217,
+    "dof": 12,
+    "p": 2.974028913992923e-47,
+    "n": 44540,
+    "cramers_v": 0.052034075843275185
+   },
+   "dev_type": {
+    "chi2": 525.6631498062408,
+    "dof": 42,
+    "p": 7.858684983502271e-85,
+    "n": 41309,
+    "cramers_v": 0.07651458349656486
+   },
+   "country": {
+    "chi2": 718.4048744917172,
+    "dof": 58,
+    "p": 1.2614153666510465e-114,
+    "n": 34962,
+    "cramers_v": 0.09718603858201458
+   }
+  },
+  "india": {
+   "sent": {
+    "india_mean": 4.042214145932346,
+    "rest_mean": 3.8950389604045044,
+    "p": 2.792601625383395e-19,
+    "n": 3577
+   },
+   "trust": {
+    "india_mean": 3.492505353319058,
+    "rest_mean": 3.0415072463768116,
+    "p": 6.870989259908441e-109,
+    "n": 2802
+   },
+   "complex_": {
+    "india_mean": 3.285765636232926,
+    "rest_mean": 2.8050176699085836,
+    "p": 3.4329676677797744e-109,
+    "n": 2782
+   }
+  },
+  "india_threat": {
+   "p1": 0.17080491132332878,
+   "p2": 0.11607839313572543,
+   "diff": 0.05472651818760335,
+   "z": 9.748516561923761,
+   "p": 1.8718342301538482e-22
+  },
+  "users_vs_planners_sent": {
+   "users_mean": 3.983143174611778,
+   "planners_mean": 3.537350662990679,
+   "p": 0.0
+  },
+  "trust_positive_pct": 43.04058763605168,
+  "trust_negative_pct": 30.36566403946169,
+  "threat_yes_pct": 12.056658238045156,
+  "fav_pct": 74.16434540389972,
+  "complex_good_pct": 35.971475648955995,
+  "complex_bad_pct": 43.21331136382053,
+  "trust_complex_rho": {
+   "rho": 0.5441332366847142,
+   "p": 0.0,
+   "n": 37006,
+   "ci_low": 0.5364859209708457,
+   "ci_high": 0.5516911959059367
+  },
+  "trust_sent_rho": {
+   "rho": 0.4279610737663779,
+   "p": 0.0,
+   "n": 36648,
+   "ci_low": 0.41905469283342334,
+   "ci_high": 0.4367851052634227
+  },
+  "attitude_corr": {
+   "Favourability": {
+    "Favourability": 1.0,
+    "Trust": 0.428,
+    "AI on complex tasks": 0.376,
+    "Threat (yes=1)": 0.021,
+    "Experience (yrs)": -0.029,
+    "Age": -0.001
+   },
+   "Trust": {
+    "Favourability": 0.428,
+    "Trust": 1.0,
+    "AI on complex tasks": 0.544,
+    "Threat (yes=1)": 0.058,
+    "Experience (yrs)": -0.056,
+    "Age": -0.02
+   },
+   "AI on complex tasks": {
+    "Favourability": 0.376,
+    "Trust": 0.544,
+    "AI on complex tasks": 1.0,
+    "Threat (yes=1)": 0.055,
+    "Experience (yrs)": -0.028,
+    "Age": -0.003
+   },
+   "Threat (yes=1)": {
+    "Favourability": 0.021,
+    "Trust": 0.058,
+    "AI on complex tasks": 0.055,
+    "Threat (yes=1)": 1.0,
+    "Experience (yrs)": -0.021,
+    "Age": -0.019
+   },
+   "Experience (yrs)": {
+    "Favourability": -0.029,
+    "Trust": -0.056,
+    "AI on complex tasks": -0.028,
+    "Threat (yes=1)": -0.021,
+    "Experience (yrs)": 1.0,
+    "Age": 0.791
+   },
+   "Age": {
+    "Favourability": -0.001,
+    "Trust": -0.02,
+    "AI on complex tasks": -0.003,
+    "Threat (yes=1)": -0.019,
+    "Experience (yrs)": 0.791,
+    "Age": 1.0
+   }
+  }
+ },
+ "O6_setup": {
+  "n_train": 16635,
+  "n_test": 4159,
+  "n_features_raw": 21,
+  "n_cv_folds": 5
+ },
+ "O6": {
+  "best": "LightGBM",
+  "runner_up": "HistGradientBoosting",
+  "comparison": [
+   {
+    "model": "Baseline: global median",
+    "cv_rmse_mean": 1.0649,
+    "cv_rmse_std": 0.0127,
+    "cv_mae_mean": 0.7541,
+    "cv_mae_std": 0.0101,
+    "cv_r2_mean": -0.0346,
+    "cv_r2_std": 0.0039,
+    "seconds": 0.0563,
+    "test_R2": -0.0315,
+    "test_RMSE_log": 1.0482,
+    "test_MAE_log": 0.7513,
+    "test_MAE_USD": 49965.4931,
+    "test_MdAPE_pct": 48.8362,
+    "test_Within25_pct": 25.7273,
+    "tuned_params": "-"
+   },
+   {
+    "model": "Baseline: country median",
+    "cv_rmse_mean": 0.7632,
+    "cv_rmse_std": 0.0149,
+    "cv_mae_mean": 0.5238,
+    "cv_mae_std": 0.0111,
+    "cv_r2_mean": 0.4685,
+    "cv_r2_std": 0.0129,
+    "seconds": 0.095,
+    "test_R2": 0.4763,
+    "test_RMSE_log": 0.7469,
+    "test_MAE_log": 0.5187,
+    "test_MAE_USD": 34722.3708,
+    "test_MdAPE_pct": 34.5455,
+    "test_Within25_pct": 37.1724,
+    "tuned_params": "-"
+   },
+   {
+    "model": "Ridge regression",
+    "cv_rmse_mean": 0.6631,
+    "cv_rmse_std": 0.0106,
+    "cv_mae_mean": 0.4506,
+    "cv_mae_std": 0.0073,
+    "cv_r2_mean": 0.5988,
+    "cv_r2_std": 0.0061,
+    "seconds": 6.8934,
+    "test_R2": 0.6017,
+    "test_RMSE_log": 0.6514,
+    "test_MAE_log": 0.4401,
+    "test_MAE_USD": 29658.9662,
+    "test_MdAPE_pct": 29.3604,
+    "test_Within25_pct": 44.6021,
+    "tuned_params": "{\"m__alpha\": 1}"
+   },
+   {
+    "model": "Random Forest",
+    "cv_rmse_mean": 0.6472,
+    "cv_rmse_std": 0.008,
+    "cv_mae_mean": 0.4282,
+    "cv_mae_std": 0.0045,
+    "cv_r2_mean": 0.6178,
+    "cv_r2_std": 0.0079,
+    "seconds": 95.1244,
+    "test_R2": 0.6189,
+    "test_RMSE_log": 0.6371,
+    "test_MAE_log": 0.4233,
+    "test_MAE_USD": 28922.6055,
+    "test_MdAPE_pct": 27.2271,
+    "test_Within25_pct": 46.3813,
+    "tuned_params": "{\"m__min_samples_leaf\": 20, \"m__max_features\": 0.5, \"m__max_depth\": 12}"
+   },
+   {
+    "model": "HistGradientBoosting",
+    "cv_rmse_mean": 0.6405,
+    "cv_rmse_std": 0.0085,
+    "cv_mae_mean": 0.4238,
+    "cv_mae_std": 0.0051,
+    "cv_r2_mean": 0.6256,
+    "cv_r2_std": 0.0084,
+    "seconds": 41.8306,
+    "test_R2": 0.6229,
+    "test_RMSE_log": 0.6338,
+    "test_MAE_log": 0.4232,
+    "test_MAE_USD": 28817.2982,
+    "test_MdAPE_pct": 27.5565,
+    "test_Within25_pct": 46.2852,
+    "tuned_params": "{\"m__min_samples_leaf\": 50, \"m__max_leaf_nodes\": 8, \"m__learning_rate\": 0.02, \"m__l2_regularization\": 1}"
+   },
+   {
+    "model": "LightGBM",
+    "cv_rmse_mean": 0.6386,
+    "cv_rmse_std": 0.0083,
+    "cv_mae_mean": 0.4223,
+    "cv_mae_std": 0.0055,
+    "cv_r2_mean": 0.6279,
+    "cv_r2_std": 0.007,
+    "seconds": 27.69,
+    "test_R2": 0.6244,
+    "test_RMSE_log": 0.6326,
+    "test_MAE_log": 0.42,
+    "test_MAE_USD": 28584.5017,
+    "test_MdAPE_pct": 27.3951,
+    "test_Within25_pct": 46.5497,
+    "tuned_params": "{\"m__subsample_freq\": 1, \"m__subsample\": 0.9, \"m__reg_lambda\": 1, \"m__num_leaves\": 7, \"m__min_child_samples\": 50, \"m__learning_rate\": 0.04, \"m__colsample_bytree\": 0.8}"
+   }
+  ],
+  "best_params": {
+   "Baseline: global median": {},
+   "Baseline: country median": {},
+   "Ridge regression": {
+    "m__alpha": 1
+   },
+   "Random Forest": {
+    "m__min_samples_leaf": 20,
+    "m__max_features": 0.5,
+    "m__max_depth": 12
+   },
+   "HistGradientBoosting": {
+    "m__min_samples_leaf": 50,
+    "m__max_leaf_nodes": 8,
+    "m__learning_rate": 0.02,
+    "m__l2_regularization": 1
+   },
+   "LightGBM": {
+    "m__subsample_freq": 1,
+    "m__subsample": 0.9,
+    "m__reg_lambda": 1,
+    "m__num_leaves": 7,
+    "m__min_child_samples": 50,
+    "m__learning_rate": 0.04,
+    "m__colsample_bytree": 0.8
+   }
+  },
+  "rmse_reduction_vs_global_pct": 39.654495991562776,
+  "rmse_reduction_vs_country_pct": 15.309061496822107,
+  "test_rmse_ci": [
+   0.6069122398906314,
+   0.6608706604322693
+  ],
+  "test_r2_ci": [
+   0.6002161899876112,
+   0.6464859113220675
+  ],
+  "paired_mse_diff_ci": [
+   -0.0020924592818817494,
+   0.005179325530513918
+  ],
+  "paired_diff_prob_best_better": 0.8005,
+  "fold_scores": {
+   "Baseline: global median": {
+    "rmse": [
+     1.08052961900045,
+     1.0644880695265075,
+     1.0469507183781084,
+     1.0553286057403568,
+     1.0771286474898754
+    ],
+    "mae": [
+     0.7648812822975032,
+     0.7468096696313714,
+     0.7394491667729601,
+     0.7540619127935846,
+     0.7653296011829599
+    ],
+    "r2": [
+     -0.03916187170383356,
+     -0.03472894830656803,
+     -0.028493375965030765,
+     -0.03844246478393032,
+     -0.03240421211408684
+    ]
+   },
+   "Baseline: country median": {
+    "rmse": [
+     0.7702206164869771,
+     0.7753231233385763,
+     0.7369389044328267,
+     0.7568929402504389,
+     0.7767206422803622
+    ],
+    "mae": [
+     0.533168696221605,
+     0.5271369458898368,
+     0.502881389068025,
+     0.522961869498437,
+     0.5328176836239275
+    ],
+    "r2": [
+     0.47199245343964835,
+     0.45107820363726436,
+     0.49042045200847817,
+     0.46583438591073656,
+     0.46316069068010657
+    ]
+   },
+   "Ridge regression": {
+    "rmse": [
+     0.6661705977918077,
+     0.6646652434197114,
+     0.6496951881945703,
+     0.6545580219415447,
+     0.6803618509401492
+    ],
+    "mae": [
+     0.4599027581070388,
+     0.4446879413553732,
+     0.441492904420829,
+     0.44876718970055657,
+     0.4582733041666258
+    ],
+    "r2": [
+     0.6050148457434346,
+     0.5965860227835209,
+     0.6039333080396296,
+     0.6005123864373599,
+     0.5880974102464913
+    ]
+   },
+   "Random Forest": {
+    "rmse": [
+     0.6461601783609792,
+     0.6580468405939858,
+     0.6352909250476042,
+     0.6428972760019982,
+     0.6535988050990318
+    ],
+    "mae": [
+     0.4328879341111719,
+     0.4286159330739666,
+     0.41967148471779286,
+     0.43054169385696367,
+     0.4290783766023258
+    ],
+    "r2": [
+     0.6283875711588962,
+     0.6045800113101255,
+     0.6213008557881595,
+     0.6146190969994876,
+     0.6198656515715131
+    ]
+   },
+   "HistGradientBoosting": {
+    "rmse": [
+     0.6372889742988557,
+     0.6513589226370123,
+     0.6289921113961833,
+     0.6355190852847373,
+     0.6494139989257637
+    ],
+    "mae": [
+     0.4302967102125013,
+     0.4238864278193477,
+     0.41461419530368293,
+     0.42589857386256286,
+     0.42410862149468215
+    ],
+    "r2": [
+     0.6385213422115801,
+     0.6125766999683382,
+     0.6287731177917599,
+     0.6234139627777561,
+     0.6247178510355973
+    ]
+   },
+   "LightGBM": {
+    "rmse": [
+     0.6369762784793785,
+     0.6468542108771665,
+     0.6264988982135127,
+     0.6337563533426572,
+     0.6489386009238713
+    ],
+    "mae": [
+     0.4296289407250027,
+     0.42099257476266316,
+     0.41304192280569957,
+     0.4250243068611496,
+     0.42258789715065637
+    ],
+    "r2": [
+     0.6388759855178507,
+     0.6179169059433658,
+     0.631710240169492,
+     0.6255001302488608,
+     0.625267094146733
+    ]
+   }
+  },
+  "success_rmse_cut_40": false,
+  "success_beats_country_median": true,
+  "residual": {
+   "mean": 0.014000178675476089,
+   "sd": 0.6324084533713652,
+   "skew": -1.084168549313548,
+   "kurt": 6.027004312614665,
+   "shapiro_p": 1.3550461866283632e-46
+  },
+  "sensitivity": [
+   {
+    "policy": "Absolute bounds only (USD 1k\u20131M)",
+    "n": 21007,
+    "cv_rmse_log": 0.6728,
+    "cv_r2": 0.6024,
+    "cv_mae_log": 0.4415
+   },
+   {
+    "policy": "Country 3\u00d7IQR (chosen)",
+    "n": 20796,
+    "cv_rmse_log": 0.6374,
+    "cv_r2": 0.6271,
+    "cv_mae_log": 0.4205
+   },
+   {
+    "policy": "Country 1.5\u00d7IQR (strict)",
+    "n": 20136,
+    "cv_rmse_log": 0.5832,
+    "cv_r2": 0.6605,
+    "cv_mae_log": 0.3877
+   }
+  ],
+  "learning_curve": {
+   "sizes": [
+    1330,
+    2661,
+    5323,
+    9315,
+    13308
+   ],
+   "train": [
+    0.5732572646604421,
+    0.5838178131377587,
+    0.5908654998886924,
+    0.6045709413261643,
+    0.6116997482028905
+   ],
+   "val": [
+    0.6865753285916116,
+    0.6673885503185116,
+    0.6546311410536065,
+    0.6463715768071976,
+    0.6405146185085104
+   ],
+   "val_sd": [
+    0.01204056039301405,
+    0.013595447870978097,
+    0.010892170415019447,
+    0.008144580796592098,
+    0.008543140017033131
+   ]
+  }
+ },
+ "O7_leakage_demo": {
+  "auc_honest": 0.6651462610188077,
+  "auc_leaky": 0.9996982945934855
+ },
+ "O7": {
+  "best": "LightGBM",
+  "comparison": [
+   {
+    "model": "Baseline: majority class",
+    "cv_roc_auc_mean": 0.5,
+    "cv_roc_auc_std": 0.0,
+    "cv_f1_mean": 0.7642,
+    "cv_f1_std": 0.0,
+    "cv_accuracy_mean": 0.6183,
+    "cv_accuracy_std": 0.0,
+    "seconds": 0.1993,
+    "test_Accuracy": 0.6184,
+    "test_BalAcc": 0.5,
+    "test_Precision": 0.6184,
+    "test_Recall": 1.0,
+    "test_F1": 0.7642,
+    "test_ROC_AUC": 0.5,
+    "test_PR_AUC": 0.6184,
+    "test_Brier": 0.236,
+    "tuned_params": "-"
+   },
+   {
+    "model": "Logistic Regression",
+    "cv_roc_auc_mean": 0.6664,
+    "cv_roc_auc_std": 0.0076,
+    "cv_f1_mean": 0.7545,
+    "cv_f1_std": 0.0051,
+    "cv_accuracy_mean": 0.6514,
+    "cv_accuracy_std": 0.0061,
+    "seconds": 53.7307,
+    "test_Accuracy": 0.6552,
+    "test_BalAcc": 0.5881,
+    "test_Precision": 0.6701,
+    "test_Recall": 0.8715,
+    "test_F1": 0.7576,
+    "test_ROC_AUC": 0.6661,
+    "test_PR_AUC": 0.7526,
+    "test_Brier": 0.2168,
+    "tuned_params": "{\"m__C\": 0.1}"
+   },
+   {
+    "model": "Random Forest",
+    "cv_roc_auc_mean": 0.6629,
+    "cv_roc_auc_std": 0.0064,
+    "cv_f1_mean": 0.7561,
+    "cv_f1_std": 0.0045,
+    "cv_accuracy_mean": 0.6501,
+    "cv_accuracy_std": 0.0052,
+    "seconds": 310.2336,
+    "test_Accuracy": 0.649,
+    "test_BalAcc": 0.5797,
+    "test_Precision": 0.6647,
+    "test_Recall": 0.8724,
+    "test_F1": 0.7545,
+    "test_ROC_AUC": 0.6593,
+    "test_PR_AUC": 0.7467,
+    "test_Brier": 0.2184,
+    "tuned_params": "{\"m__min_samples_leaf\": 20, \"m__max_features\": 0.3, \"m__max_depth\": 16}"
+   },
+   {
+    "model": "HistGradientBoosting",
+    "cv_roc_auc_mean": 0.6689,
+    "cv_roc_auc_std": 0.0063,
+    "cv_f1_mean": 0.7562,
+    "cv_f1_std": 0.0034,
+    "cv_accuracy_mean": 0.6527,
+    "cv_accuracy_std": 0.0042,
+    "seconds": 92.1727,
+    "test_Accuracy": 0.6524,
+    "test_BalAcc": 0.5862,
+    "test_Precision": 0.6692,
+    "test_Recall": 0.8661,
+    "test_F1": 0.755,
+    "test_ROC_AUC": 0.6644,
+    "test_PR_AUC": 0.7506,
+    "test_Brier": 0.2173,
+    "tuned_params": "{\"m__min_samples_leaf\": 50, \"m__max_leaf_nodes\": 8, \"m__learning_rate\": 0.04, \"m__l2_regularization\": 0}"
+   },
+   {
+    "model": "LightGBM",
+    "cv_roc_auc_mean": 0.6707,
+    "cv_roc_auc_std": 0.0063,
+    "cv_f1_mean": 0.7553,
+    "cv_f1_std": 0.0033,
+    "cv_accuracy_mean": 0.6532,
+    "cv_accuracy_std": 0.004,
+    "seconds": 84.0575,
+    "test_Accuracy": 0.6547,
+    "test_BalAcc": 0.5888,
+    "test_Precision": 0.6708,
+    "test_Recall": 0.8669,
+    "test_F1": 0.7564,
+    "test_ROC_AUC": 0.669,
+    "test_PR_AUC": 0.7549,
+    "test_Brier": 0.2163,
+    "tuned_params": "{\"m__subsample_freq\": 1, \"m__subsample\": 0.7, \"m__reg_lambda\": 0, \"m__num_leaves\": 7, \"m__min_child_samples\": 20, \"m__learning_rate\": 0.04, \"m__colsample_bytree\": 0.6}"
+   }
+  ],
+  "best_params": {
+   "Baseline: majority class": {},
+   "Logistic Regression": {
+    "m__C": 0.1
+   },
+   "Random Forest": {
+    "m__min_samples_leaf": 20,
+    "m__max_features": 0.3,
+    "m__max_depth": 16
+   },
+   "HistGradientBoosting": {
+    "m__min_samples_leaf": 50,
+    "m__max_leaf_nodes": 8,
+    "m__learning_rate": 0.04,
+    "m__l2_regularization": 0
+   },
+   "LightGBM": {
+    "m__subsample_freq": 1,
+    "m__subsample": 0.7,
+    "m__reg_lambda": 0,
+    "m__num_leaves": 7,
+    "m__min_child_samples": 20,
+    "m__learning_rate": 0.04,
+    "m__colsample_bytree": 0.6
+   }
+  },
+  "threshold_opt": 0.38000000000000006,
+  "threshold_bal": 0.6200000000000001,
+  "metrics_at_05": {
+   "Accuracy": 0.654654408143162,
+   "BalAcc": 0.5888360233399942,
+   "Precision": 0.6708444627080337,
+   "Recall": 0.8668525155980353,
+   "F1": 0.756356054902415,
+   "ROC_AUC": 0.6689704755589352,
+   "PR_AUC": 0.7549043769226871,
+   "Brier": 0.2163491580933835
+  },
+  "metrics_at_opt": {
+   "Accuracy": 0.6423411590871778,
+   "BalAcc": 0.541369048103452,
+   "Precision": 0.639224969314396,
+   "Recall": 0.9678746847205628,
+   "F1": 0.7699456148687893,
+   "ROC_AUC": 0.6689704755589352,
+   "PR_AUC": 0.7549043769226871,
+   "Brier": 0.2163491580933835
+  },
+  "metrics_at_bal": {
+   "Accuracy": 0.6182892792644886,
+   "BalAcc": 0.6222657162289611,
+   "Precision": 0.7310466420900785,
+   "Recall": 0.6054692685517058,
+   "F1": 0.6623584083647981,
+   "ROC_AUC": 0.6689704755589352,
+   "PR_AUC": 0.7549043769226871,
+   "Brier": 0.2163491580933835
+  },
+  "auc_ci": [
+   0.6597142455547215,
+   0.6785587185954777
+  ],
+  "fold_scores": {
+   "Baseline: majority class": {
+    "roc_auc": [
+     0.5,
+     0.5,
+     0.5,
+     0.5,
+     0.5
+    ],
+    "f1": [
+     0.7641874326295098,
+     0.7641874326295098,
+     0.7641874326295098,
+     0.7641874326295098,
+     0.7641090678503487
+    ],
+    "accuracy": [
+     0.6183683940482299,
+     0.6183683940482299,
+     0.6183683940482299,
+     0.6183683940482299,
+     0.6182657773217034
+    ]
+   },
+   "Logistic Regression": {
+    "roc_auc": [
+     0.6803826557089219,
+     0.6660967973593321,
+     0.6577567611248452,
+     0.6654281656784035,
+     0.6621109623878999
+    ],
+    "f1": [
+     0.7631862992012665,
+     0.7534573890377235,
+     0.7472543457706015,
+     0.7553061371321678,
+     0.7532899493853941
+    ],
+    "accuracy": [
+     0.6622883530015392,
+     0.6505900461775269,
+     0.6434068753206773,
+     0.6510005130836326,
+     0.649871729091842
+    ]
+   },
+   "Random Forest": {
+    "roc_auc": [
+     0.6738297350363178,
+     0.659925502530176,
+     0.6585153721700898,
+     0.6659974474686058,
+     0.6560163967340382
+    ],
+    "f1": [
+     0.7617351663223876,
+     0.7577595433464146,
+     0.749300222493361,
+     0.7590284208276943,
+     0.7527887729399064
+    ],
+    "accuracy": [
+     0.6567470497691124,
+     0.6516162134427912,
+     0.6415597742432017,
+     0.6528476141611083,
+     0.6475115443817342
+    ]
+   },
+   "HistGradientBoosting": {
+    "roc_auc": [
+     0.6800921024578712,
+     0.6663937314926526,
+     0.6648044902134668,
+     0.6708277084145632,
+     0.6621425958149288
+    ],
+    "f1": [
+     0.7620213072271811,
+     0.7562844660889494,
+     0.7515942028985507,
+     0.7564893159328839,
+     0.754577694144894
+    ],
+    "accuracy": [
+     0.6607491021036429,
+     0.6507952796305798,
+     0.6482298614674192,
+     0.6515135967162647,
+     0.6520266803488969
+    ]
+   },
+   "LightGBM": {
+    "roc_auc": [
+     0.6820291910638734,
+     0.6680117759851614,
+     0.6663502477879533,
+     0.6724592509272581,
+     0.664472828269308
+    ],
+    "f1": [
+     0.7606306045704367,
+     0.7546189376443418,
+     0.7515460167333576,
+     0.7571974889963201,
+     0.7524335318901642
+    ],
+    "accuracy": [
+     0.6603386351975372,
+     0.651103129810159,
+     0.6495638789122627,
+     0.6546947152385839,
+     0.6502821959979477
+    ]
+   }
+  },
+  "positive_rate": 0.6183525703121152,
+  "n_train": 48725,
+  "n_test": 12182,
+  "success_auc_065": true,
+  "success_f1_at_05": false,
+  "success_f1_at_opt": true,
+  "baseline_f1": 0.7641897032716206,
+  "confusion": [
+   [
+    2971,
+    1678
+   ],
+   [
+    2972,
+    4561
+   ]
+  ]
+ },
+ "O8": {
+  "salary_top": [
+   {
+    "feature": "country",
+    "imp": 0.4779,
+    "sd": 0.0079,
+    "share_pct": 79.5904
+   },
+   {
+    "feature": "years_code_pro",
+    "imp": 0.053,
+    "sd": 0.0026,
+    "share_pct": 8.8283
+   },
+   {
+    "feature": "org_log",
+    "imp": 0.0184,
+    "sd": 0.0022,
+    "share_pct": 3.0717
+   },
+   {
+    "feature": "years_code",
+    "imp": 0.0139,
+    "sd": 0.0011,
+    "share_pct": 2.3078
+   },
+   {
+    "feature": "remote_work",
+    "imp": 0.0102,
+    "sd": 0.0009,
+    "share_pct": 1.702
+   },
+   {
+    "feature": "dev_type",
+    "imp": 0.0094,
+    "sd": 0.0015,
+    "share_pct": 1.5676
+   },
+   {
+    "feature": "age_mid",
+    "imp": 0.0055,
+    "sd": 0.0009,
+    "share_pct": 0.9235
+   },
+   {
+    "feature": "purchase_influence",
+    "imp": 0.0038,
+    "sd": 0.0004,
+    "share_pct": 0.6294
+   }
+  ],
+  "ai_top": [
+   {
+    "feature": "years_code",
+    "imp": 0.0329,
+    "sd": 0.0021,
+    "share_pct": 28.0086
+   },
+   {
+    "feature": "dev_type",
+    "imp": 0.0224,
+    "sd": 0.0006,
+    "share_pct": 19.0995
+   },
+   {
+    "feature": "country",
+    "imp": 0.0167,
+    "sd": 0.0016,
+    "share_pct": 14.2019
+   },
+   {
+    "feature": "purchase_influence",
+    "imp": 0.0111,
+    "sd": 0.0013,
+    "share_pct": 9.4693
+   },
+   {
+    "feature": "age_mid",
+    "imp": 0.0059,
+    "sd": 0.0012,
+    "share_pct": 5.0523
+   },
+   {
+    "feature": "so_part_freq",
+    "imp": 0.0056,
+    "sd": 0.0009,
+    "share_pct": 4.7417
+   },
+   {
+    "feature": "remote_work",
+    "imp": 0.0051,
+    "sd": 0.0006,
+    "share_pct": 4.3601
+   },
+   {
+    "feature": "years_code_pro",
+    "imp": 0.0036,
+    "sd": 0.0007,
+    "share_pct": 3.0828
+   }
+  ],
+  "salary_top3_share": 91.4904764857124,
+  "ai_top3_share": 61.31005688717916,
+  "shap_salary_top": [
+   {
+    "feature": "Country",
+    "mean_abs_shap": 0.5446
+   },
+   {
+    "feature": "Professional years",
+    "mean_abs_shap": 0.1641
+   },
+   {
+    "feature": "Org. size (log)",
+    "mean_abs_shap": 0.0805
+   },
+   {
+    "feature": "Total years coded",
+    "mean_abs_shap": 0.0788
+   },
+   {
+    "feature": "Job role",
+    "mean_abs_shap": 0.0703
+   },
+   {
+    "feature": "Work arrangement",
+    "mean_abs_shap": 0.0674
+   },
+   {
+    "feature": "Age",
+    "mean_abs_shap": 0.0332
+   },
+   {
+    "feature": "Education rank",
+    "mean_abs_shap": 0.0331
+   }
+  ],
+  "shap_ai_top": [
+   {
+    "feature": "Total years coded",
+    "mean_abs_shap": 0.2364
+   },
+   {
+    "feature": "Country",
+    "mean_abs_shap": 0.18
+   },
+   {
+    "feature": "Job role",
+    "mean_abs_shap": 0.155
+   },
+   {
+    "feature": "Purchase influence",
+    "mean_abs_shap": 0.1095
+   },
+   {
+    "feature": "SO participation",
+    "mean_abs_shap": 0.0865
+   },
+   {
+    "feature": "Professional years",
+    "mean_abs_shap": 0.0772
+   },
+   {
+    "feature": "Work arrangement",
+    "mean_abs_shap": 0.0743
+   },
+   {
+    "feature": "Age",
+    "mean_abs_shap": 0.0737
+   }
+  ],
+  "pdp_exp": {
+   "All": [
+    47050.0,
+    65122.0,
+    77365.0,
+    85473.0,
+    86558.0
+   ],
+   "USA": [
+    98624.0,
+    128274.0,
+    149731.0,
+    163709.0,
+    165853.0
+   ],
+   "India": [
+    9218.0,
+    18297.0,
+    22598.0,
+    28386.0,
+    28786.0
+   ],
+   "Germany": [
+    49279.0,
+    64319.0,
+    77522.0,
+    84577.0,
+    85403.0
+   ]
+  },
+  "pdp_age": {
+   "21.0": 64.03,
+   "29.5": 62.55,
+   "39.5": 61.02,
+   "49.5": 60.06,
+   "59.5": 54.11
+  },
+  "error": {
+   "overall_mdape": 27.39509245977041,
+   "overall_mae": 28584.50172511015,
+   "india_mdape": 37.441994508719915,
+   "india_mae": 14246.291785097377,
+   "india_n": 193,
+   "rest_mdape": 26.935074281213755,
+   "usa_mdape": 24.10988308607358,
+   "india_bias": 0.07624814476631182,
+   "by_country": [
+    {
+     "country": "USA",
+     "n": 842,
+     "MdAPE_pct": 24.11,
+     "MAE_USD": 54842.107,
+     "bias_log": 0.015,
+     "within25": 51.663
+    },
+    {
+     "country": "Germany",
+     "n": 351,
+     "MdAPE_pct": 19.447,
+     "MAE_USD": 21424.711,
+     "bias_log": 0.033,
+     "within25": 59.544
+    },
+    {
+     "country": "UK",
+     "n": 254,
+     "MdAPE_pct": 25.814,
+     "MAE_USD": 29457.532,
+     "bias_log": -0.04,
+     "within25": 48.031
+    },
+    {
+     "country": "Ukraine",
+     "n": 236,
+     "MdAPE_pct": 55.69,
+     "MAE_USD": 24993.284,
+     "bias_log": 0.119,
+     "within25": 14.831
+    },
+    {
+     "country": "India",
+     "n": 193,
+     "MdAPE_pct": 37.442,
+     "MAE_USD": 14246.292,
+     "bias_log": 0.076,
+     "within25": 31.606
+    },
+    {
+     "country": "France",
+     "n": 168,
+     "MdAPE_pct": 21.123,
+     "MAE_USD": 18521.854,
+     "bias_log": 0.024,
+     "within25": 55.952
+    },
+    {
+     "country": "Canada",
+     "n": 160,
+     "MdAPE_pct": 24.413,
+     "MAE_USD": 30099.837,
+     "bias_log": -0.002,
+     "within25": 50.0
+    },
+    {
+     "country": "Brazil",
+     "n": 124,
+     "MdAPE_pct": 38.893,
+     "MAE_USD": 17285.619,
+     "bias_log": -0.124,
+     "within25": 33.871
+    },
+    {
+     "country": "Poland",
+     "n": 118,
+     "MdAPE_pct": 31.956,
+     "MAE_USD": 25634.174,
+     "bias_log": 0.072,
+     "within25": 43.22
+    },
+    {
+     "country": "Spain",
+     "n": 109,
+     "MdAPE_pct": 23.038,
+     "MAE_USD": 15307.699,
+     "bias_log": 0.004,
+     "within25": 55.963
+    }
+   ],
+   "by_exp": [
+    {
+     "exp_band": "0-2",
+     "n": 555,
+     "MdAPE_pct": 29.07,
+     "MAE_USD": 13385.03,
+     "bias_log": 0.051,
+     "within25": 44.505
+    },
+    {
+     "exp_band": "3-5",
+     "n": 925,
+     "MdAPE_pct": 26.979,
+     "MAE_USD": 19805.927,
+     "bias_log": 0.031,
+     "within25": 46.919
+    },
+    {
+     "exp_band": "6-10",
+     "n": 1153,
+     "MdAPE_pct": 27.115,
+     "MAE_USD": 28815.195,
+     "bias_log": -0.024,
+     "within25": 46.314
+    },
+    {
+     "exp_band": "11-20",
+     "n": 995,
+     "MdAPE_pct": 27.366,
+     "MAE_USD": 39411.863,
+     "bias_log": 0.032,
+     "within25": 47.136
+    },
+    {
+     "exp_band": "21+",
+     "n": 492,
+     "MdAPE_pct": 26.737,
+     "MAE_USD": 40346.002,
+     "bias_log": -0.007,
+     "within25": 47.967
+    }
+   ],
+   "by_role": [
+    {
+     "dev_type": "Full-stack dev",
+     "n": 1603,
+     "MdAPE_pct": 27.966,
+     "MAE_USD": 24839.172,
+     "bias_log": 0.018,
+     "within25": 45.228
+    },
+    {
+     "dev_type": "Back-end dev",
+     "n": 937,
+     "MdAPE_pct": 27.004,
+     "MAE_USD": 29647.075,
+     "bias_log": 0.025,
+     "within25": 46.745
+    },
+    {
+     "dev_type": "Front-end dev",
+     "n": 251,
+     "MdAPE_pct": 23.909,
+     "MAE_USD": 20759.713,
+     "bias_log": 0.106,
+     "within25": 51.793
+    },
+    {
+     "dev_type": "Desktop/enterprise dev",
+     "n": 196,
+     "MdAPE_pct": 28.712,
+     "MAE_USD": 28452.304,
+     "bias_log": -0.133,
+     "within25": 44.898
+    },
+    {
+     "dev_type": "Embedded dev",
+     "n": 143,
+     "MdAPE_pct": 24.817,
+     "MAE_USD": 28730.182,
+     "bias_log": -0.085,
+     "within25": 51.049
+    },
+    {
+     "dev_type": "Mobile dev",
+     "n": 139,
+     "MdAPE_pct": 21.57,
+     "MAE_USD": 24114.877,
+     "bias_log": 0.141,
+     "within25": 51.799
+    },
+    {
+     "dev_type": "Engineering manager",
+     "n": 117,
+     "MdAPE_pct": 25.421,
+     "MAE_USD": 42996.517,
+     "bias_log": -0.042,
+     "within25": 49.573
+    },
+    {
+     "dev_type": "Other",
+     "n": 100,
+     "MdAPE_pct": 29.591,
+     "MAE_USD": 33449.641,
+     "bias_log": -0.015,
+     "within25": 46.0
+    },
+    {
+     "dev_type": "Data engineer",
+     "n": 94,
+     "MdAPE_pct": 24.419,
+     "MAE_USD": 31360.377,
+     "bias_log": 0.01,
+     "within25": 52.128
+    },
+    {
+     "dev_type": "DevOps specialist",
+     "n": 80,
+     "MdAPE_pct": 24.456,
+     "MAE_USD": 25369.91,
+     "bias_log": 0.041,
+     "within25": 51.25
+    }
+   ]
+  },
+  "worst": [
+   {
+    "country": "USA",
+    "dev_type": "Back-end dev",
+    "years_code_pro": 3.0,
+    "org_short": "1,000 to 4,999",
+    "converted_comp_yearly": 945000.0,
+    "pred_usd": 129516.0,
+    "err_usd": -815484.0
+   },
+   {
+    "country": "USA",
+    "dev_type": "Senior executive",
+    "years_code_pro": 15.0,
+    "org_short": "10,000 or more",
+    "converted_comp_yearly": 1000000.0,
+    "pred_usd": 254743.0,
+    "err_usd": -745257.0
+   },
+   {
+    "country": "USA",
+    "dev_type": "Engineering manager",
+    "years_code_pro": 24.0,
+    "org_short": "10,000 or more",
+    "converted_comp_yearly": 1000000.0,
+    "pred_usd": 276903.0,
+    "err_usd": -723097.0
+   },
+   {
+    "country": "USA",
+    "dev_type": "Data scientist/ML",
+    "years_code_pro": 32.0,
+    "org_short": "20 to 99",
+    "converted_comp_yearly": 810000.0,
+    "pred_usd": 177681.0,
+    "err_usd": -632319.0
+   },
+   {
+    "country": "USA",
+    "dev_type": "Full-stack dev",
+    "years_code_pro": 16.0,
+    "org_short": "1,000 to 4,999",
+    "converted_comp_yearly": 798000.0,
+    "pred_usd": 174666.0,
+    "err_usd": -623334.0
+   },
+   {
+    "country": "USA",
+    "dev_type": "Developer experience",
+    "years_code_pro": 10.0,
+    "org_short": "1,000 to 4,999",
+    "converted_comp_yearly": 750000.0,
+    "pred_usd": 168878.0,
+    "err_usd": -581122.0
+   },
+   {
+    "country": "USA",
+    "dev_type": "Mobile dev",
+    "years_code_pro": 14.0,
+    "org_short": "10,000 or more",
+    "converted_comp_yearly": 750000.0,
+    "pred_usd": 180706.0,
+    "err_usd": -569294.0
+   },
+   {
+    "country": "USA",
+    "dev_type": "Developer experience",
+    "years_code_pro": 15.0,
+    "org_short": "10,000 or more",
+    "converted_comp_yearly": 750000.0,
+    "pred_usd": 216365.0,
+    "err_usd": -533635.0
+   }
+  ],
+  "clf_error": {
+   "by_age": [
+    {
+     "group": "<18",
+     "n": 467,
+     "accuracy": 54.39,
+     "auc": 0.59,
+     "pos_rate": 61.88,
+     "pred_rate": 40.69
+    },
+    {
+     "group": "18-24",
+     "n": 2503,
+     "accuracy": 68.64,
+     "auc": 0.67,
+     "pos_rate": 70.24,
+     "pred_rate": 74.75
+    },
+    {
+     "group": "25-34",
+     "n": 4394,
+     "accuracy": 63.81,
+     "auc": 0.64,
+     "pos_rate": 66.18,
+     "pred_rate": 65.54
+    },
+    {
+     "group": "35-44",
+     "n": 2878,
+     "accuracy": 56.91,
+     "auc": 0.64,
+     "pos_rate": 56.78,
+     "pred_rate": 36.55
+    },
+    {
+     "group": "45-54",
+     "n": 1199,
+     "accuracy": 55.3,
+     "auc": 0.65,
+     "pos_rate": 53.54,
+     "pred_rate": 17.68
+    },
+    {
+     "group": "55-64",
+     "n": 536,
+     "accuracy": 60.26,
+     "auc": 0.63,
+     "pos_rate": 41.04,
+     "pred_rate": 3.92
+    }
+   ],
+   "by_country": [
+    {
+     "group": "USA",
+     "n": 2226,
+     "accuracy": 55.8,
+     "auc": 0.64,
+     "pos_rate": 55.35,
+     "pred_rate": 28.75
+    },
+    {
+     "group": "Germany",
+     "n": 959,
+     "accuracy": 57.46,
+     "auc": 0.64,
+     "pos_rate": 57.87,
+     "pred_rate": 40.35
+    },
+    {
+     "group": "India",
+     "n": 805,
+     "accuracy": 67.7,
+     "auc": 0.66,
+     "pos_rate": 67.08,
+     "pred_rate": 79.5
+    },
+    {
+     "group": "UK",
+     "n": 668,
+     "accuracy": 58.08,
+     "auc": 0.65,
+     "pos_rate": 50.45,
+     "pred_rate": 22.6
+    },
+    {
+     "group": "Ukraine",
+     "n": 541,
+     "accuracy": 69.69,
+     "auc": 0.63,
+     "pos_rate": 70.98,
+     "pred_rate": 83.55
+    },
+    {
+     "group": "France",
+     "n": 423,
+     "accuracy": 59.1,
+     "auc": 0.68,
+     "pos_rate": 53.43,
+     "pred_rate": 29.55
+    },
+    {
+     "group": "Canada",
+     "n": 410,
+     "accuracy": 60.0,
+     "auc": 0.66,
+     "pos_rate": 56.59,
+     "pred_rate": 40.49
+    },
+    {
+     "group": "Poland",
+     "n": 322,
+     "accuracy": 59.32,
+     "auc": 0.62,
+     "pos_rate": 61.8,
+     "pred_rate": 57.76
+    },
+    {
+     "group": "Italy",
+     "n": 298,
+     "accuracy": 56.04,
+     "auc": 0.69,
+     "pos_rate": 60.74,
+     "pred_rate": 32.89
+    },
+    {
+     "group": "Brazil",
+     "n": 292,
+     "accuracy": 66.1,
+     "auc": 0.67,
+     "pos_rate": 66.78,
+     "pred_rate": 63.7
+    }
+   ],
+   "by_role": [
+    {
+     "group": "Full-stack dev",
+     "n": 3670,
+     "accuracy": 63.68,
+     "auc": 0.65,
+     "pos_rate": 65.86,
+     "pred_rate": 60.87
+    },
+    {
+     "group": "Back-end dev",
+     "n": 1926,
+     "accuracy": 60.7,
+     "auc": 0.64,
+     "pos_rate": 59.71,
+     "pred_rate": 53.84
+    },
+    {
+     "group": "Student",
+     "n": 1007,
+     "accuracy": 59.88,
+     "auc": 0.64,
+     "pos_rate": 58.69,
+     "pred_rate": 50.15
+    },
+    {
+     "group": "Front-end dev",
+     "n": 636,
+     "accuracy": 68.24,
+     "auc": 0.65,
+     "pos_rate": 70.44,
+     "pred_rate": 70.44
+    },
+    {
+     "group": "Desktop/enterprise dev",
+     "n": 472,
+     "accuracy": 59.11,
+     "auc": 0.68,
+     "pos_rate": 44.49,
+     "pred_rate": 8.26
+    },
+    {
+     "group": "Other",
+     "n": 471,
+     "accuracy": 55.41,
+     "auc": 0.66,
+     "pos_rate": 53.93,
+     "pred_rate": 21.23
+    },
+    {
+     "group": "Mobile dev",
+     "n": 385,
+     "accuracy": 61.56,
+     "auc": 0.63,
+     "pos_rate": 63.38,
+     "pred_rate": 67.53
+    },
+    {
+     "group": "Embedded dev",
+     "n": 295,
+     "accuracy": 56.95,
+     "auc": 0.61,
+     "pos_rate": 44.07,
+     "pred_rate": 7.12
+    },
+    {
+     "group": "Engineering manager",
+     "n": 249,
+     "accuracy": 44.58,
+     "auc": 0.53,
+     "pos_rate": 63.45,
+     "pred_rate": 37.75
+    },
+    {
+     "group": "Data engineer",
+     "n": 237,
+     "accuracy": 61.18,
+     "auc": 0.69,
+     "pos_rate": 64.98,
+     "pred_rate": 44.73
+    }
+   ],
+   "india": [
+    {
+     "group": "India",
+     "n": 805,
+     "accuracy": 67.7,
+     "auc": 0.66,
+     "pos_rate": 67.08,
+     "pred_rate": 79.5
+    }
+   ]
+  }
+ },
+ "demo": [
+  {
+   "profile": "Mid-level full-stack dev, India",
+   "predicted_salary_usd": 18000.0,
+   "p_uses_ai": 0.704
+  },
+  {
+   "profile": "Mid-level full-stack dev, USA",
+   "predicted_salary_usd": 115700.0,
+   "p_uses_ai": 0.626
+  },
+  {
+   "profile": "Senior engineering manager, Germany",
+   "predicted_salary_usd": 124300.0,
+   "p_uses_ai": 0.523
+  },
+  {
+   "profile": "Student-age Python learner, Brazil",
+   "predicted_salary_usd": 4600.0,
+   "p_uses_ai": 0.785
+  }
+ ],
+ "success": {
+  "success_rmse_cut_40": false,
+  "success_beats_country_median": true,
+  "success_auc_065": true,
+  "success_f1_at_05": false,
+  "success_f1_at_opt": true
+ }
+}

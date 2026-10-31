@@ -1,0 +1,3863 @@
+{
+ "title": "Predicting Developer Compensation and AI-Tool Adoption: A Predictive Analysis of the Stack Overflow 2024 Developer Survey",
+ "sections": [
+  {
+   "blocks": [
+    {
+     "t": "center",
+     "text": "PREDICTIVE ANALYSIS",
+     "bold": true,
+     "after": 0
+    },
+    {
+     "t": "center",
+     "text": "PROJECT REPORT",
+     "bold": true,
+     "after": 0
+    },
+    {
+     "t": "center",
+     "text": "(Project Semester [January–April 20XX — edit as per your term])",
+     "after": 240
+    },
+    {
+     "t": "spacer",
+     "n": 1
+    },
+    {
+     "t": "center",
+     "text": "PREDICTING DEVELOPER COMPENSATION AND AI-TOOL ADOPTION: A PREDICTIVE ANALYSIS OF THE STACK OVERFLOW 2024 DEVELOPER SURVEY",
+     "size": 16,
+     "bold": true,
+     "after": 360
+    },
+    {
+     "t": "spacer",
+     "n": 1
+    },
+    {
+     "t": "center",
+     "text": "Submitted by",
+     "after": 120
+    },
+    {
+     "t": "center",
+     "text": "[Name of student]",
+     "after": 0
+    },
+    {
+     "t": "center",
+     "text": "Registration No. [……………]",
+     "after": 0
+    },
+    {
+     "t": "center",
+     "text": "Programme and Section [……………]",
+     "after": 0
+    },
+    {
+     "t": "center",
+     "text": "Course Code [……………]",
+     "after": 240
+    },
+    {
+     "t": "center",
+     "text": "Under the Guidance of",
+     "after": 120
+    },
+    {
+     "t": "center",
+     "text": "[Name of faculty coordinator with U.Id and designation]",
+     "bold": true,
+     "after": 360
+    },
+    {
+     "t": "center",
+     "text": "Discipline of CSE/IT",
+     "bold": true,
+     "after": 0
+    },
+    {
+     "t": "center",
+     "text": "Lovely School of [__________________]",
+     "bold": true,
+     "after": 0
+    },
+    {
+     "t": "center",
+     "text": "Lovely Professional University, Phagwara",
+     "bold": true,
+     "after": 0
+    }
+   ]
+  },
+  {
+   "numbering": {
+    "fmt": "roman",
+    "start": 1
+   },
+   "blocks": [
+    {
+     "t": "frontheading",
+     "text": "DECLARATION",
+     "nobreak": true
+    },
+    {
+     "t": "p",
+     "text": "I, [Name of student], student of [Programme name] under CSE/IT Discipline at Lovely Professional University, Punjab, hereby declare that all the information furnished in this project report is based on my own intensive work and is genuine."
+    },
+    {
+     "t": "spacer",
+     "n": 3
+    },
+    {
+     "t": "left",
+     "text": "Date: [DD/MM/YYYY]\t\t\t\t\t\tSignature: [signature]"
+    },
+    {
+     "t": "left",
+     "text": "Registration No. [……………]\t\t\t\tName of the student: [Name]"
+    },
+    {
+     "t": "frontheading",
+     "text": "CERTIFICATE"
+    },
+    {
+     "t": "p",
+     "text": "This is to certify that [student’s name] bearing Registration no. [……………] has completed [Course Code] project titled, “Predicting Developer Compensation and AI-Tool Adoption: A Predictive Analysis of the Stack Overflow 2024 Developer Survey” under my guidance and supervision. To the best of my knowledge, the present work is the result of his/her original development, effort and study."
+    },
+    {
+     "t": "spacer",
+     "n": 3
+    },
+    {
+     "t": "left",
+     "text": "Signature and Name of the Supervisor: [signature — to be signed by the faculty member]",
+     "bold": true
+    },
+    {
+     "t": "left",
+     "text": "Designation of the Supervisor: [designation]",
+     "bold": true
+    },
+    {
+     "t": "left",
+     "text": "School of [……………………………]",
+     "bold": true
+    },
+    {
+     "t": "left",
+     "text": "Lovely Professional University",
+     "after": 0
+    },
+    {
+     "t": "left",
+     "text": "Phagwara, Punjab.",
+     "after": 120
+    },
+    {
+     "t": "left",
+     "text": "Date: [DD/MM/YYYY]"
+    },
+    {
+     "t": "frontheading",
+     "text": "ACKNOWLEDGEMENT"
+    },
+    {
+     "t": "p",
+     "text": "[Edit this page in your own words.] I express my sincere gratitude to my faculty coordinator, [Name], for guidance and constructive feedback throughout this project, and to Lovely Professional University for providing the academic environment and computing resources needed to complete it."
+    },
+    {
+     "t": "p",
+     "text": "I thank Stack Overflow for conducting the Annual Developer Survey and releasing the anonymised results under an open licence, and Havisha Khurana and the TidyTuesday community (R4DS Online Learning Community) for curating and publicly hosting the extract used here. I also acknowledge the authors and maintainers of the open-source Python ecosystem — NumPy, pandas, SciPy, statsmodels, scikit-learn, LightGBM, SHAP, Matplotlib and Seaborn — on which every analysis in this report is built."
+    },
+    {
+     "t": "p",
+     "text": "Finally, I thank my family and friends for their encouragement."
+    },
+    {
+     "t": "frontheading",
+     "text": "TABLE OF CONTENTS"
+    },
+    {
+     "t": "toc"
+    },
+    {
+     "t": "frontheading",
+     "text": "LIST OF FIGURES"
+    },
+    {
+     "t": "lof"
+    },
+    {
+     "t": "frontheading",
+     "text": "LIST OF TABLES"
+    },
+    {
+     "t": "lot"
+    }
+   ]
+  },
+  {
+   "numbering": {
+    "fmt": "decimal",
+    "start": 1
+   },
+   "blocks": [
+    {
+     "t": "h1",
+     "text": "1. Introduction"
+    },
+    {
+     "t": "h2",
+     "text": "1.1 Background and motivation"
+    },
+    {
+     "t": "p",
+     "text": "Software development is one of the most globally distributed professions, and since 2022 it has also become the first large profession in which generative artificial-intelligence (AI) assistants are used daily by a majority of practitioners. Two questions follow naturally for any student entering the industry: *what determines how much a developer is paid?* and *who is adopting AI tools, and how do developers feel about them?* Answering these with evidence rather than anecdote requires large, real survey data and careful statistical and machine-learning analysis."
+    },
+    {
+     "t": "p",
+     "text": "The Stack Overflow Annual Developer Survey 2024 is among the largest such surveys. It contains 65,437 responses from developers in 185 countries and covers education, career, compensation, community participation and, for the first time in depth, AI tooling. This project uses it for a complete end-to-end *predictive analysis*: a data-quality audit, exploratory analysis, hypothesis-driven statistical analysis of eight pre-defined objectives, two supervised-learning tasks (a regression task for annual compensation and a classification task for AI-tool adoption), and an explainability and error audit of the final models."
+    },
+    {
+     "t": "h2",
+     "text": "1.2 Problem statement"
+    },
+    {
+     "t": "p",
+     "text": "Using only information that a developer could reasonably state about themselves (location, role, experience, organisation, education, work arrangement, community engagement), (a) quantify and explain differences in annual compensation, (b) describe and explain adoption of AI tools and attitudes towards them, (c) build and fairly compare machine-learning models that predict compensation and AI adoption for unseen respondents, and (d) explain what the models learned and where they fail."
+    },
+    {
+     "t": "h2",
+     "text": "1.3 Why this topic is relevant to a student in India"
+    },
+    {
+     "t": "p",
+     "text": "India is the third-largest respondent country in the survey (4,161 respondents with an AI answer; 966 in the salary cohort). Understanding how compensation scales with experience, how Indian developers’ pay compares with other markets and how fast AI tools are being adopted gives practical input to career decisions, skill planning and curriculum design. The analysis is explicitly *descriptive and predictive, not causal*: the data are observational self-reports, and the report repeatedly states what cannot be concluded."
+    },
+    {
+     "t": "h2",
+     "text": "1.4 Objectives"
+    },
+    {
+     "t": "p",
+     "text": "The objectives below were fixed *before* modelling and drive every later chapter. Each is specific, measurable and non-overlapping (O1–O3: compensation; O4–O5: AI attitudes and adoption; O6–O7: prediction; O8: explanation)."
+    },
+    {
+     "t": "table",
+     "id": "t_obj",
+     "caption": "Research objectives, methods and success measures",
+     "header": [
+      "#",
+      "Research question",
+      "Variables, methods and visualisations",
+      "Success measure"
+     ],
+     "rows": [
+      [
+       "O1",
+       "How much of the variation in developer pay does country explain, and where does India stand?",
+       "Country, USD pay; Kruskal–Wallis, η², Mann–Whitney (Holm), bootstrap CI; box and CI plots",
+       "η² / R² of country; India : USA median ratio with 95 % CI"
+      ],
+      [
+       "O2",
+       "How strongly does professional experience raise pay and where do returns diminish?",
+       "Years coded professionally, log-pay; Spearman ρ, quadratic log-linear OLS (HC3), delta method; hexbin/LOWESS, curves",
+       "ρ with CI; % gain per year at 0/5/10/20 yrs; India-vs-USA slope test"
+      ],
+      [
+       "O3",
+       "What are the net effects of role, work mode, organisation size and education after adjusting for country and experience?",
+       "OLS (HC3), nested-model ΔR², partial η²; forest plots",
+       "Adjusted % differences with 95 % CI; ΔR² per block"
+      ],
+      [
+       "O4",
+       "Who uses AI tools in development?",
+       "χ² tests, Cramér’s V, Wilson CIs, z-test; stacked bars, dot plots, heat-map",
+       "Adoption % with CI per group; ranking of factors; India-vs-world gap"
+      ],
+      [
+       "O5",
+       "How do sentiment, trust and job-threat perception vary with career stage, role and country?",
+       "Spearman ρ, Kruskal–Wallis ε², χ², Mann–Whitney; distribution and trend plots",
+       "ρ (experience ↔ trust); threat-rate gaps"
+      ],
+      [
+       "O6",
+       "Can annual compensation be predicted (regression, ≥ 4 models)?",
+       "Baselines, Ridge, Random Forest, HistGradientBoosting, LightGBM; CV, tuning",
+       "RMSE(log) reduction ≥ 40 % vs baseline; beat country-median baseline; R², MAE, MdAPE"
+      ],
+      [
+       "O7",
+       "Can current AI-tool adoption be predicted (classification, ≥ 4 models)?",
+       "Baseline, Logistic Regression, RF, HistGB, LightGBM; CV, tuning, threshold analysis",
+       "ROC-AUC ≥ 0.65; F1 above majority baseline; calibration"
+      ],
+      [
+       "O8",
+       "Which inputs drive the models and where do they fail?",
+       "Permutation importance, SHAP, partial dependence, segment error audit",
+       "Ranked drivers; error gaps across countries/segments"
+      ]
+     ],
+     "widths": [
+      0.5,
+      3.0,
+      3.3,
+      2.4
+     ],
+     "align": [
+      "l",
+      "l",
+      "l",
+      "l"
+     ],
+     "note": null,
+     "size": 18
+    },
+    {
+     "t": "h2",
+     "text": "1.5 Objective-to-analysis mapping"
+    },
+    {
+     "t": "table",
+     "id": "t_map",
+     "caption": "Mapping of every objective to its report section, figures, result tables and notebook section",
+     "header": [
+      "Objective",
+      "Report section",
+      "Figures",
+      "Result tables (CSV)",
+      "Notebook section"
+     ],
+     "rows": [
+      [
+       "O1",
+       "§4.1",
+       "fig09, fig10",
+       "tbl_o1_country_stats",
+       "Part D, O1"
+      ],
+      [
+       "O2",
+       "§4.2",
+       "fig11, fig12",
+       "tbl_o2_marginal",
+       "Part D, O2"
+      ],
+      [
+       "O3",
+       "§4.3",
+       "fig13–fig15",
+       "tbl_o3_nested_models, tbl_o3_adjusted_effects",
+       "Part D, O3"
+      ],
+      [
+       "O4",
+       "§4.4",
+       "fig16–fig19",
+       "tbl_o4_factor_tests",
+       "Part D, O4"
+      ],
+      [
+       "O5",
+       "§4.5",
+       "fig20–fig23",
+       "tbl_o5_conditionality",
+       "Part D, O5"
+      ],
+      [
+       "O6",
+       "§4.6",
+       "fig24–fig26",
+       "tbl_o6_model_comparison",
+       "Part E, O6"
+      ],
+      [
+       "O7",
+       "§4.7",
+       "fig27–fig29",
+       "tbl_o7_model_comparison",
+       "Part E, O7"
+      ],
+      [
+       "O8",
+       "§4.8",
+       "fig30–fig36",
+       "tbl_o8_* tables",
+       "Part F, O8"
+      ]
+     ],
+     "widths": [
+      0.8,
+      1.0,
+      1.3,
+      2.9,
+      1.3
+     ],
+     "align": [
+      "l",
+      "l",
+      "l",
+      "l",
+      "l"
+     ],
+     "note": "Figure file names refer to the PNG files in reports/figures/ (e.g. fig09 = fig09_country_boxplot.png).",
+     "size": 19
+    },
+    {
+     "t": "h2",
+     "text": "1.6 Tools, technologies and deliverables"
+    },
+    {
+     "t": "p",
+     "text": "All work was performed in Python 3.12.3 inside a Jupyter notebook using pandas 3.0.2, NumPy 2.4.4, SciPy 1.17.1, statsmodels 0.15.0, scikit-learn 1.8.0, LightGBM 4.7.0, SHAP, Matplotlib and Seaborn. Every random process uses the seed 42. The project folder contains: the raw data and its documentation; the executed notebook; a reusable `src/` package (data preparation, features, modelling, statistics, plotting, prediction); all 36 figures (300 dpi PNG) and 25 result tables; the trained best models with their preprocessing pipelines; a README with set-up and GitHub instructions; viva preparation notes; and this report."
+    },
+    {
+     "t": "h2",
+     "text": "1.7 Organisation of the report"
+    },
+    {
+     "t": "p",
+     "text": "Chapter 2 documents the source of the dataset and why it was selected. Chapter 3 describes the exploratory data analysis process: inspection, quality assessment, cleaning, univariate and bivariate exploration, feature engineering and leakage control. Chapter 4 presents the eight analyses; each follows the prescribed structure *(i) Introduction, (ii) General Description, (iii) Specific Requirements, Functions and Formulas, (iv) Analysis Results, (v) Visualization and Interpretation*. Chapters 5 and 6 give the conclusion and future scope, followed by the references."
+    },
+    {
+     "t": "h1",
+     "text": "2. Source of Dataset"
+    },
+    {
+     "t": "h2",
+     "text": "2.1 Dataset selection process"
+    },
+    {
+     "t": "p",
+     "text": "The brief asks for the most suitable, real, sufficiently large, currently relevant dataset with a meaningful prediction target. The four portals named in the brief (Kaggle, data.gov.in, Mendeley Data, AI Kosh) could not be reached from the environment in which this project was built, so candidates were evaluated among openly licensed datasets that *could* be downloaded and inspected (documented, curated collections hosted on GitHub). Each candidate was actually loaded and profiled; none was judged from its title alone."
+    },
+    {
+     "t": "table",
+     "id": "t_cand",
+     "caption": "Candidate datasets evaluated (those reachable and profiled)",
+     "header": [
+      "Candidate",
+      "Rows × cols",
+      "Prediction targets",
+      "Topical relevance",
+      "Decision"
+     ],
+     "rows": [
+      [
+       "Stack Overflow Developer Survey 2024 (TidyTuesday extract)",
+       "65,437 × 28",
+       "Salary (continuous), AI adoption (binary), attitudes (ordinal)",
+       "Very high — AI in software work; global; includes India",
+       "**Selected**"
+      ],
+      [
+       "Netflix viewing report H1 2025",
+       "36,121 movies / 27,803 shows × 8",
+       "Weak (views from a few aggregate columns)",
+       "High",
+       "Rejected: no meaningful supervised target"
+      ],
+      [
+       "Henley Passport Index (rank by year)",
+       "3,950 × 6",
+       "Rank / visa-free counts (trend only)",
+       "Medium",
+       "Rejected: few features, time-series style"
+      ],
+      [
+       "Pokémon (2025)",
+       "949 × 22",
+       "Stats (game data)",
+       "Low",
+       "Rejected: small, not socially relevant"
+      ],
+      [
+       "Cars in Qatar",
+       "105 × 15",
+       "Price",
+       "Medium",
+       "Rejected: only 105 rows — unreliable for CV"
+      ]
+     ],
+     "widths": [
+      2.4,
+      1.3,
+      2.2,
+      1.8,
+      1.4
+     ],
+     "align": [
+      "l",
+      "l",
+      "l",
+      "l",
+      "l"
+     ],
+     "note": null,
+     "size": 18
+    },
+    {
+     "t": "p",
+     "text": "The Stack Overflow survey was selected because it (i) is large and real, (ii) has two natural and different prediction targets (a continuous salary and a binary AI-adoption flag) plus ordinal attitude variables that allow rich statistical questions, (iii) addresses a current, widely discussed topic (AI tools in software work), (iv) is geographically diverse and includes enough Indian respondents for a country-specific analysis, and (v) has an official, documented origin and an open licence."
+    },
+    {
+     "t": "h2",
+     "text": "2.2 Provenance and licence"
+    },
+    {
+     "t": "table",
+     "id": "t_prov",
+     "caption": "Provenance of the dataset",
+     "header": [
+      "Item",
+      "Value"
+     ],
+     "rows": [
+      [
+       "Original publisher",
+       "Stack Overflow (Annual Developer Survey, fielded May 2024)"
+      ],
+      [
+       "Official page",
+       "https://survey.stackoverflow.co/ (2024 results: https://survey.stackoverflow.co/2024/)"
+      ],
+      [
+       "Licence",
+       "Open Database Licence (ODbL), as stated on the survey page (re-confirm before submission)"
+      ],
+      [
+       "Extract used",
+       "TidyTuesday 2024 week 36, curated by Havisha Khurana (single-response, integer-coded questions + crosswalk)"
+      ],
+      [
+       "Extract URL",
+       "https://github.com/rfordatascience/tidytuesday/tree/main/data/2024/2024-09-03"
+      ],
+      [
+       "Repository commit at download",
+       "b2258ae949e3c64099c4e6d00ff4b68dba1d6d0e (downloaded October 2026)"
+      ],
+      [
+       "Main file",
+       "stackoverflow_survey_single_response.csv, SHA-256 bbfad6bf…c2446"
+      ],
+      [
+       "Companion files",
+       "qname_levels_single_response_crosswalk.csv (code → label), stackoverflow_survey_questions.csv (question text)"
+      ]
+     ],
+     "widths": [
+      1.6,
+      5.4
+     ],
+     "align": [
+      "l",
+      "l"
+     ],
+     "note": null,
+     "size": 18
+    },
+    {
+     "t": "p",
+     "text": "**Transparency note.** Because the original download CDN was not reachable, the data were taken from the TidyTuesday GitHub copy, whose own cleaning script (stored in `data/raw/TIDYTUESDAY_README_ORIGINAL.md`) derives it from the official Stack Overflow zip. File checksums are recorded so that a reader can verify integrity. Responses are anonymised by the publisher; no personal identifiers are present."
+    },
+    {
+     "t": "h2",
+     "text": "2.3 Structure and data dictionary"
+    },
+    {
+     "t": "p",
+     "text": "The main table has 65,437 rows (one per respondent) and 28 columns, occupying about 21.3 MB in memory. Categorical answers are stored as integer codes; the crosswalk (122 rows) maps each code to its text label and was applied by the function `decode()`. 24 question texts are provided. Table 5 lists every variable, its measurement type and how it is used in this project."
+    },
+    {
+     "t": "table",
+     "id": "t_dict",
+     "caption": "Data dictionary of the 28 raw variables and their role in the project",
+     "header": [
+      "Variable",
+      "Description",
+      "Type",
+      "Role",
+      "Missing %"
+     ],
+     "rows": [
+      [
+       "response_id",
+       "Respondent identifier",
+       "ID",
+       "Excluded",
+       "0.0"
+      ],
+      [
+       "main_branch",
+       "Professional coding level of respondent",
+       "Nominal (5)",
+       "Predictor (AI task) / filter",
+       "0.0"
+      ],
+      [
+       "age",
+       "Age bracket",
+       "Ordinal (8)",
+       "Predictor (as age_mid)",
+       "0.0"
+      ],
+      [
+       "remote_work",
+       "Current work situation (remote / hybrid / in-person)",
+       "Nominal (3)",
+       "Predictor",
+       "16.2"
+      ],
+      [
+       "ed_level",
+       "Highest formal education completed",
+       "Ordinal (8)",
+       "Predictor",
+       "7.1"
+      ],
+      [
+       "years_code",
+       "Total years coded (incl. education); >50 coded as 51",
+       "Numeric",
+       "Predictor",
+       "8.5"
+      ],
+      [
+       "years_code_pro",
+       "Years coded professionally; >50 coded as 51",
+       "Numeric",
+       "Predictor",
+       "21.1"
+      ],
+      [
+       "dev_type",
+       "Best description of current job",
+       "Nominal (34)",
+       "Predictor",
+       "9.2"
+      ],
+      [
+       "org_size",
+       "Number of people in the organisation",
+       "Ordinal (10)",
+       "Predictor",
+       "27.4"
+      ],
+      [
+       "purchase_influence",
+       "Influence over technology purchases",
+       "Ordinal (3)",
+       "Predictor",
+       "27.6"
+      ],
+      [
+       "buildvs_buy",
+       "Customisation needed in last tool recommendation",
+       "Nominal (3)",
+       "Predictor",
+       "33.7"
+      ],
+      [
+       "country",
+       "Country of residence",
+       "Nominal (≈185)",
+       "Predictor",
+       "9.9"
+      ],
+      [
+       "currency",
+       "Day-to-day currency",
+       "Nominal",
+       "Excluded (duplicates country)",
+       "28.7"
+      ],
+      [
+       "comp_total",
+       "Total annual compensation in local currency",
+       "Numeric",
+       "Excluded (target twin)",
+       "48.4"
+      ],
+      [
+       "so_visit_freq",
+       "Stack Overflow visit frequency",
+       "Ordinal (5)",
+       "Predictor",
+       "9.0"
+      ],
+      [
+       "so_account",
+       "Has a Stack Overflow account",
+       "Nominal (3)",
+       "Predictor",
+       "9.0"
+      ],
+      [
+       "so_part_freq",
+       "Stack Overflow Q&A participation frequency",
+       "Ordinal (6)",
+       "Predictor",
+       "30.9"
+      ],
+      [
+       "so_comm",
+       "Feels part of the Stack Overflow community",
+       "Ordinal (6)",
+       "Predictor",
+       "9.6"
+      ],
+      [
+       "ai_select",
+       "Currently uses AI tools in development",
+       "Ordinal (3)",
+       "Target (O7) / Predictor (O6)",
+       "6.9"
+      ],
+      [
+       "ai_sent",
+       "Stance on AI tools in workflow",
+       "Ordinal (6)",
+       "Analysis-only (conditional question)",
+       "29.9"
+      ],
+      [
+       "ai_acc",
+       "Trust in accuracy of AI output",
+       "Ordinal (5)",
+       "Analysis-only (conditional question)",
+       "43.0"
+      ],
+      [
+       "ai_complex",
+       "AI performance on complex tasks",
+       "Ordinal (5)",
+       "Analysis-only (conditional question)",
+       "43.4"
+      ],
+      [
+       "ai_threat",
+       "Believes AI is a threat to own job",
+       "Nominal (3)",
+       "Analysis-only (conditional question)",
+       "31.7"
+      ],
+      [
+       "survey_length",
+       "Opinion on survey length",
+       "Nominal (3)",
+       "Excluded",
+       "14.1"
+      ],
+      [
+       "survey_ease",
+       "Opinion on survey difficulty",
+       "Nominal (3)",
+       "Excluded",
+       "14.1"
+      ],
+      [
+       "converted_comp_yearly",
+       "Annual compensation converted to USD",
+       "Numeric",
+       "Target (O6)",
+       "64.2"
+      ],
+      [
+       "r_used",
+       "Used the R language last year (flag)",
+       "Binary",
+       "Predictor",
+       "8.7"
+      ],
+      [
+       "r_want_to_use",
+       "Wants to use R next year (flag)",
+       "Binary",
+       "Excluded (not relevant)",
+       "14.8"
+      ]
+     ],
+     "widths": [
+      1.5,
+      3.0,
+      1.1,
+      1.8,
+      0.7
+     ],
+     "align": [
+      "l",
+      "l",
+      "l",
+      "l",
+      "r"
+     ],
+     "note": null,
+     "size": 16
+    },
+    {
+     "t": "h2",
+     "text": "2.4 Known limitations of the source"
+    },
+    {
+     "t": "bullets",
+     "items": [
+      "**Self-selection.** Respondents are people who answer a Stack Overflow survey, not a random sample of all developers; results describe the sample, not the whole profession.",
+      "**Self-reported, nominal compensation.** Pay is optional, unverified, in nominal USD (not adjusted for purchasing power) and may mix salary with bonuses.",
+      "**Structural missingness.** AI follow-up questions were asked only of respondents who use or plan to use AI tools; salary is missing for about two-thirds of respondents.",
+      "**Single-response extract.** Multi-select questions (programming languages, databases, AI tools used) are not in this extract, which limits feature engineering."
+     ]
+    },
+    {
+     "t": "h1",
+     "text": "3. EDA Process"
+    },
+    {
+     "t": "p",
+     "text": "This chapter documents, in the order performed, how the raw survey was inspected, audited, cleaned and explored, and how those findings determined the modelling choices of Chapter 4. Every number is produced by the notebook (`notebooks/CA2_Predictive_Analysis.ipynb`, Parts A–C)."
+    },
+    {
+     "t": "h2",
+     "text": "3.1 Data inspection"
+    },
+    {
+     "t": "p",
+     "text": "After loading, the integer codes were decoded with the official crosswalk, category labels were shortened for readability (for example “United States of America” → “USA”, “Developer, full-stack” → “Full-stack dev”) and stateless helper columns were added (Section 3.8). The compensation variable `converted_comp_yearly` (USD) is available for only 23,435 respondents (35.8 %). Its mean is USD 86,155 but its median only USD 65,000; the maximum is USD 16,256,603, and the skewness of 52.9 shows an extremely heavy right tail."
+    },
+    {
+     "t": "h2",
+     "text": "3.2 Data-quality assessment"
+    },
+    {
+     "t": "h3",
+     "text": "3.2.1 Missing values"
+    },
+    {
+     "t": "p",
+     "text": "Missingness is substantial and *structured* (Figure 1). 21.0 % of all cells are empty. The worst columns are `converted_comp_yearly` and `comp_total` (optional questions), `ai_acc` and `ai_complex` (shown only to current AI users), `ai_sent`, `ai_threat`, `buildvs_buy`, `so_part_freq` and `purchase_influence`. Because the pattern is driven by survey routing rather than by chance, the target variables are never imputed; only predictors are imputed, inside the cross-validation pipeline, using training-fold medians (numeric) or an explicit “Missing” category (categorical)."
+    },
+    {
+     "t": "fig",
+     "id": "fig01_missingness",
+     "file": "fig01_missingness.png",
+     "caption": "Percentage of missing responses per variable (red = more than 30 % missing).",
+     "width": 520
+    },
+    {
+     "t": "h3",
+     "text": "3.2.2 Duplicates"
+    },
+    {
+     "t": "p",
+     "text": "The respondent identifier is unique. Ignoring the identifier, 2,752 rows belong to groups of identical answers (2,270 removable copies). Inspection shows they answered on average only 4.5 of 27 questions versus 21.3 for the typical respondent: they are abandoned, almost-empty questionnaires that coincide by chance rather than double submissions. They are therefore *not* deleted from the raw data; exact duplicates are removed only inside the modelling cohorts (2 rows in the salary cohort)."
+    },
+    {
+     "t": "h3",
+     "text": "3.2.3 Inconsistent and implausible values"
+    },
+    {
+     "t": "p",
+     "text": "Table 6 lists the logical checks. Two findings deserve emphasis. First, 504 respondents report more years of *professional* coding than *total* coding, and a further 119 report professional experience that is impossible for their age bracket; these values are *blanked and later imputed* rather than the whole respondent being dropped. Second, 10,305 respondents typed a salary in local currency but have no USD conversion, which silently removes them from any analysis based on `converted_comp_yearly`."
+    },
+    {
+     "t": "table",
+     "id": "t_inc",
+     "caption": "Logical inconsistencies and suspicious values",
+     "header": [
+      "Check",
+      "Records affected"
+     ],
+     "rows": [
+      [
+       "Professional years > total years coded",
+       "504"
+      ],
+      [
+       "Professional years impossible for stated age bracket (age_upper - 14)",
+       "119"
+      ],
+      [
+       "Total years coded impossible for stated age bracket (age_upper - 4)",
+       "31"
+      ],
+      [
+       "Compensation below USD 1,000 per year",
+       "545"
+      ],
+      [
+       "Compensation above USD 1,000,000 per year",
+       "41"
+      ],
+      [
+       "comp_total present but converted_comp_yearly missing (currency conversion failed)",
+       "10,305"
+      ],
+      [
+       "Non-professional respondents reporting a salary",
+       "1,886"
+      ],
+      [
+       "Age = 'Prefer not to say'",
+       "322"
+      ],
+      [
+       "Organisation size = 'I don't know' (treated as missing)",
+       "1,068"
+      ],
+      [
+       "years_code / years_code_pro top-coded at 51 (more than 50 years)",
+       "255"
+      ]
+     ],
+     "widths": [
+      5.8,
+      1.2
+     ],
+     "align": [
+      "l",
+      "r"
+     ],
+     "note": null,
+     "size": 19
+    },
+    {
+     "t": "h3",
+     "text": "3.2.4 Outliers"
+    },
+    {
+     "t": "p",
+     "text": "Three classical rules were compared on compensation (Table 7). On the raw dollar scale Tukey’s fences flag 4.2 % of values and the |z| > 3 rule only 0.4 %, because the extreme values inflate the standard deviation that the z-score itself depends on (masking). After a log transform the picture changes: the z-score rule flags 1.9 %, the percentile rule 2.0 % and Tukey’s fences 7.4 %, and the skewness moves from 52.9 to -2.33 for the whole sample — the remaining outlier problem is now the *lower* tail (implausibly small salaries, down to USD 1), which is why a lower plausibility bound is part of the cleaning policy. Figure 2 shows the raw and log distributions."
+    },
+    {
+     "t": "table",
+     "id": "t_out",
+     "caption": "Outliers flagged in annual compensation by three rules (raw and log scale)",
+     "header": [
+      "Scale",
+      "Rule",
+      "Flagged",
+      "% flagged"
+     ],
+     "rows": [
+      [
+       "USD",
+       "Tukey IQR fences (1.5 x IQR)",
+       "978",
+       "4.17"
+      ],
+      [
+       "USD",
+       "Z-score |z| > 3",
+       "89",
+       "0.38"
+      ],
+      [
+       "USD",
+       "Outside 1st-99th percentile",
+       "470",
+       "2.01"
+      ],
+      [
+       "log(USD)",
+       "Tukey IQR fences (1.5 x IQR)",
+       "1,723",
+       "7.35"
+      ],
+      [
+       "log(USD)",
+       "Z-score |z| > 3",
+       "451",
+       "1.92"
+      ],
+      [
+       "log(USD)",
+       "Outside 1st-99th percentile",
+       "470",
+       "2.01"
+      ]
+     ],
+     "widths": [
+      1.2,
+      3.6,
+      1.0,
+      1.0
+     ],
+     "align": [
+      "l",
+      "l",
+      "r",
+      "r"
+     ],
+     "note": null,
+     "size": 19
+    },
+    {
+     "t": "fig",
+     "id": "fig02_comp_distribution",
+     "file": "fig02_comp_distribution.png",
+     "caption": "Distribution of annual compensation: heavily right-skewed in USD (a), far less skewed after a log transform (b), with extreme tails visible in (c).",
+     "width": 600
+    },
+    {
+     "t": "h2",
+     "text": "3.3 Cleaning policy and cohort construction"
+    },
+    {
+     "t": "p",
+     "text": "Cleaning decisions were documented as explicit, reproducible rules (function `build_salary_cohort()`):"
+    },
+    {
+     "t": "numbered",
+     "ref": "num1",
+     "items": [
+      "Keep **professional developers** (main_branch = “I am a developer by profession”) who reported a converted salary and a country.",
+      "Apply **absolute plausibility bounds** of USD 1,000–1,000,000 (smaller values are probably monthly salaries or typing errors; larger values cannot be verified).",
+      "Apply **country-specific 3 × IQR fences on log-salary** for countries with at least 50 salaries. A single global fence would delete almost every salary from low-income countries and thus bias the study; country-aware fencing removes only values that are extreme *for their own market*.",
+      "**Blank** logically impossible experience values (rows are kept; values are imputed later inside the pipeline).",
+      "Remove exact duplicate rows inside the cohort."
+     ]
+    },
+    {
+     "t": "p",
+     "text": "Table 8 and Figure 3 show the attrition. The final salary cohort has 20,794 respondents from 160 countries, including 966 from India and 4,211 from the USA. For the AI analyses a second cohort of 60,907 respondents (all with a known AI-adoption answer) is used; 61.8 % of them currently use AI tools."
+    },
+    {
+     "t": "table",
+     "id": "t_att",
+     "caption": "Row attrition at each step of salary-cohort construction",
+     "header": [
+      "Step",
+      "Rows remaining",
+      "Rows removed"
+     ],
+     "rows": [
+      [
+       "All respondents",
+       "65,437",
+       "0"
+      ],
+      [
+       "Professional developers (main_branch = 1)",
+       "50,207",
+       "15,230"
+      ],
+      [
+       "Reported converted yearly compensation",
+       "21,549",
+       "28,658"
+      ],
+      [
+       "Country available",
+       "21,549",
+       "0"
+      ],
+      [
+       "Absolute plausibility bounds USD 1,000-1,000,000",
+       "21,007",
+       "542"
+      ],
+      [
+       "Within-country 3 x IQR fences on log(comp)",
+       "20,796",
+       "211"
+      ],
+      [
+       "Inconsistent professional-years values blanked (rows kept)",
+       "20,796",
+       "0"
+      ],
+      [
+       "Exact duplicate rows removed",
+       "20,794",
+       "2"
+      ]
+     ],
+     "widths": [
+      4.6,
+      1.2,
+      1.2
+     ],
+     "align": [
+      "l",
+      "r",
+      "r"
+     ],
+     "note": null,
+     "size": 19
+    },
+    {
+     "t": "fig",
+     "id": "fig03_cohort_attrition",
+     "file": "fig03_cohort_attrition.png",
+     "caption": "Rows retained at each step of salary-cohort construction.",
+     "width": 480
+    },
+    {
+     "t": "p",
+     "text": "A sensitivity analysis in Section 4.6 re-fits one model (HistGradientBoosting) under three outlier policies. It shows that the *absolute* error level depends on the policy — stricter filters leave fewer extreme salaries and therefore give lower RMSE — so error figures in this report should be read as conditional on the chosen 3 × IQR rule. The full model comparison was not repeated under the other policies."
+    },
+    {
+     "t": "h2",
+     "text": "3.4 Univariate exploration"
+    },
+    {
+     "t": "p",
+     "text": "Figure 4 profiles the cohort. Respondents are mostly aged 25–44, work in full-stack and back-end roles, and are concentrated in the USA, Germany, the UK, Ukraine and India. Median professional experience is 8.0 years (mean 10.4, maximum 51); the distribution is right-skewed with a spike at the top-code of 51 years. Remote and hybrid work dominate (about 8,700 respondents each) over in-person work (about 3,300). Compensation in the cohort has a median of USD 68,734 and a mean of USD 84,887; log-salary has a skewness of -1.14."
+    },
+    {
+     "t": "fig",
+     "id": "fig04_univariate_profile",
+     "file": "fig04_univariate_profile.png",
+     "caption": "Univariate profile of the 20,794 professional developers in the salary cohort.",
+     "width": 600
+    },
+    {
+     "t": "h2",
+     "text": "3.5 Group comparisons"
+    },
+    {
+     "t": "p",
+     "text": "Figure 5 gives an unadjusted look at median pay by work arrangement, organisation size and education. Remote workers, employees of very large organisations and holders of postgraduate degrees earn more at face value. These raw gaps are confounded by *country mix* (for instance, remote work may be more common among developers of high-wage countries), which is why Objective O3 re-estimates them after adjustment."
+    },
+    {
+     "t": "fig",
+     "id": "fig05_group_medians",
+     "file": "fig05_group_medians.png",
+     "caption": "Raw (unadjusted) median compensation by work arrangement, organisation size and education. Country mix confounds these gaps (see O3).",
+     "width": 600
+    },
+    {
+     "t": "h2",
+     "text": "3.6 Correlation and association analysis"
+    },
+    {
+     "t": "p",
+     "text": "Figure 6 shows Spearman correlations. Among the numeric variables, log-salary is most strongly associated with `years_code_pro` (ρ = 0.48), `years_code` (ρ = 0.47) and `age_mid` (ρ = 0.41); organisation size (ρ = 0.20) and education rank (ρ = 0.09) are weaker, and Stack Overflow visit frequency is weakly *negatively* correlated (ρ = -0.12). The three experience-type variables are strongly inter-correlated, which raises a multicollinearity concern. Variance-inflation factors (Table 9) of about 7.1 and 8.5 for `years_code` and `years_code_pro` are above the conventional threshold of 5 but below 10. Tree-based models are insensitive to this, Ridge regularisation absorbs it for prediction, and for the inferential regressions of O2 and O3 only `years_code_pro` is used."
+    },
+    {
+     "t": "fig",
+     "id": "fig06_spearman_corr",
+     "file": "fig06_spearman_corr.png",
+     "caption": "Spearman rank-correlation matrix of numeric and ordinal variables including log-compensation.",
+     "width": 470
+    },
+    {
+     "t": "table",
+     "id": "t_vif",
+     "caption": "Variance inflation factors of the numeric predictors",
+     "header": [
+      "Variable",
+      "VIF"
+     ],
+     "rows": [
+      [
+       "years_code",
+       "7.07"
+      ],
+      [
+       "years_code_pro",
+       "8.52"
+      ],
+      [
+       "age_mid",
+       "3.57"
+      ],
+      [
+       "org_log",
+       "1.01"
+      ],
+      [
+       "ed_rank",
+       "1.04"
+      ],
+      [
+       "so_visit_rank",
+       "1.01"
+      ]
+     ],
+     "widths": [
+      3,
+      1.5
+     ],
+     "align": [
+      "l",
+      "r"
+     ],
+     "note": null,
+     "size": 19
+    },
+    {
+     "t": "p",
+     "text": "For categorical variables, bias-corrected Cramér’s V was used (Figure 7). The strongest association is between organisation size and purchase influence (V ≈ 0.34; people in small organisations naturally have more say over purchases), followed by country and work arrangement (V ≈ 0.30), which confirms that raw remote-work pay gaps are confounded by country. All other pairs are weaker (V ≤ 0.19) and no pair of categorical predictors is so strongly associated as to be redundant."
+    },
+    {
+     "t": "fig",
+     "id": "fig07_cramers_v",
+     "file": "fig07_cramers_v.png",
+     "caption": "Bias-corrected Cramér's V between categorical variables (0 = independent, 1 = perfectly associated).",
+     "width": 470
+    },
+    {
+     "t": "h2",
+     "text": "3.7 Distributional assumptions"
+    },
+    {
+     "t": "p",
+     "text": "A D’Agostino–Pearson test rejects normality of log-salary (K² = 939, p < 0.001); the distribution is left-skewed (skew -1.14) with excess kurtosis 1.79. Levene’s test rejects equal variances across the eight largest countries (W = 385, p < 0.001). Figure 8 illustrates both. With such large samples *any* departure becomes significant, so the practical consequence is what matters: we model log-salary (not raw dollars), use rank-based tests (Kruskal–Wallis, Mann–Whitney, Spearman) and heteroscedasticity-robust (HC3) standard errors."
+    },
+    {
+     "t": "fig",
+     "id": "fig08_normality_checks",
+     "file": "fig08_normality_checks.png",
+     "caption": "Q–Q plot of log-salary (a) and country-wise densities (b): log-salary is left-skewed and heavy-tailed rather than normal, with unequal location and spread across countries.",
+     "width": 500
+    },
+    {
+     "t": "h2",
+     "text": "3.8 Feature engineering"
+    },
+    {
+     "t": "p",
+     "text": "Table 10 lists every engineered feature with its justification. All are *stateless* (row-wise arithmetic or recoding), so they can be computed before the train/test split without leakage. Anything that learns from data — imputation, scaling, one-hot vocabularies and target encoding — lives inside scikit-learn pipelines and is re-fitted on the training part of each cross-validation fold."
+    },
+    {
+     "t": "table",
+     "id": "t_fe",
+     "caption": "Engineered features and their justification",
+     "header": [
+      "Feature",
+      "Definition",
+      "Justification"
+     ],
+     "rows": [
+      [
+       "age_mid",
+       "Midpoint of age bracket",
+       "Turns an ordinal bracket into a numeric scale usable by all models"
+      ],
+      [
+       "ed_rank",
+       "Education level -> 1…7",
+       "Preserves natural order of qualifications"
+      ],
+      [
+       "org_log",
+       "log10(midpoint of organisation size)",
+       "Company size spans 4 orders of magnitude; log makes effect approx. linear"
+      ],
+      [
+       "so_visit_rank",
+       "Stack Overflow visit frequency -> 1…5",
+       "Proxy for engagement / learning intensity"
+      ],
+      [
+       "exp_gap",
+       "years_code − years_code_pro",
+       "Years of coding before first paid job (education / hobby head-start)"
+      ],
+      [
+       "pro_share",
+       "years_code_pro / years_code",
+       "Share of the coding life spent professionally (career stage)"
+      ],
+      [
+       "years_pro_sq",
+       "years_code_pro²",
+       "Captures diminishing returns of experience in linear models"
+      ],
+      [
+       "Missing indicators",
+       "SimpleImputer(add_indicator=True)",
+       "Non-response itself can be informative"
+      ],
+      [
+       "Target-encoded country / dev_type",
+       "Cross-fitted mean of target by category",
+       "Compact numeric representation of high-cardinality variables, leakage-safe"
+      ]
+     ],
+     "widths": [
+      1.7,
+      2.3,
+      3.4
+     ],
+     "align": [
+      "l",
+      "l",
+      "l"
+     ],
+     "note": null,
+     "size": 18
+    },
+    {
+     "t": "h2",
+     "text": "3.9 Leakage prevention and data splitting"
+    },
+    {
+     "t": "p",
+     "text": "Target leakage is the most common cause of over-optimistic results. Table 11 is the project’s *leakage register*. The most important entries are `comp_total` (the local-currency version of the salary target) and the four AI follow-up questions (`ai_sent`, `ai_acc`, `ai_complex`, `ai_threat`). The latter were asked only of respondents who already use (or plan to use) AI, so their *mere presence* reveals the adoption label; Section 4.7 measures how much they would inflate performance."
+    },
+    {
+     "t": "table",
+     "id": "t_leak",
+     "caption": "Leakage register: columns excluded from predictors and the reason",
+     "header": [
+      "Column",
+      "Reason excluded / restricted"
+     ],
+     "rows": [
+      [
+       "comp_total",
+       "Local-currency twin of the target (converted_comp_yearly = comp_total x FX rate)."
+      ],
+      [
+       "converted_comp_yearly",
+       "Target of the salary task."
+      ],
+      [
+       "log_comp",
+       "Transform of the target."
+      ],
+      [
+       "currency",
+       "Near-duplicate of country (information already encoded; adds sparse dummies)."
+      ],
+      [
+       "response_id",
+       "Identifier - no predictive meaning."
+      ],
+      [
+       "survey_length",
+       "Opinion about the survey itself - unrelated to the prediction problem."
+      ],
+      [
+       "survey_ease",
+       "Opinion about the survey itself - unrelated to the prediction problem."
+      ],
+      [
+       "ai_sent",
+       "Asked ONLY if ai_select in {Yes, plan to} -> its mere presence reveals the target."
+      ],
+      [
+       "ai_acc",
+       "Asked ONLY if ai_select = Yes -> reveals the target of the adoption task."
+      ],
+      [
+       "ai_complex",
+       "Asked ONLY if ai_select = Yes -> reveals the target of the adoption task."
+      ],
+      [
+       "ai_threat",
+       "Asked ONLY if ai_select in {Yes, plan to} -> reveals the target."
+      ],
+      [
+       "ai_select",
+       "Target of the adoption task (allowed as a predictor in the salary task)."
+      ]
+     ],
+     "widths": [
+      1.6,
+      5.4
+     ],
+     "align": [
+      "l",
+      "l"
+     ],
+     "note": null,
+     "size": 18
+    },
+    {
+     "t": "p",
+     "text": "Both tasks use a stratified 80 / 20 hold-out split with seed 42 (salary: 16,635 training and 4,159 test rows, stratified by large country; adoption: stratified by the label). All model selection uses 5-fold cross-validation *inside the training set*; the test set is evaluated once, after selection."
+    },
+    {
+     "t": "h2",
+     "text": "3.10 Summary of EDA decisions"
+    },
+    {
+     "t": "bullets",
+     "items": [
+      "Model **log-salary**; report errors on both the log and the USD scale.",
+      "Use **rank-based tests** and **HC3-robust OLS** for inference.",
+      "Treat missingness as structural: never impute targets; impute predictors inside pipelines.",
+      "Use **country-aware** outlier handling; blank (not drop) impossible experience values.",
+      "Exclude `comp_total`, `currency` and all conditional AI follow-up variables from predictors where they leak the target.",
+      "Handle high-cardinality `country` and `dev_type` with **cross-fitted target encoding** (trees) or pooled one-hot (Ridge)."
+     ]
+    },
+    {
+     "t": "h1",
+     "text": "4. Analysis on Dataset"
+    },
+    {
+     "t": "p",
+     "text": "Each analysis below follows the prescribed structure: (i) Introduction, (ii) General Description, (iii) Specific Requirements, Functions and Formulas, (iv) Analysis Results, and (v) Visualization and Interpretation. All results quoted are copied programmatically from the executed notebook."
+    },
+    {
+     "t": "h2",
+     "text": "4.1 Objective O1 — Geographic compensation inequality and India’s position"
+    },
+    {
+     "t": "h3",
+     "text": "(i) Introduction"
+    },
+    {
+     "t": "p",
+     "text": "Where a developer lives is widely believed to be the single biggest determinant of pay. O1 turns this belief into numbers: how much of the variation in compensation is explained by country alone, and how does India compare with the other large developer markets? The answer matters for salary benchmarking, offshoring decisions and for students weighing emigration against local careers."
+    },
+    {
+     "t": "h3",
+     "text": "(ii) General Description"
+    },
+    {
+     "t": "p",
+     "text": "The analysis uses the salary cohort (20,794 professionals, 160 countries). For pairwise comparisons only the 28 countries with at least 150 salary reports are retained (17,389 respondents), so that each country median has a usable confidence interval. Pay is nominal USD as reported; it is *not* adjusted for purchasing power or taxes, so a low USD figure does not by itself mean a low standard of living."
+    },
+    {
+     "t": "h3",
+     "text": "(iii) Specific Requirements, Functions and Formulas"
+    },
+    {
+     "t": "p",
+     "text": "Variables: `country`, `converted_comp_yearly` and its logarithm `log_comp`. Functions: `groupby().median()`, `scipy.stats.kruskal`, `statsmodels.formula.api.ols(\"log_comp ~ C(country)\")`, `scipy.stats.mannwhitneyu`, `statsmodels…multipletests(method=\"holm\")`, and the project helpers `eta_squared_from_groups`, `epsilon_squared_kruskal`, `cliffs_delta` and `boot_median_ci` (1,000 bootstrap resamples)."
+    },
+    {
+     "t": "eq",
+     "text": "H = [12 / (N(N+1))] · Σ_{i}(R_{i}^{2} / n_{i}) − 3(N+1),     ε^{2} = H / (N − 1)     (Kruskal–Wallis and effect size)"
+    },
+    {
+     "t": "eq",
+     "text": "η^{2} = SS_{between} / SS_{total} (variance in log-pay explained by country);     δ = 2U / (n_{1}n_{2}) − 1  (Cliff’s delta)"
+    },
+    {
+     "t": "eq",
+     "text": "95 % bootstrap CI of a median = [2.5th, 97.5th percentile] of the medians of B = 1,000 resamples drawn with replacement"
+    },
+    {
+     "t": "h3",
+     "text": "(iv) Analysis Results"
+    },
+    {
+     "t": "p",
+     "text": "The Kruskal–Wallis test strongly rejects equal pay across the 28 large countries (H = 9,238, p < 0.001) with a large effect size (ε² = 0.53; η² = 0.49). A regression of log-pay on country dummies *for all 160 countries* gives R² = 0.507 (adjusted R² = 0.503); in other words, **country alone explains about half of all variation in developer pay**."
+    },
+    {
+     "t": "p",
+     "text": "Table 12 lists the median pay of every large country. The highest median is USD 148,000 (USA) and the lowest USD 17,945 (India), a ratio of 8.2 to 1. India’s median (USD 17,945, n = 966) is **0.12 times** the USA median (95 % bootstrap CI 0.11–0.13) and ranks 28 of 28. After Holm correction, India’s pay distribution is significantly lower than that of all 27 other countries and higher than none."
+    },
+    {
+     "t": "table",
+     "id": "t_o1",
+     "caption": "Median annual compensation (USD) by country, with 95 % bootstrap CI, ratio to the USA median and Cliff’s δ of India versus that country (negative = India lower)",
+     "header": [
+      "Rank",
+      "Country",
+      "n",
+      "Median (USD)",
+      "95 % CI",
+      "× USA",
+      "δ (India vs)"
+     ],
+     "rows": [
+      [
+       "1",
+       "USA",
+       "4,211",
+       "148,000",
+       "145,000–150,000",
+       "1.00",
+       "-0.96"
+      ],
+      [
+       "2",
+       "Israel",
+       "198",
+       "120,754",
+       "113,334–129,524",
+       "0.82",
+       "-0.94"
+      ],
+      [
+       "3",
+       "Switzerland",
+       "334",
+       "116,988",
+       "111,417–122,559",
+       "0.79",
+       "-0.95"
+      ],
+      [
+       "4",
+       "Australia",
+       "449",
+       "95,796",
+       "91,832–99,099",
+       "0.65",
+       "-0.91"
+      ],
+      [
+       "5",
+       "Denmark",
+       "180",
+       "91,378",
+       "86,401–100,801",
+       "0.62",
+       "-0.92"
+      ],
+      [
+       "6",
+       "Canada",
+       "799",
+       "87,231",
+       "83,597–87,231",
+       "0.59",
+       "-0.88"
+      ],
+      [
+       "7",
+       "UK",
+       "1,270",
+       "85,350",
+       "82,802–89,172",
+       "0.58",
+       "-0.88"
+      ],
+      [
+       "8",
+       "Norway",
+       "207",
+       "81,424",
+       "76,745–84,232",
+       "0.55",
+       "-0.90"
+      ],
+      [
+       "9",
+       "Germany",
+       "1,754",
+       "75,184",
+       "73,036–75,184",
+       "0.51",
+       "-0.83"
+      ],
+      [
+       "10",
+       "Netherlands",
+       "529",
+       "69,814",
+       "66,592–75,184",
+       "0.47",
+       "-0.82"
+      ],
+      [
+       "11",
+       "Austria",
+       "304",
+       "66,693",
+       "64,444–69,814",
+       "0.45",
+       "-0.80"
+      ],
+      [
+       "12",
+       "Finland",
+       "150",
+       "66,377",
+       "59,610–69,814",
+       "0.45",
+       "-0.79"
+      ],
+      [
+       "13",
+       "Belgium",
+       "183",
+       "64,444",
+       "59,073–69,814",
+       "0.43",
+       "-0.81"
+      ],
+      [
+       "14",
+       "Sweden",
+       "404",
+       "59,424",
+       "57,230–62,316",
+       "0.40",
+       "-0.80"
+      ],
+      [
+       "15",
+       "Poland",
+       "539",
+       "56,917",
+       "53,452–59,391",
+       "0.39",
+       "-0.62"
+      ],
+      [
+       "16",
+       "France",
+       "837",
+       "53,703",
+       "53,703–55,851",
+       "0.36",
+       "-0.74"
+      ],
+      [
+       "17",
+       "Portugal",
+       "177",
+       "53,426",
+       "47,232–55,851",
+       "0.36",
+       "-0.66"
+      ],
+      [
+       "18",
+       "Czechia",
+       "248",
+       "52,122",
+       "46,910–53,686",
+       "0.35",
+       "-0.62"
+      ],
+      [
+       "19",
+       "Spain",
+       "505",
+       "51,555",
+       "48,333–53,703",
+       "0.35",
+       "-0.67"
+      ],
+      [
+       "20",
+       "Romania",
+       "158",
+       "50,707",
+       "43,155–56,101",
+       "0.34",
+       "-0.50"
+      ],
+      [
+       "21",
+       "South Africa",
+       "150",
+       "45,468",
+       "38,742–52,306",
+       "0.31",
+       "-0.51"
+      ],
+      [
+       "22",
+       "Italy",
+       "490",
+       "41,163",
+       "38,666–42,962",
+       "0.28",
+       "-0.59"
+      ],
+      [
+       "23",
+       "Greece",
+       "154",
+       "38,129",
+       "33,833–43,395",
+       "0.26",
+       "-0.51"
+      ],
+      [
+       "24",
+       "Ukraine",
+       "1,181",
+       "35,545",
+       "30,000–36,779",
+       "0.24",
+       "-0.23"
+      ],
+      [
+       "25",
+       "Russia",
+       "220",
+       "28,011",
+       "26,891–32,269",
+       "0.19",
+       "-0.24"
+      ],
+      [
+       "26",
+       "Turkey",
+       "171",
+       "27,822",
+       "24,731–30,914",
+       "0.19",
+       "-0.23"
+      ],
+      [
+       "27",
+       "Brazil",
+       "621",
+       "24,243",
+       "22,378–25,777",
+       "0.16",
+       "-0.20"
+      ],
+      [
+       "28",
+       "India",
+       "966",
+       "17,945",
+       "15,553–19,142",
+       "0.12",
+       "—"
+      ]
+     ],
+     "widths": [
+      0.5,
+      1.4,
+      0.6,
+      1.1,
+      1.5,
+      0.7,
+      0.9
+     ],
+     "align": [
+      "c",
+      "l",
+      "r",
+      "r",
+      "r",
+      "r",
+      "r"
+     ],
+     "note": null,
+     "size": 17
+    },
+    {
+     "t": "h3",
+     "text": "(v) Visualization and Interpretation"
+    },
+    {
+     "t": "fig",
+     "id": "fig09_country_boxplot",
+     "file": "fig09_country_boxplot.png",
+     "caption": "Distribution of annual compensation (USD, log axis) by country, ordered by median. India is highlighted in orange.",
+     "width": 520
+    },
+    {
+     "t": "fig",
+     "id": "fig10_country_median_ci",
+     "file": "fig10_country_median_ci.png",
+     "caption": "Median annual compensation with 95 % bootstrap confidence intervals; labels give the ratio to the USA median.",
+     "width": 520
+    },
+    {
+     "t": "p",
+     "text": "Figure 9 shows that the *whole distribution* of pay shifts with country, not just the median: the interquartile ranges of high-pay markets (USA, Israel, Switzerland) barely overlap with those of India or Brazil. Figure 10 confirms with confidence intervals that the ordering is statistically reliable. India’s gap to the USA is very large (Cliff’s δ close to −1: almost every Indian respondent earns less than almost every American respondent), whereas the gap to Ukraine, Russia, Turkey and Brazil is far smaller (|δ| ≈ 0.2). **Interpretation:** the location of employment is the dominant structural factor in nominal developer pay. Because these are nominal dollars, the gap overstates differences in purchasing power; and because the sample is self-selected, it should not be read as the national average for any country."
+    },
+    {
+     "t": "h2",
+     "text": "4.2 Objective O2 — The experience premium and diminishing returns"
+    },
+    {
+     "t": "h3",
+     "text": "(i) Introduction"
+    },
+    {
+     "t": "p",
+     "text": "Experience is the other classic driver of pay. O2 asks how strongly professional experience is associated with compensation, how many percent an additional year is worth at different career stages, where the returns flatten, and whether the pattern differs in India."
+    },
+    {
+     "t": "h3",
+     "text": "(ii) General Description"
+    },
+    {
+     "t": "p",
+     "text": "The analysis uses the 20,571 cohort members with a valid `years_code_pro`. Experience is modelled both non-parametrically (median pay by experience band and a LOWESS smoother) and parametrically (a quadratic log-linear regression with country fixed effects), because a straight line cannot represent diminishing returns."
+    },
+    {
+     "t": "h3",
+     "text": "(iii) Specific Requirements, Functions and Formulas"
+    },
+    {
+     "t": "p",
+     "text": "Functions: `scipy.stats.spearmanr` (with a Bonett–Wright confidence interval for ρ), `statsmodels.formula.api.ols(\"log_comp ~ years_code_pro + years_pro_sq + C(country)\").fit(cov_type=\"HC3\")`, `statsmodels…lowess`, and a delta-method confidence interval for the marginal effect."
+    },
+    {
+     "t": "eq",
+     "text": "ln(Pay_{i}) = β_{0} + β_{1}x_{i} + β_{2}x_{i}^{2} + γ_{country(i)} + ε_{i}"
+    },
+    {
+     "t": "eq",
+     "text": "Marginal return at x:  100 · (exp(β_{1} + 2β_{2}x) − 1) % per extra year;     turning point x* = −β_{1} / (2β_{2})"
+    },
+    {
+     "t": "eq",
+     "text": "Var(β_{1} + 2β_{2}x) = g′ V g,  g = (1, 2x)′,  V = HC3 covariance of (β_{1}, β_{2})   →   95 % CI = estimate ± 1.96·SE"
+    },
+    {
+     "t": "h3",
+     "text": "(iv) Analysis Results"
+    },
+    {
+     "t": "p",
+     "text": "Overall, pay and professional experience are moderately and positively rank-correlated (Spearman ρ = 0.48, 95 % CI 0.47–0.49, n = 20,571; bootstrap CI 0.47–0.49). Within individual countries the correlation ranges from 0.35 to 0.62 (Table 13)."
+    },
+    {
+     "t": "table",
+     "id": "t_o2sp",
+     "caption": "Spearman correlation between professional experience and log-pay, overall and by country",
+     "header": [
+      "Group",
+      "n",
+      "ρ",
+      "95 % CI",
+      "p"
+     ],
+     "rows": [
+      [
+       "All",
+       "20,571",
+       "0.48",
+       "0.47–0.49",
+       "< 0.001"
+      ],
+      [
+       "USA",
+       "4,181",
+       "0.44",
+       "0.41–0.47",
+       "< 0.001"
+      ],
+      [
+       "India",
+       "943",
+       "0.62",
+       "0.57–0.66",
+       "< 0.001"
+      ],
+      [
+       "Germany",
+       "1,737",
+       "0.55",
+       "0.51–0.58",
+       "< 0.001"
+      ],
+      [
+       "UK",
+       "1,252",
+       "0.45",
+       "0.40–0.49",
+       "< 0.001"
+      ],
+      [
+       "Ukraine",
+       "1,162",
+       "0.35",
+       "0.30–0.40",
+       "< 0.001"
+      ],
+      [
+       "France",
+       "830",
+       "0.57",
+       "0.52–0.62",
+       "< 0.001"
+      ],
+      [
+       "Canada",
+       "796",
+       "0.48",
+       "0.42–0.54",
+       "< 0.001"
+      ]
+     ],
+     "widths": [
+      1.5,
+      0.8,
+      0.8,
+      1.6,
+      0.9
+     ],
+     "align": [
+      "l",
+      "r",
+      "r",
+      "r",
+      "r"
+     ],
+     "note": null,
+     "size": 19
+    },
+    {
+     "t": "p",
+     "text": "The quadratic model (R² = 0.588 including country effects) has β₁ = 0.088 and β₂ = -0.00186 (both p < 0.001), implying a turning point at about **23.8 years**. Table 14 converts the coefficients into the estimated pay change per additional year: 9.2 % at entry level, 7.2 % at five years, 5.3 % at ten years and only 1.4 % at twenty years."
+    },
+    {
+     "t": "table",
+     "id": "t_o2m",
+     "caption": "Estimated % change in pay per additional year of professional experience (country fixed effects; 95 % CI)",
+     "header": [
+      "Years of experience",
+      "% per extra year",
+      "95 % CI low",
+      "95 % CI high"
+     ],
+     "rows": [
+      [
+       "0",
+       "9.24",
+       "8.85",
+       "9.63"
+      ],
+      [
+       "2",
+       "8.43",
+       "8.09",
+       "8.77"
+      ],
+      [
+       "5",
+       "7.23",
+       "6.96",
+       "7.50"
+      ],
+      [
+       "10",
+       "5.26",
+       "5.09",
+       "5.43"
+      ],
+      [
+       "15",
+       "3.32",
+       "3.21",
+       "3.43"
+      ],
+      [
+       "20",
+       "1.42",
+       "1.27",
+       "1.57"
+      ],
+      [
+       "30",
+       "-2.28",
+       "-2.61",
+       "-1.95"
+      ]
+     ],
+     "widths": [
+      1.6,
+      1.4,
+      1.3,
+      1.3
+     ],
+     "align": [
+      "c",
+      "r",
+      "r",
+      "r"
+     ],
+     "note": null,
+     "size": 19
+    },
+    {
+     "t": "p",
+     "text": "Country-specific fits show that the *early-career* return is far steeper in India: 23.9 % per year at entry level versus 6.0 % in the USA, 7.6 % in Germany and 7.1 % in the UK; at five years the figures are 17.0 %, 4.8 %, 6.1 % and 5.6 %. A formal India-versus-USA test of the experience-slope difference (interaction term, HC3) gives a coefficient of 0.156 (p < 0.001) and for the curvature -0.005 (p = 0.002)."
+    },
+    {
+     "t": "h3",
+     "text": "(v) Visualization and Interpretation"
+    },
+    {
+     "t": "fig",
+     "id": "fig11_experience_vs_pay",
+     "file": "fig11_experience_vs_pay.png",
+     "caption": "Relationship between professional experience and pay: hexbin density with LOWESS trend (a) and median pay by experience band for selected countries with 95 % bootstrap CIs (b).",
+     "width": 600
+    },
+    {
+     "t": "fig",
+     "id": "fig12_experience_marginal",
+     "file": "fig12_experience_marginal.png",
+     "caption": "Quadratic log-linear model: cumulative premium with 95 % CI (a) and marginal percentage return per additional year, pooled and by country (b).",
+     "width": 600
+    },
+    {
+     "t": "p",
+     "text": "Figure 11 (a) shows a wide scatter — experience explains only part of pay — but the LOWESS curve rises steeply in the first ten years and then flattens. Panel (b) shows the same pattern by experience band: the USA curve lies far above the others and flattens after about 11 years, while India’s curve starts much lower but climbs more steeply in relative terms. Figure 12 (a) gives the cumulative country-adjusted premium; (b) shows that the marginal return declines roughly linearly and crosses zero near 20–25 years. **Caution:** the quadratic form forces the curve to bend downwards after its turning point; the non-parametric LOWESS curve and the band medians show a *plateau*, not a decline. The correct reading is therefore “returns flatten after roughly two decades”, not “pay falls”. India’s steeper early slope is partly arithmetic — a low starting salary grows faster in percentage terms — and does not mean Indian developers ever catch up in absolute dollars."
+    },
+    {
+     "t": "h2",
+     "text": "4.3 Objective O3 — Net effects of role, work arrangement, organisation size and education"
+    },
+    {
+     "t": "h3",
+     "text": "(i) Introduction"
+    },
+    {
+     "t": "p",
+     "text": "Raw group differences (Section 3.5) mix genuine effects with country and experience mix. O3 estimates the *adjusted* differences — comparing developers from the same country and with the same experience — and asks which blocks of characteristics add explanatory power beyond country and experience."
+    },
+    {
+     "t": "h3",
+     "text": "(ii) General Description"
+    },
+    {
+     "t": "p",
+     "text": "A multiple linear regression on log-pay is estimated on 20,084 respondents with complete information (the model includes 19 role groups, country groups with at least 100 respondents plus an “other countries” group, experience and its square, organisation size, work arrangement and education). Roles and countries with fewer than 100 respondents are pooled. Reference categories are Full-stack dev, In-person, 100 to 499 employees and Bachelor’s degree. Coefficients are converted into percentage differences, 100·(e^β − 1) %."
+    },
+    {
+     "t": "h3",
+     "text": "(iii) Specific Requirements, Functions and Formulas"
+    },
+    {
+     "t": "p",
+     "text": "Functions: `statsmodels.formula.api.ols` with `cov_type=\"HC3\"`; `anova_lm(typ=2)` for partial η²; `compare_f_test` for the incremental F-test of each nested block."
+    },
+    {
+     "t": "eq",
+     "text": "ln(Pay) = β_{0} + country + β_{1}x + β_{2}x^{2} + role + org. size + work mode + education + ε"
+    },
+    {
+     "t": "eq",
+     "text": "Adjusted difference = 100·(e^{β} − 1) %;     ΔR^{2}_{k} = R^{2}(M_{k}) − R^{2}(M_{k−1});     η^{2}_{p} = SS_{effect} / (SS_{effect} + SS_{residual})"
+    },
+    {
+     "t": "h3",
+     "text": "(iv) Analysis Results"
+    },
+    {
+     "t": "p",
+     "text": "Table 15 shows the nested models. Country alone gives R² = 0.449; adding experience raises it by 0.092; job role adds 0.012, organisation size 0.010, work arrangement 0.006 and education 0.005. Every block is statistically significant (incremental F-tests p < 0.001), but their *practical* contribution is small: the full model reaches R² = 0.574. Partial η² values are 0.435 for country, 0.102 for experience (linear term), and only 0.022, 0.019, 0.015 and 0.011 for organisation size, role, work arrangement and education."
+    },
+    {
+     "t": "table",
+     "id": "t_o3n",
+     "caption": "Nested OLS models for log-compensation: cumulative R² and incremental ΔR²",
+     "header": [
+      "Model",
+      "R²",
+      "Adj. R²",
+      "ΔR²",
+      "p (F-test of block)",
+      "n"
+     ],
+     "rows": [
+      [
+       "M0: country only",
+       "0.449",
+       "0.448",
+       "0.449",
+       "< 0.001",
+       "20,084"
+      ],
+      [
+       "M1: + experience",
+       "0.540",
+       "0.539",
+       "0.092",
+       "< 0.001",
+       "20,084"
+      ],
+      [
+       "M2: + job role",
+       "0.552",
+       "0.551",
+       "0.012",
+       "< 0.001",
+       "20,084"
+      ],
+      [
+       "M3: + organisation size",
+       "0.563",
+       "0.561",
+       "0.010",
+       "< 0.001",
+       "20,084"
+      ],
+      [
+       "M4: + work arrangement",
+       "0.569",
+       "0.568",
+       "0.006",
+       "< 0.001",
+       "20,084"
+      ],
+      [
+       "M5: + education",
+       "0.574",
+       "0.572",
+       "0.005",
+       "< 0.001",
+       "20,084"
+      ]
+     ],
+     "widths": [
+      2.6,
+      0.8,
+      0.9,
+      0.8,
+      1.3,
+      0.8
+     ],
+     "align": [
+      "l",
+      "r",
+      "r",
+      "r",
+      "r",
+      "r"
+     ],
+     "note": null,
+     "size": 19
+    },
+    {
+     "t": "p",
+     "text": "Table 16 gives the adjusted effects. Compared with in-person work, **remote workers earn 29.1 % more** (95 % CI 25.2–33.2) and hybrid workers 14.3 % more, holding country, role, experience, company size and education constant. Pay rises broadly with organisation size: relative to 100–499 employees, organisations with 10,000 or more employees pay 18.6 % more, whereas tiny organisations (2–9 employees) pay 19.3 % less. A Master’s degree is associated with 12.0 % higher pay than a Bachelor’s degree, whereas secondary education only is associated with 14.1 % lower pay."
+    },
+    {
+     "t": "table",
+     "id": "t_o3e",
+     "caption": "Adjusted percentage differences in pay (HC3 robust 95 % CI) for work arrangement, organisation size and education",
+     "header": [
+      "Factor",
+      "Category",
+      "Difference (%)",
+      "95 % CI (%)",
+      "p"
+     ],
+     "rows": [
+      [
+       "Work arrangement",
+       "Remote",
+       "+29.1",
+       "+25.2 to +33.2",
+       "< 0.001"
+      ],
+      [
+       "Work arrangement",
+       "Hybrid",
+       "+14.3",
+       "+11.1 to +17.6",
+       "< 0.001"
+      ],
+      [
+       "Organisation size",
+       "10,000 or more",
+       "+18.6",
+       "+14.7 to +22.5",
+       "< 0.001"
+      ],
+      [
+       "Organisation size",
+       "5,000 to 9,999",
+       "+13.9",
+       "+8.8 to +19.1",
+       "< 0.001"
+      ],
+      [
+       "Organisation size",
+       "1,000 to 4,999",
+       "+8.1",
+       "+4.5 to +11.8",
+       "< 0.001"
+      ],
+      [
+       "Organisation size",
+       "500 to 999",
+       "+6.2",
+       "+2.0 to +10.5",
+       "= 0.003"
+      ],
+      [
+       "Organisation size",
+       "20 to 99",
+       "-2.4",
+       "-5.1 to +0.4",
+       "= 0.098"
+      ],
+      [
+       "Organisation size",
+       "10 to 19",
+       "-11.9",
+       "-15.4 to -8.3",
+       "< 0.001"
+      ],
+      [
+       "Organisation size",
+       "Just me",
+       "-13.4",
+       "-18.6 to -7.7",
+       "< 0.001"
+      ],
+      [
+       "Organisation size",
+       "2 to 9",
+       "-19.3",
+       "-22.5 to -16.0",
+       "< 0.001"
+      ],
+      [
+       "Education",
+       "Master's",
+       "+12.0",
+       "+9.3 to +14.7",
+       "< 0.001"
+      ],
+      [
+       "Education",
+       "Doctorate/Prof.",
+       "+10.8",
+       "+5.7 to +16.2",
+       "< 0.001"
+      ],
+      [
+       "Education",
+       "Some college",
+       "-7.2",
+       "-10.0 to -4.3",
+       "< 0.001"
+      ],
+      [
+       "Education",
+       "Primary",
+       "-8.9",
+       "-22.7 to +7.3",
+       "= 0.263"
+      ],
+      [
+       "Education",
+       "Associate",
+       "-10.3",
+       "-14.6 to -5.7",
+       "< 0.001"
+      ],
+      [
+       "Education",
+       "Secondary",
+       "-14.1",
+       "-17.8 to -10.1",
+       "< 0.001"
+      ]
+     ],
+     "widths": [
+      1.5,
+      1.6,
+      1.1,
+      1.8,
+      0.8
+     ],
+     "align": [
+      "l",
+      "l",
+      "r",
+      "r",
+      "r"
+     ],
+     "note": "References: In-person; 100 to 499 employees; Bachelor’s degree. Country, experience and role are controlled.",
+     "size": 19
+    },
+    {
+     "t": "p",
+     "text": "Among roles (reference: full-stack developer), the largest adjusted premiums are for senior executives (56.8 %), engineering managers (41.2 %), cloud-infrastructure engineers (29.2 %) and data scientists / ML specialists (21.5 %); academic researchers earn 28.5 % less. Front-end, desktop/enterprise, mobile and game developers do not differ significantly from full-stack developers."
+    },
+    {
+     "t": "h3",
+     "text": "(v) Visualization and Interpretation"
+    },
+    {
+     "t": "fig",
+     "id": "fig13_role_effects",
+     "file": "fig13_role_effects.png",
+     "caption": "Adjusted pay difference by job role relative to full-stack developers (country and experience held constant; 95 % HC3 CIs; grey = not significant at 5 %).",
+     "width": 480
+    },
+    {
+     "t": "fig",
+     "id": "fig14_workmode_org_edu_effects",
+     "file": "fig14_workmode_org_edu_effects.png",
+     "caption": "Adjusted pay differences by work arrangement (a), organisation size (b) and education (c).",
+     "width": 600
+    },
+    {
+     "t": "fig",
+     "id": "fig15_variance_decomposition",
+     "file": "fig15_variance_decomposition.png",
+     "caption": "Cumulative R² and incremental ΔR² as predictor blocks are added to the OLS model for log-compensation.",
+     "width": 460
+    },
+    {
+     "t": "p",
+     "text": "Figure 13 and Figure 14 show that most differences are modest compared with the country gap of O1, and that the management track and cloud/data specialisations command the clearest premiums. Figure 15 makes the relative importance visible: **where you work and how long you have worked explain most of what can be explained; role, company size, work mode and education add only a few percentage points of R² each.** **Interpretation caution:** the remote-work premium is an association. Developers in lower-wage countries who work remotely for employers abroad, differences in seniority not captured by years of experience, and company type may all contribute; the data cannot separate these explanations."
+    },
+    {
+     "t": "h2",
+     "text": "4.4 Objective O4 — Who uses AI tools? The adoption landscape"
+    },
+    {
+     "t": "h3",
+     "text": "(i) Introduction"
+    },
+    {
+     "t": "p",
+     "text": "AI coding assistants spread faster than almost any earlier developer tool. O4 maps current adoption across age, experience, role, country, organisation size and Stack Overflow engagement, ranks the factors by strength of association, and tests whether India differs from the rest of the world."
+    },
+    {
+     "t": "h3",
+     "text": "(ii) General Description"
+    },
+    {
+     "t": "p",
+     "text": "The AI cohort contains 60,907 respondents who answered the question “Do you currently use AI tools in your development process?”. The answer has three levels — *Yes*, *No, but I plan to soon* (13.8 %) and *No, and I don’t plan to* (24.4 %). For the tests the outcome is binary (uses AI = Yes). Groups with fewer than 300 respondents are not shown for country and role so that every interval is reasonably tight."
+    },
+    {
+     "t": "h3",
+     "text": "(iii) Specific Requirements, Functions and Formulas"
+    },
+    {
+     "t": "p",
+     "text": "Functions: `pd.crosstab`, `scipy.stats.chi2_contingency`, the project helpers `cramers_v` (bias-corrected), `wilson_ci` and `two_prop_ztest`."
+    },
+    {
+     "t": "eq",
+     "text": "χ^{2} = Σ (O_{ij} − E_{ij})^{2} / E_{ij},     V = √( χ̃^{2}/n / min(k−1, r−1) )    (bias-corrected Cramér’s V)"
+    },
+    {
+     "t": "eq",
+     "text": "Wilson interval:  [ p̂ + z²/2n ± z√( p̂(1−p̂)/n + z²/4n² ) ] / (1 + z²/n),     z-test: z = (p̂_{1} − p̂_{2}) / √( p̂(1−p̂)(1/n_{1} + 1/n_{2}) )"
+    },
+    {
+     "t": "h3",
+     "text": "(iv) Analysis Results"
+    },
+    {
+     "t": "p",
+     "text": "Overall, **61.8 %** of respondents use AI tools. All ten factors are statistically associated with adoption (p < 0.001), but the effect sizes differ greatly (Table 17): the strongest are age (V = 0.161), professional experience (V = 0.156), job role (V = 0.147) and country (V = 0.138); all are *small* effects (V of about 0.14–0.16), and Stack Overflow visit frequency (V = 0.021) and work arrangement (V = 0.027) are practically irrelevant."
+    },
+    {
+     "t": "table",
+     "id": "t_o4f",
+     "caption": "Chi-square tests of AI adoption against each factor, ranked by Cramér’s V",
+     "header": [
+      "Factor",
+      "Levels",
+      "n",
+      "χ²",
+      "df",
+      "p",
+      "V"
+     ],
+     "rows": [
+      [
+       "Age bracket",
+       "7",
+       "60,630",
+       "1,574",
+       "6",
+       "< 0.001",
+       "0.161"
+      ],
+      [
+       "Professional experience",
+       "5",
+       "49,722",
+       "1,221",
+       "4",
+       "< 0.001",
+       "0.156"
+      ],
+      [
+       "Job role",
+       "26",
+       "56,641",
+       "1,257",
+       "25",
+       "< 0.001",
+       "0.147"
+      ],
+      [
+       "Country",
+       "39",
+       "51,116",
+       "1,015",
+       "38",
+       "< 0.001",
+       "0.138"
+      ],
+      [
+       "Coding relationship",
+       "5",
+       "60,907",
+       "434",
+       "4",
+       "< 0.001",
+       "0.084"
+      ],
+      [
+       "Organisation size",
+       "10",
+       "46,343",
+       "288",
+       "9",
+       "< 0.001",
+       "0.078"
+      ],
+      [
+       "Purchasing influence",
+       "3",
+       "46,301",
+       "158",
+       "2",
+       "< 0.001",
+       "0.058"
+      ],
+      [
+       "Education",
+       "8",
+       "58,896",
+       "184",
+       "7",
+       "< 0.001",
+       "0.055"
+      ],
+      [
+       "Work arrangement",
+       "3",
+       "51,100",
+       "39",
+       "2",
+       "< 0.001",
+       "0.027"
+      ],
+      [
+       "Stack Overflow visits",
+       "5",
+       "58,286",
+       "30",
+       "4",
+       "< 0.001",
+       "0.021"
+      ]
+     ],
+     "widths": [
+      1.9,
+      0.7,
+      0.9,
+      0.9,
+      0.6,
+      0.8,
+      0.7
+     ],
+     "align": [
+      "l",
+      "r",
+      "r",
+      "r",
+      "r",
+      "r",
+      "r"
+     ],
+     "note": null,
+     "size": 19
+    },
+    {
+     "t": "p",
+     "text": "Adoption falls steadily with age, from 70.4 % among 18–24-year-olds to 40.9 % at 55–64 and 32.3 % at 65+, and with professional experience, from 71.2 % (0–2 years) to 48.2 % (21+ years). Among roles (Figure 17) AI developers (84.5 %) and data scientists / ML specialists (72.5 %) lead, whereas sysadmins and embedded developers are lowest (42.8 % and 43.5 %). **India:** 67.9 % of the 4,161 Indian respondents use AI tools, versus 61.4 % elsewhere (difference 6.6 percentage points, z = 8.4, p < 0.001) and 54.2 % in the USA (z = 15.2, p < 0.001)."
+    },
+    {
+     "t": "h3",
+     "text": "(v) Visualization and Interpretation"
+    },
+    {
+     "t": "fig",
+     "id": "fig16_ai_adoption_factors",
+     "file": "fig16_ai_adoption_factors.png",
+     "caption": "AI-tool adoption in the development process by age (a), experience (b), organisation size (c) and Stack Overflow visit frequency (d); labels show % currently using AI.",
+     "width": 600
+    },
+    {
+     "t": "fig",
+     "id": "fig17_ai_adoption_country_role",
+     "file": "fig17_ai_adoption_country_role.png",
+     "caption": "AI adoption rate with 95 % Wilson CIs by country (a) and job role (b); dashed line = overall adoption; India in orange.",
+     "width": 600
+    },
+    {
+     "t": "fig",
+     "id": "fig18_ai_cramers_v",
+     "file": "fig18_ai_cramers_v.png",
+     "caption": "Strength of association (Cramér's V) between AI adoption and each descriptive factor.",
+     "width": 470
+    },
+    {
+     "t": "fig",
+     "id": "fig19_ai_role_age_heatmap",
+     "file": "fig19_ai_role_age_heatmap.png",
+     "caption": "AI adoption by job role and age bracket (blank = fewer than 30 respondents).",
+     "width": 470
+    },
+    {
+     "t": "p",
+     "text": "Figure 16 shows that the age and experience gradients are monotone and large, whereas organisation size has only a small inverted-U pattern (highest in organisations of 2–99 people) and Stack Overflow visit frequency has almost none. Figure 17 places India (orange) {india_rank_txt}, below countries such as China, Pakistan, Nigeria, Israel and Ukraine but clearly above the USA, the UK, Germany and France. Figure 18 ranks the factors, and Figure 19 shows that adoption falls with age *within every one of the ten most common roles*, and that at any age adoption is highest among front-end, full-stack and mobile developers and lowest among embedded and desktop/enterprise developers. **Interpretation:** adoption is highest among the young, early-career, AI-adjacent and — notably — developers in emerging developer markets, consistent with the idea that AI tools are most attractive to people who are still building skills or who see them as a productivity lever. Because the sample is self-selected and the question asks about *current* use, these are snapshot associations, not predictions of future behaviour."
+    },
+    {
+     "t": "h2",
+     "text": "4.5 Objective O5 — AI sentiment, trust and job-threat perception"
+    },
+    {
+     "t": "h3",
+     "text": "(i) Introduction"
+    },
+    {
+     "t": "p",
+     "text": "Adoption is only half of the story; developers’ attitudes decide whether AI tools are used wisely. O5 describes favourability, trust in the accuracy of AI output, belief that AI can handle complex tasks, and fear of job loss, and tests whether these differ with career stage, role and country."
+    },
+    {
+     "t": "h3",
+     "text": "(ii) General Description"
+    },
+    {
+     "t": "p",
+     "text": "Four follow-up questions were shown only to respondents who use or plan to use AI tools (Table 18): sentiment and job-threat to users and planners (46,070 respondents), trust in accuracy and performance on complex tasks to *current users only* (37,662). All inference therefore refers to the AI-using or AI-planning population, not to all developers. Ordinal answers are scored 1–5 (e.g. “Highly distrust” = 1 … “Highly trust” = 5; “Unsure” answers are excluded); the threat question is categorical (Yes / No / Not sure)."
+    },
+    {
+     "t": "table",
+     "id": "t_cond",
+     "caption": "Percentage of respondents answering each AI follow-up question, by their answer to “Do you use AI tools?” (proof of conditional routing)",
+     "header": [
+      "AI-use answer",
+      "ai_sent",
+      "ai_acc",
+      "ai_complex",
+      "ai_threat"
+     ],
+     "rows": [
+      [
+       "(unanswered)",
+       "0.0",
+       "0.0",
+       "0.0",
+       "0.0"
+      ],
+      [
+       "No, and I don't plan to",
+       "0.0",
+       "0.0",
+       "0.0",
+       "0.0"
+      ],
+      [
+       "No, but I plan to soon",
+       "99.2",
+       "0.0",
+       "0.0",
+       "99.4"
+      ],
+      [
+       "Yes",
+       "99.7",
+       "99.0",
+       "98.3",
+       "96.5"
+      ]
+     ],
+     "widths": [
+      2.6,
+      1,
+      1,
+      1,
+      1
+     ],
+     "align": [
+      "l",
+      "r",
+      "r",
+      "r",
+      "r"
+     ],
+     "note": "The table is the evidence for the leakage rule of Section 3.9: the columns are never filled for respondents who neither use nor plan to use AI, and ai_acc / ai_complex are filled only for current users.",
+     "size": 19
+    },
+    {
+     "t": "h3",
+     "text": "(iii) Specific Requirements, Functions and Formulas"
+    },
+    {
+     "t": "p",
+     "text": "Functions: `map_prefix` (label → score), `scipy.stats.spearmanr` with Bonett–Wright CI, `scipy.stats.kruskal`, `scipy.stats.mannwhitneyu`, `chi2_test`/`cramers_v`, `wilson_ci`, `two_prop_ztest`."
+    },
+    {
+     "t": "eq",
+     "text": "ρ = 1 − 6Σd_{i}^{2} / (n(n²−1)) (no ties; with ties the Pearson correlation of ranks);     ε^{2} = H/(N−1);     V as in Section 4.4"
+    },
+    {
+     "t": "h3",
+     "text": "(iv) Analysis Results"
+    },
+    {
+     "t": "p",
+     "text": "Attitudes are broadly positive but cautious. 74 % of the 46,070 respondents are favourable or very favourable towards AI tools, yet only 43 % of users somewhat or highly trust the accuracy of AI output while 30 % distrust it; only 36 % think AI handles complex tasks well, whereas 43 % think it handles them badly. Just 12 % believe AI is a threat to their own job. This “favourable but sceptical” profile is the headline result (Figure 20). Users are more favourable than those who only plan to use AI (mean 3.98 vs 3.54; p < 0.001)."
+    },
+    {
+     "t": "table",
+     "id": "t_o5s",
+     "caption": "Spearman correlation of attitudes with professional experience and age (all p < 0.001 given the large n)",
+     "header": [
+      "Attitude",
+      "ρ (experience)",
+      "95 % CI",
+      "n",
+      "ρ (age)",
+      "95 % CI"
+     ],
+     "rows": [
+      [
+       "Favourability",
+       "-0.03",
+       "-0.04 to -0.02",
+       "36,930",
+       "-0.00",
+       "-0.01 to 0.01"
+      ],
+      [
+       "Trust in AI accuracy",
+       "-0.06",
+       "-0.07 to -0.04",
+       "31,049",
+       "-0.02",
+       "-0.03 to -0.01"
+      ],
+      [
+       "AI on complex tasks",
+       "-0.03",
+       "-0.04 to -0.02",
+       "30,883",
+       "-0.00",
+       "-0.01 to 0.01"
+      ],
+      [
+       "Sees AI as threat (yes=1)",
+       "-0.02",
+       "-0.03 to -0.01",
+       "37,777",
+       "-0.02",
+       "-0.03 to -0.01"
+      ]
+     ],
+     "widths": [
+      2.3,
+      1.0,
+      1.5,
+      0.8,
+      0.9,
+      1.5
+     ],
+     "align": [
+      "l",
+      "r",
+      "r",
+      "r",
+      "r",
+      "r"
+     ],
+     "note": null,
+     "size": 19
+    },
+    {
+     "t": "p",
+     "text": "Experience and age are associated with slightly less favourable and less trusting attitudes, but **the effects are tiny**: the largest rank correlation is ρ = -0.06 (experience and trust). Kruskal–Wallis tests across experience bands are significant (favourability H = 35, ε² = 0.001; trust H = 114, ε² = 0.004), but the ε² values show that experience band explains well under 1 % of rank variation — statistical significance without practical significance. For the threat question (Table 20) the associations are small as well, strongest for country (V = 0.097) and job role (V = 0.077)."
+    },
+    {
+     "t": "table",
+     "id": "t_o5t",
+     "caption": "Chi-square tests of the job-threat answer (Yes / No / Not sure) against career and context factors",
+     "header": [
+      "Factor",
+      "n",
+      "χ²",
+      "df",
+      "p",
+      "V"
+     ],
+     "rows": [
+      [
+       "Experience band",
+       "37,777",
+       "150.2",
+       "8",
+       "< 0.001",
+       "0.043"
+      ],
+      [
+       "Age bracket",
+       "44,540",
+       "253.2",
+       "12",
+       "< 0.001",
+       "0.052"
+      ],
+      [
+       "Job role (n ≥ 300)",
+       "41,309",
+       "525.7",
+       "42",
+       "< 0.001",
+       "0.077"
+      ],
+      [
+       "Country (n ≥ 300)",
+       "34,962",
+       "718.4",
+       "58",
+       "< 0.001",
+       "0.097"
+      ]
+     ],
+     "widths": [
+      2.2,
+      0.9,
+      0.9,
+      0.6,
+      0.8,
+      0.7
+     ],
+     "align": [
+      "l",
+      "r",
+      "r",
+      "r",
+      "r",
+      "r"
+     ],
+     "note": null,
+     "size": 19
+    },
+    {
+     "t": "p",
+     "text": "**India versus the rest.** Indian respondents are more favourable (mean 4.04 vs 3.90, p < 0.001), trust AI output more (mean 3.49 vs 3.04, p < 0.001) and rate its performance on complex tasks higher (mean 3.29 vs 2.81, p < 0.001); they are also somewhat more likely to see AI as a job threat (17.1 % vs 11.6 %, p < 0.001). Trust and favourability move together (ρ = 0.43), as do trust and perceived competence on complex tasks (ρ = 0.54)."
+    },
+    {
+     "t": "h3",
+     "text": "(v) Visualization and Interpretation"
+    },
+    {
+     "t": "fig",
+     "id": "fig20_ai_attitudes_distribution",
+     "file": "fig20_ai_attitudes_distribution.png",
+     "caption": "Distribution of attitudes towards AI among respondents who use or plan to use AI tools.",
+     "width": 600
+    },
+    {
+     "t": "fig",
+     "id": "fig21_trust_sentiment_by_experience",
+     "file": "fig21_trust_sentiment_by_experience.png",
+     "caption": "Trust in AI accuracy (a) and sentiment (b) across experience bands (100 % stacked; red = negative, blue = positive).",
+     "width": 600
+    },
+    {
+     "t": "fig",
+     "id": "fig22_threat_by_role_age",
+     "file": "fig22_threat_by_role_age.png",
+     "caption": "Share of respondents who see AI as a threat to their own job, by job role (a) and age (b); dashed line = overall.",
+     "width": 600
+    },
+    {
+     "t": "fig",
+     "id": "fig23_attitude_correlations",
+     "file": "fig23_attitude_correlations.png",
+     "caption": "Spearman correlation matrix of AI attitude scores with experience and age.",
+     "width": 420
+    },
+    {
+     "t": "p",
+     "text": "Figure 20 shows the favourable-but-sceptical profile. Figure 21 shows almost identical stacked bars across experience bands — the visual counterpart of the tiny ρ values — with a slight shift towards distrust among the most experienced. Figure 22 shows that fear of job loss is highest among front-end developers, project managers, QA/test engineers and the youngest respondents and lowest among embedded developers and senior executives, but all confidence intervals sit within a narrow band around the overall rate. Figure 23 shows that the attitude scores form a coherent cluster (favourability, trust and perceived competence positively correlated; threat weakly negative). **Interpretation:** developers use AI tools enthusiastically but verify their output; the data give no evidence of widespread job-loss anxiety, and career stage matters much less for attitudes than for adoption (O4). These are stated attitudes from a self-selected sample at one moment in time."
+    },
+    {
+     "t": "h2",
+     "text": "4.6 Objective O6 — Predicting annual compensation (regression)"
+    },
+    {
+     "t": "h3",
+     "text": "(i) Introduction"
+    },
+    {
+     "t": "p",
+     "text": "O6 asks whether a developer’s annual compensation can be predicted from the profile information that O1–O3 found to matter, and which family of models predicts it best. A useful model supports salary benchmarking and highlights which information carries predictive power."
+    },
+    {
+     "t": "h3",
+     "text": "(ii) General Description"
+    },
+    {
+     "t": "p",
+     "text": "The prediction target is ln(USD pay) of the 20,794 cohort members, split into 16,635 training and 4,159 test rows. There are 21 raw predictors (country, role, experience variables, age, organisation size, education, work arrangement, Stack Overflow engagement, AI use and others; Section 3.8). Six models are compared: two baselines (global median; *country median*, a domain-aware benchmark that shows how much is plain geography) and four learning algorithms of increasing flexibility — **Ridge regression**, **Random Forest**, **HistGradientBoosting** and **LightGBM**. Back-transformed predictions exp(ŷ) estimate the *conditional median* pay."
+    },
+    {
+     "t": "h3",
+     "text": "(iii) Specific Requirements, Functions and Formulas"
+    },
+    {
+     "t": "p",
+     "text": "Functions: `train_test_split(stratify=…)`, `ColumnTransformer` / `Pipeline` (median imputation with missing-indicators, standardisation, one-hot encoding, ordinal encoding, cross-fitted `TargetEncoder`), `RandomizedSearchCV` (8 candidates, 3-fold) for hyper-parameter tuning on the training set only, `cross_validate` (5-fold) for the fair comparison, and the helper `reg_metrics`."
+    },
+    {
+     "t": "eq",
+     "text": "Ridge:  β̂ = argmin_{β} Σ(y_{i} − x_{i}′β)^{2} + α‖β‖^{2}     (shrinks coefficients; handles correlated experience variables)"
+    },
+    {
+     "t": "eq",
+     "text": "Random Forest:  ŷ(x) = (1/B) Σ_{b=1}^{B} T_{b}(x)     (average of B de-correlated bootstrap trees)"
+    },
+    {
+     "t": "eq",
+     "text": "Gradient boosting:  F_{m}(x) = F_{m−1}(x) + η·h_{m}(x),  h_{m} fitted to the residuals y − F_{m−1}(x)     (HistGB and LightGBM use histogram split-finding)"
+    },
+    {
+     "t": "eq",
+     "text": "RMSE = √(Σe_{i}^{2}/n),  MAE = Σ|e_{i}|/n,  R^{2} = 1 − Σe_{i}^{2}/Σ(y_{i} − ȳ)^{2},  MdAPE = median(|ŷ_{USD} − y_{USD}| / y_{USD})"
+    },
+    {
+     "t": "p",
+     "text": "**Pre-registered success criteria:** (a) the best model reduces the baseline test RMSE (log scale) by at least 40 %; (b) it beats the country-median baseline."
+    },
+    {
+     "t": "h3",
+     "text": "(iv) Analysis Results"
+    },
+    {
+     "t": "p",
+     "text": "Table 21 gives cross-validated and hold-out results. The global-median baseline has a test R² of about zero by construction; the country-median baseline already reaches R² = 0.476 (RMSE 0.747), confirming O1. All four learning models improve on it: Ridge R² = 0.602, Random Forest 0.619, HistGradientBoosting 0.623 and **LightGBM 0.624**. The selected model (lowest cross-validated RMSE: 0.639) has a hold-out RMSE of 0.633 on the log scale (95 % bootstrap CI 0.607–0.661), R² = 0.624 (95 % CI 0.600–0.646), a mean absolute error of USD 28,585, a median absolute percentage error of 27.4 %, and 46.5 % of predictions fall within ±25 % of the true salary."
+    },
+    {
+     "t": "table",
+     "id": "t_o6",
+     "caption": "Regression models: 5-fold CV on the training set and hold-out test performance (★ = selected)",
+     "header": [
+      "Model",
+      "CV RMSE (log) ± SD",
+      "CV R²",
+      "Test RMSE (log)",
+      "Test R²",
+      "Test MAE (USD)",
+      "MdAPE (%)",
+      "Within ±25 %"
+     ],
+     "rows": [
+      [
+       "Baseline: global median",
+       "1.065 ± 0.013",
+       "-0.035",
+       "1.048",
+       "-0.032",
+       "49,965",
+       "48.8",
+       "25.7"
+      ],
+      [
+       "Baseline: country median",
+       "0.763 ± 0.015",
+       "0.469",
+       "0.747",
+       "0.476",
+       "34,722",
+       "34.5",
+       "37.2"
+      ],
+      [
+       "Ridge regression",
+       "0.663 ± 0.011",
+       "0.599",
+       "0.651",
+       "0.602",
+       "29,659",
+       "29.4",
+       "44.6"
+      ],
+      [
+       "Random Forest",
+       "0.647 ± 0.008",
+       "0.618",
+       "0.637",
+       "0.619",
+       "28,923",
+       "27.2",
+       "46.4"
+      ],
+      [
+       "HistGradientBoosting",
+       "0.640 ± 0.009",
+       "0.626",
+       "0.634",
+       "0.623",
+       "28,817",
+       "27.6",
+       "46.3"
+      ],
+      [
+       "LightGBM ★",
+       "0.639 ± 0.008",
+       "0.628",
+       "0.633",
+       "0.624",
+       "28,585",
+       "27.4",
+       "46.5"
+      ]
+     ],
+     "widths": [
+      2.1,
+      1.5,
+      0.7,
+      0.9,
+      0.7,
+      0.9,
+      0.9,
+      0.8
+     ],
+     "align": [
+      "l",
+      "r",
+      "r",
+      "r",
+      "r",
+      "r",
+      "r",
+      "r"
+     ],
+     "note": null,
+     "size": 17
+    },
+    {
+     "t": "p",
+     "text": "**Is the winner really better?** The four learners are close. A paired bootstrap of the test squared errors between LightGBM and the runner-up (HistGradientBoosting) gives a mean-squared-error difference with 95 % CI -0.0021 to 0.0052; LightGBM has the lower error in 80 % of resamples. Differences among the gradient-boosting variants are therefore small relative to the gap between learners and baselines, and the choice between them is a matter of marginal evidence, not a decisive win."
+    },
+    {
+     "t": "p",
+     "text": "**Success criteria.** (a) The test RMSE is 39.7 % lower than the global-median baseline — the 40 % target was therefore **not met**, narrowly. (b) It is 15.3 % lower than the country-median baseline — criterion met. The honest reading is that the data’s predictive ceiling is roughly R² ≈ 0.6: most of what these survey variables can explain is already captured by country and experience."
+    },
+    {
+     "t": "p",
+     "text": "**Tuned hyper-parameters of LightGBM:** subsample_freq = 1, subsample = 0.9, reg_lambda = 1, num_leaves = 7, min_child_samples = 50, learning_rate = 0.04, colsample_bytree = 0.8. Residuals on the log scale have mean 0.014, standard deviation 0.632, skewness -1.08 and excess kurtosis 6.03: they are centred but heavy-tailed, with a long negative tail of respondents earning far less than predicted (typically part-time, student or sub-contract earnings)."
+    },
+    {
+     "t": "p",
+     "text": "**Sensitivity to the outlier policy** (Table 22): cross-validated RMSE of the tuned HistGradientBoosting model is 0.583–0.673 across the three policies — the stricter the filter, the smaller the error, as expected, because fewer extreme points remain; the chosen 3 × IQR rule is intermediate. Absolute error levels in this report are therefore conditional on the cleaning policy; only HistGradientBoosting was re-fitted under the alternatives, so the stability of the *ranking* of models under other policies was not tested."
+    },
+    {
+     "t": "table",
+     "id": "t_sens",
+     "caption": "Sensitivity of cross-validated performance to the outlier policy (HistGradientBoosting)",
+     "header": [
+      "Policy",
+      "n",
+      "CV RMSE (log)",
+      "CV R²",
+      "CV MAE (log)"
+     ],
+     "rows": [
+      [
+       "Absolute bounds only (USD 1k–1M)",
+       "21,007",
+       "0.673",
+       "0.602",
+       "0.442"
+      ],
+      [
+       "Country 3×IQR (chosen)",
+       "20,796",
+       "0.637",
+       "0.627",
+       "0.420"
+      ],
+      [
+       "Country 1.5×IQR (strict)",
+       "20,136",
+       "0.583",
+       "0.660",
+       "0.388"
+      ]
+     ],
+     "widths": [
+      3.0,
+      0.8,
+      1.2,
+      0.9,
+      1.2
+     ],
+     "align": [
+      "l",
+      "r",
+      "r",
+      "r",
+      "r"
+     ],
+     "note": null,
+     "size": 19
+    },
+    {
+     "t": "h3",
+     "text": "(v) Visualization and Interpretation"
+    },
+    {
+     "t": "fig",
+     "id": "fig24_regression_model_comparison",
+     "file": "fig24_regression_model_comparison.png",
+     "caption": "Regression model comparison: cross-validated RMSE with ±1 SD (a), hold-out R² (b) and hold-out MAE in USD (c). Grey = baselines, orange = selected model.",
+     "width": 600
+    },
+    {
+     "t": "fig",
+     "id": "fig25_regression_diagnostics",
+     "file": "fig25_regression_diagnostics.png",
+     "caption": "Diagnostics of the selected regression model on the hold-out set: predicted vs actual pay (a), residual distribution (b) and residuals vs fitted values with LOWESS (c).",
+     "width": 600
+    },
+    {
+     "t": "fig",
+     "id": "fig26_learning_curve",
+     "file": "fig26_learning_curve.png",
+     "caption": "Learning curve of the tuned gradient-boosting model: the validation error is still slowly falling, so more data would help slightly.",
+     "width": 400
+    },
+    {
+     "t": "p",
+     "text": "Figure 24 shows the ordering baseline < Ridge < Random Forest < gradient boosting on every metric. Figure 25 (a) shows predictions scattered around the diagonal with a tendency to over-predict very low salaries; (b) and (c) show roughly centred residuals with no strong dependence on the fitted value. The learning curve (Figure 26) shows the validation RMSE still falling slowly from 0.646 to 0.641 as the training set grows, and a gap to the training RMSE (0.612); more data, not a more complex model, is the better route to improvement. **Interpretation:** a model using only self-reported profile information predicts developer pay within about a quarter of the true value for roughly 47 % of developers, which is useful for benchmarking but not for individual salary-setting."
+    },
+    {
+     "t": "h2",
+     "text": "4.7 Objective O7 — Predicting AI-tool adoption (classification)"
+    },
+    {
+     "t": "h3",
+     "text": "(i) Introduction"
+    },
+    {
+     "t": "p",
+     "text": "O7 asks whether a developer’s current use of AI tools can be predicted from their background alone, and shows — by deliberate contrast — how badly the answer is distorted if leaky variables are allowed."
+    },
+    {
+     "t": "h3",
+     "text": "(ii) General Description"
+    },
+    {
+     "t": "p",
+     "text": "The target is binary (1 = currently uses AI tools; prevalence 61.8 %). The 48,725 training and 12,182 test rows are split with stratification on the label. Predictors are the same profile variables as in O6 plus the respondent’s coding relationship (professional, learner, hobbyist…) but *not* salary, and never the four conditional AI follow-up questions. Models: a majority-class baseline, **Logistic Regression**, **Random Forest**, **HistGradientBoosting** and **LightGBM**."
+    },
+    {
+     "t": "h3",
+     "text": "(iii) Specific Requirements, Functions and Formulas"
+    },
+    {
+     "t": "p",
+     "text": "Functions: the same pipelines as O6 with `StratifiedKFold`, `LogisticRegression`, `RandomForestClassifier`, `HistGradientBoostingClassifier`, `LGBMClassifier`, `roc_curve`, `precision_recall_curve`, `calibration_curve`, `cross_val_predict` (out-of-fold probabilities for threshold selection) and `clf_metrics`."
+    },
+    {
+     "t": "eq",
+     "text": "Logistic regression:  P(y=1|x) = 1 / (1 + e^{−(β_{0} + x′β)})     (log-odds are linear in the features)"
+    },
+    {
+     "t": "eq",
+     "text": "Precision = TP/(TP+FP),  Recall = TP/(TP+FN),  F_{1} = 2PR/(P+R),  Balanced accuracy = (TPR + TNR)/2,  Brier = Σ(p̂_{i} − y_{i})^{2}/n"
+    },
+    {
+     "t": "eq",
+     "text": "ROC-AUC = P(p̂_{pos} > p̂_{neg}) = area under TPR-versus-FPR curve"
+    },
+    {
+     "t": "p",
+     "text": "**Pre-registered success criteria:** ROC-AUC ≥ 0.65 on the hold-out set, and F1 above the majority-class baseline."
+    },
+    {
+     "t": "h3",
+     "text": "(iv) Analysis Results"
+    },
+    {
+     "t": "p",
+     "text": "**Leakage demonstration.** One identical gradient-boosting model reaches a hold-out ROC-AUC of **0.665** with legitimate predictors but **1.000** when the four conditional AI follow-up variables are added — a perfect-looking but meaningless score of +0.335 that arises because “was the question answered?” reveals the label (Table 18). All reported results exclude these variables."
+    },
+    {
+     "t": "p",
+     "text": "Table 23 compares the models. Every learning model reaches a cross-validated ROC-AUC of about 0.66–0.67, and the selected LightGBM has a hold-out ROC-AUC of 0.669 (95 % bootstrap CI 0.660–0.679). Models differ by about 0.01 AUC or less, so the choice among them is not decisive; the simplest (Logistic Regression) is almost as good as the most complex."
+    },
+    {
+     "t": "table",
+     "id": "t_o7",
+     "caption": "Classification models: 5-fold CV ROC-AUC and hold-out metrics at threshold 0.5 (★ = selected)",
+     "header": [
+      "Model",
+      "CV ROC-AUC ± SD",
+      "Acc.",
+      "Prec.",
+      "Recall",
+      "F1",
+      "ROC-AUC",
+      "PR-AUC",
+      "Brier"
+     ],
+     "rows": [
+      [
+       "Baseline: majority class",
+       "0.500 ± 0.000",
+       "0.618",
+       "0.618",
+       "1.000",
+       "0.764",
+       "0.500",
+       "0.618",
+       "0.236"
+      ],
+      [
+       "Logistic Regression",
+       "0.666 ± 0.008",
+       "0.655",
+       "0.670",
+       "0.872",
+       "0.758",
+       "0.666",
+       "0.753",
+       "0.217"
+      ],
+      [
+       "Random Forest",
+       "0.663 ± 0.006",
+       "0.649",
+       "0.665",
+       "0.872",
+       "0.754",
+       "0.659",
+       "0.747",
+       "0.218"
+      ],
+      [
+       "HistGradientBoosting",
+       "0.669 ± 0.006",
+       "0.652",
+       "0.669",
+       "0.866",
+       "0.755",
+       "0.664",
+       "0.751",
+       "0.217"
+      ],
+      [
+       "LightGBM ★",
+       "0.671 ± 0.006",
+       "0.655",
+       "0.671",
+       "0.867",
+       "0.756",
+       "0.669",
+       "0.755",
+       "0.216"
+      ]
+     ],
+     "widths": [
+      2.2,
+      1.4,
+      0.65,
+      0.65,
+      0.7,
+      0.6,
+      0.8,
+      0.75,
+      0.65
+     ],
+     "align": [
+      "l",
+      "r",
+      "r",
+      "r",
+      "r",
+      "r",
+      "r",
+      "r",
+      "r"
+     ],
+     "note": null,
+     "size": 17
+    },
+    {
+     "t": "p",
+     "text": "**Why F1 is misleading here.** Because 61.8 % of respondents use AI, the trivial rule “predict *yes* for everybody” already scores recall 1.0 and F1 = 0.764. At the default threshold 0.5 the selected model’s F1 is 0.756 — *below* that trivial baseline — so the F1 criterion is **not met at threshold 0.5**; at the F1-optimal threshold 0.38 (chosen on out-of-fold training predictions only) F1 rises to 0.770, barely above the baseline, but only because the classifier then labels almost everybody a user. The ROC-AUC criterion (≥ 0.65) is **met**. Balanced accuracy, which weights both classes equally, is the fairer yardstick: at threshold 0.62 (balanced-accuracy optimum on out-of-fold data) the selected model reaches balanced accuracy 0.622, precision 0.731 and recall 0.605 (Table 24)."
+    },
+    {
+     "t": "table",
+     "id": "t_thr",
+     "caption": "Selected model on the hold-out set at three decision thresholds",
+     "header": [
+      "Threshold rule",
+      "Value",
+      "Accuracy",
+      "Bal. acc.",
+      "Precision",
+      "Recall",
+      "F1"
+     ],
+     "rows": [
+      [
+       "Default",
+       "0.50",
+       "0.655",
+       "0.589",
+       "0.671",
+       "0.867",
+       "0.756"
+      ],
+      [
+       "F1-optimal (OOF)",
+       "0.38",
+       "0.642",
+       "0.541",
+       "0.639",
+       "0.968",
+       "0.770"
+      ],
+      [
+       "Balanced-accuracy optimal (OOF)",
+       "0.62",
+       "0.618",
+       "0.622",
+       "0.731",
+       "0.605",
+       "0.662"
+      ]
+     ],
+     "widths": [
+      2.5,
+      0.8,
+      0.9,
+      0.9,
+      0.9,
+      0.8,
+      0.7
+     ],
+     "align": [
+      "l",
+      "r",
+      "r",
+      "r",
+      "r",
+      "r",
+      "r"
+     ],
+     "note": null,
+     "size": 19
+    },
+    {
+     "t": "h3",
+     "text": "(v) Visualization and Interpretation"
+    },
+    {
+     "t": "fig",
+     "id": "fig27_classification_model_comparison",
+     "file": "fig27_classification_model_comparison.png",
+     "caption": "Classification model comparison: cross-validated ROC-AUC (a), hold-out F1 (b) and hold-out ROC-AUC (c). Grey = baseline, orange = selected model.",
+     "width": 600
+    },
+    {
+     "t": "fig",
+     "id": "fig28_roc_pr_curves",
+     "file": "fig28_roc_pr_curves.png",
+     "caption": "ROC curves with AUC in the legend (a) and precision–recall curves (b) for all classifiers on the hold-out set.",
+     "width": 500
+    },
+    {
+     "t": "fig",
+     "id": "fig29_confusion_calibration_threshold",
+     "file": "fig29_confusion_calibration_threshold.png",
+     "caption": "Selected classifier on the hold-out set: normalised confusion matrix at the balanced-accuracy threshold (a), calibration curve (b) and precision/recall/F1 versus decision threshold (c).",
+     "width": 600
+    },
+    {
+     "t": "p",
+     "text": "Figure 27 and Figure 28 show that all four learners trace almost the same ROC curve, well above chance but far from perfect. Figure 29 (a) gives the confusion matrix at the balanced threshold: of 4,649 non-users 2,971 are identified correctly, and of 7,533 users 4,561. Panel (b) shows the probabilities are *well calibrated* — a predicted 70 % really corresponds to roughly 70 % adopters — and panel (c) shows the precision/recall trade-off as the threshold moves. **Interpretation:** background information carries real but limited information about who uses AI tools (AUC ≈ 0.67); individual adoption is mostly driven by factors the survey does not measure (employer policy, tasks, personal preference). The model is suitable for describing population-level propensities, not for deciding about individuals."
+    },
+    {
+     "t": "h2",
+     "text": "4.8 Objective O8 — Explainability and error analysis"
+    },
+    {
+     "t": "h3",
+     "text": "(i) Introduction"
+    },
+    {
+     "t": "p",
+     "text": "A model that cannot be explained or audited should not be trusted. O8 identifies which inputs drive each model, in which direction, and where the models make larger errors — including whether the models are less reliable for Indian developers than for others."
+    },
+    {
+     "t": "h3",
+     "text": "(ii) General Description"
+    },
+    {
+     "t": "p",
+     "text": "Three complementary explanation tools are used: *permutation importance* on the hold-out set (model-agnostic; the loss in performance when one raw column is shuffled), *SHAP values* (Shapley-value attributions; computed on the LightGBM models, which perform on par with the selected ones) and *partial dependence*. Errors of both models are then audited by segment."
+    },
+    {
+     "t": "h3",
+     "text": "(iii) Specific Requirements, Functions and Formulas"
+    },
+    {
+     "t": "p",
+     "text": "Functions: `sklearn.inspection.permutation_importance` (5 repeats), `shap.TreeExplainer(...).shap_values`, `shap.summary_plot`, a hand-written partial-dependence routine that recomputes the derived experience features consistently, and `groupby` error summaries."
+    },
+    {
+     "t": "eq",
+     "text": "Permutation importance of feature j:  I_{j} = Err(X with column j shuffled) − Err(X)"
+    },
+    {
+     "t": "eq",
+     "text": "Shapley value:  φ_{j} = Σ_{S⊆F∖{j}} [ |S|!(|F|−|S|−1)! / |F|! ] · ( f(S∪{j}) − f(S) ),     f(x) = φ_{0} + Σ_{j}φ_{j}"
+    },
+    {
+     "t": "eq",
+     "text": "Partial dependence:  PD_{j}(v) = (1/n) Σ_{i} f(x_{i,−j}, x_{j} = v)"
+    },
+    {
+     "t": "h3",
+     "text": "(iv) Analysis Results"
+    },
+    {
+     "t": "p",
+     "text": "**Salary model.** Country dominates: shuffling it raises the log-RMSE by 0.478, versus 0.053 for professional years and 0.018 for organisation size (Table 25). The three most important features account for 91 % of the total permutation importance. SHAP agrees on the ordering (Country, Professional years, Org. size (log), Total years coded, Job role)."
+    },
+    {
+     "t": "p",
+     "text": "**Adoption model.** Importance is spread over more features: Total years coded, Job role, Country, Purchase influence lead, the top three accounting for 61 % of importance. Total years coded matters more than professional years, consistent with O4: AI adoption is associated with how long a person has been coding (a proxy for career stage and age) more than with company characteristics."
+    },
+    {
+     "t": "table",
+     "id": "t_imp",
+     "caption": "Top permutation importances on the hold-out set (salary: increase in log-RMSE; adoption: decrease in ROC-AUC)",
+     "header": [
+      "Rank",
+      "Salary model feature",
+      "Importance",
+      "Adoption model feature",
+      "Importance"
+     ],
+     "rows": [
+      [
+       "1",
+       "Country",
+       "0.4779",
+       "Total years coded",
+       "0.0329"
+      ],
+      [
+       "2",
+       "Professional years",
+       "0.0530",
+       "Job role",
+       "0.0224"
+      ],
+      [
+       "3",
+       "Org. size (log)",
+       "0.0184",
+       "Country",
+       "0.0167"
+      ],
+      [
+       "4",
+       "Total years coded",
+       "0.0139",
+       "Purchase influence",
+       "0.0111"
+      ],
+      [
+       "5",
+       "Work arrangement",
+       "0.0102",
+       "Age",
+       "0.0059"
+      ],
+      [
+       "6",
+       "Job role",
+       "0.0094",
+       "SO participation",
+       "0.0056"
+      ],
+      [
+       "7",
+       "Age",
+       "0.0055",
+       "Work arrangement",
+       "0.0051"
+      ],
+      [
+       "8",
+       "Purchase influence",
+       "0.0038",
+       "Professional years",
+       "0.0036"
+      ]
+     ],
+     "widths": [
+      0.6,
+      2.2,
+      1.1,
+      2.2,
+      1.1
+     ],
+     "align": [
+      "c",
+      "l",
+      "r",
+      "l",
+      "r"
+     ],
+     "note": null,
+     "size": 19
+    },
+    {
+     "t": "p",
+     "text": "**Partial dependence.** Setting every respondent’s professional experience to 0, 5, 10, 20 and 30 years, the average predicted pay is 47,050, 65,122, 77,365, 85,473, 86,558 USD for the whole test set, 98,624, 128,274, 149,731, 163,709, 165,853 USD if all were in the USA, and 9,218, 18,297, 22,598, 28,386, 28,786 USD if all were in India. The model therefore reproduces the O2 finding of steep early gains and a plateau after about 15–20 years, and the O1 finding of a large country offset. The predicted adoption probability falls from 64.0 % to 54.1 % as the age bracket midpoint moves from 21.0 to 59.5."
+    },
+    {
+     "t": "p",
+     "text": "**Error audit — salary model.** Overall the median absolute percentage error is 27.4 % (MAE USD 28,585). Errors differ by country (Table 26): lowest for Germany, France and Spain, highest for Ukraine and Brazil. For India the MdAPE is 37.4 % (193 test respondents) versus 24.1 % for the USA and 26.9 % for all non-Indian respondents; the mean log-residual for India is 0.08, i.e. the model under-predicts Indian salaries on average. Errors are nearly constant across experience bands and similar across roles (MdAPE about 21–30 %), so the dominant failure mode is *country-specific pay dispersion*, not seniority."
+    },
+    {
+     "t": "table",
+     "id": "t_err",
+     "caption": "Salary-model error by country on the hold-out set (10 largest test groups)",
+     "header": [
+      "Country",
+      "n",
+      "MdAPE %",
+      "MAE (USD)",
+      "Mean log-residual",
+      "Within ±25 %"
+     ],
+     "rows": [
+      [
+       "USA",
+       "842",
+       "24.1",
+       "54,842",
+       "+0.015",
+       "51.7"
+      ],
+      [
+       "Germany",
+       "351",
+       "19.4",
+       "21,425",
+       "+0.033",
+       "59.5"
+      ],
+      [
+       "UK",
+       "254",
+       "25.8",
+       "29,458",
+       "-0.040",
+       "48.0"
+      ],
+      [
+       "Ukraine",
+       "236",
+       "55.7",
+       "24,993",
+       "+0.119",
+       "14.8"
+      ],
+      [
+       "India",
+       "193",
+       "37.4",
+       "14,246",
+       "+0.076",
+       "31.6"
+      ],
+      [
+       "France",
+       "168",
+       "21.1",
+       "18,522",
+       "+0.024",
+       "56.0"
+      ],
+      [
+       "Canada",
+       "160",
+       "24.4",
+       "30,100",
+       "-0.002",
+       "50.0"
+      ],
+      [
+       "Brazil",
+       "124",
+       "38.9",
+       "17,286",
+       "-0.124",
+       "33.9"
+      ],
+      [
+       "Poland",
+       "118",
+       "32.0",
+       "25,634",
+       "+0.072",
+       "43.2"
+      ],
+      [
+       "Spain",
+       "109",
+       "23.0",
+       "15,308",
+       "+0.004",
+       "56.0"
+      ]
+     ],
+     "widths": [
+      1.4,
+      0.7,
+      1.0,
+      1.1,
+      1.4,
+      1.1
+     ],
+     "align": [
+      "l",
+      "r",
+      "r",
+      "r",
+      "r",
+      "r"
+     ],
+     "note": null,
+     "size": 19
+    },
+    {
+     "t": "p",
+     "text": "The largest individual errors in dollars (Table 27) are all *very high* earners — here all from the USA, reporting USD 0.75–1.0 million, three to six times what their profile predicts. Such pay (equity, bonuses, executive packages) cannot be inferred from the profile variables available. On the log scale the biggest errors are instead the very *low* reported salaries (the long negative residual tail noted in Section 4.6); the two kinds of error mirror each other."
+    },
+    {
+     "t": "table",
+     "id": "t_worst",
+     "caption": "The eight largest salary-prediction errors on the hold-out set (USD)",
+     "header": [
+      "Country",
+      "Role",
+      "Years pro",
+      "Org. size",
+      "Actual",
+      "Predicted",
+      "Error"
+     ],
+     "rows": [
+      [
+       "USA",
+       "Back-end dev",
+       "3",
+       "1,000 to 4,999",
+       "945,000",
+       "129,516",
+       "-815,484"
+      ],
+      [
+       "USA",
+       "Senior executive",
+       "15",
+       "10,000 or more",
+       "1,000,000",
+       "254,743",
+       "-745,257"
+      ],
+      [
+       "USA",
+       "Engineering manager",
+       "24",
+       "10,000 or more",
+       "1,000,000",
+       "276,903",
+       "-723,097"
+      ],
+      [
+       "USA",
+       "Data scientist/ML",
+       "32",
+       "20 to 99",
+       "810,000",
+       "177,681",
+       "-632,319"
+      ],
+      [
+       "USA",
+       "Full-stack dev",
+       "16",
+       "1,000 to 4,999",
+       "798,000",
+       "174,666",
+       "-623,334"
+      ],
+      [
+       "USA",
+       "Developer experience",
+       "10",
+       "1,000 to 4,999",
+       "750,000",
+       "168,878",
+       "-581,122"
+      ],
+      [
+       "USA",
+       "Mobile dev",
+       "14",
+       "10,000 or more",
+       "750,000",
+       "180,706",
+       "-569,294"
+      ],
+      [
+       "USA",
+       "Developer experience",
+       "15",
+       "10,000 or more",
+       "750,000",
+       "216,365",
+       "-533,635"
+      ]
+     ],
+     "widths": [
+      1.1,
+      1.8,
+      0.8,
+      1.1,
+      0.9,
+      0.9,
+      0.9
+     ],
+     "align": [
+      "l",
+      "l",
+      "r",
+      "l",
+      "r",
+      "r",
+      "r"
+     ],
+     "note": null,
+     "size": 17
+    },
+    {
+     "t": "p",
+     "text": "**Error audit — adoption model.** Within-group ROC-AUC ranges from 0.59 to 0.67 across age brackets, 0.62–0.69 across the ten largest countries and 0.53–0.69 across roles; discrimination is weakest for engineering managers and for the youngest and oldest age brackets (small groups). For India the AUC is 0.66 with accuracy 67.7 %, comparable with the overall model."
+    },
+    {
+     "t": "table",
+     "id": "t_demo",
+     "caption": "Illustrative predictions of the saved models (not forecasts for real individuals)",
+     "header": [
+      "Profile",
+      "Predicted salary (USD)",
+      "P(uses AI)"
+     ],
+     "rows": [
+      [
+       "Mid-level full-stack dev, India",
+       "18,000",
+       "0.70"
+      ],
+      [
+       "Mid-level full-stack dev, USA",
+       "115,700",
+       "0.63"
+      ],
+      [
+       "Senior engineering manager, Germany",
+       "124,300",
+       "0.52"
+      ],
+      [
+       "Student-age Python learner, Brazil",
+       "4,600",
+       "0.79"
+      ]
+     ],
+     "widths": [
+      3.6,
+      1.6,
+      1.2
+     ],
+     "align": [
+      "l",
+      "r",
+      "r"
+     ],
+     "note": null,
+     "size": 19
+    },
+    {
+     "t": "h3",
+     "text": "(v) Visualization and Interpretation"
+    },
+    {
+     "t": "fig",
+     "id": "fig30_perm_importance_salary",
+     "file": "fig30_perm_importance_salary.png",
+     "caption": "Permutation importance for the selected salary model (LightGBM).",
+     "width": 450
+    },
+    {
+     "t": "fig",
+     "id": "fig31_perm_importance_ai",
+     "file": "fig31_perm_importance_ai.png",
+     "caption": "Permutation importance for the selected AI-adoption model (LightGBM).",
+     "width": 450
+    },
+    {
+     "t": "fig",
+     "id": "fig32_shap_salary",
+     "file": "fig32_shap_salary.png",
+     "caption": "SHAP summary of the LightGBM salary model: each dot is a respondent; colour = feature value; x = effect on predicted log-compensation.",
+     "width": 470
+    },
+    {
+     "t": "fig",
+     "id": "fig33_shap_ai",
+     "file": "fig33_shap_ai.png",
+     "caption": "SHAP summary of the LightGBM AI-adoption model (effect on log-odds of using AI).",
+     "width": 470
+    },
+    {
+     "t": "fig",
+     "id": "fig34_partial_dependence",
+     "file": "fig34_partial_dependence.png",
+     "caption": "Partial dependence: average predicted pay as professional experience is varied, by country (a); average predicted AI-adoption probability as age is varied (b).",
+     "width": 600
+    },
+    {
+     "t": "fig",
+     "id": "fig35_salary_error_by_segment",
+     "file": "fig35_salary_error_by_segment.png",
+     "caption": "Hold-out error of the salary model by country (a), experience band (b) and job role (c); India highlighted in orange.",
+     "width": 600
+    },
+    {
+     "t": "fig",
+     "id": "fig36_ai_error_by_segment",
+     "file": "fig36_ai_error_by_segment.png",
+     "caption": "Hold-out ROC-AUC of the AI-adoption classifier within age brackets (a), countries (b) and roles (c); dashed line = overall AUC.",
+     "width": 600
+    },
+    {
+     "t": "p",
+     "text": "Figure 30 and Figure 32 show that country is overwhelmingly the most informative input; in the SHAP plot, countries with high wages (red dots at the right) push predictions up by up to roughly +0.8 on the log scale and low-wage countries down by more than 1.5. Experience variables push predictions up with a saturating effect. Figure 31 and Figure 33 show a flatter structure for adoption. *Reading note:* in SHAP plots, colour for ordinal-encoded categorical variables (e.g. work arrangement) reflects an arbitrary code order, not a meaningful “high” or “low”. Figure 34 confirms the experience plateau and the age gradient. Figure 35 shows country-specific error levels (India in orange) and flat errors across experience bands; Figure 36 shows that classifier quality is similar across most segments. **Interpretation:** the models learned the same structure the statistical analyses of O1–O5 found; error is concentrated in markets with highly dispersed pay (Ukraine, Brazil, India), which a practitioner should treat as lower-confidence predictions."
+    },
+    {
+     "t": "h1",
+     "text": "5. Conclusion"
+    },
+    {
+     "t": "h2",
+     "text": "5.1 Summary of findings against the objectives"
+    },
+    {
+     "t": "numbered",
+     "ref": "num2",
+     "items": [
+      "**O1 (geography).** Country alone explains about 51 % of the variation in log-pay. India’s median pay (USD 17,945) is 0.12 × the USA median and the lowest of the 28 large markets; it is significantly below all 27 other countries.",
+      "**O2 (experience).** Professional experience is moderately correlated with pay (ρ = 0.48); the estimated gain is 9.2 % per year at entry level, 5.3 % at ten years and close to zero after about 24 years. The early-career slope is much steeper in India (23.9 % vs 6.0 % in the USA).",
+      "**O3 (net effects).** After adjustment, remote work (+29.1 %), very large employers, management roles and cloud/data specialisations carry premiums, but role, company size, work mode and education together add only about 3 percentage points of R² beyond country and experience.",
+      "**O4 (adoption).** 61.8 % of respondents use AI tools; adoption falls with age and experience and is highest among AI developers and data scientists. India’s adoption (67.9 %) exceeds the rest of the world’s (61.4 %).",
+      "**O5 (attitudes).** Developers are favourable (74 %) but sceptical about accuracy (only 43 % trust it); 12 % see AI as a threat to their job. Career-stage effects on attitudes are statistically significant but practically negligible.",
+      "**O6 (salary prediction).** LightGBM was selected (hold-out R² = 0.624, MAE USD 28,585, MdAPE 27.4 %). It beats the country-median baseline by 15.3 % in RMSE but reduces the global-baseline RMSE by 39.7 %, narrowly missing the pre-registered 40 % target.",
+      "**O7 (adoption prediction).** LightGBM reaches a hold-out ROC-AUC of 0.669 (criterion ≥ 0.65 met) with good calibration, but F1 at threshold 0.5 is below the trivial all-yes baseline; adoption is only modestly predictable from background alone. Including leaky follow-up variables would have inflated AUC to 1.000.",
+      "**O8 (explanation).** Country is by far the most important salary predictor, followed by professional experience; for adoption, total years coded, role and country lead. Salary errors are largest for Ukraine, Brazil and India (India MdAPE 37.4 %)."
+     ]
+    },
+    {
+     "t": "h2",
+     "text": "5.2 Recommendations"
+    },
+    {
+     "t": "bullets",
+     "items": [
+      "**For students and early-career developers (including in India):** because the marginal return to experience is steepest in the first five to ten years and flattens after about two decades, early skill building — and moving into management, cloud or data specialisations where adjusted premiums are largest — is associated with the biggest pay growth. These are associations, not guarantees.",
+      "**For anyone benchmarking pay:** always compare within the same country first; roughly half of the variation in nominal pay is geographic. Use the saved salary model only as a rough guide (median error about 27 %; only about 47 % of predictions fall within ±25 % of the true value).",
+      "**For teams adopting AI tools:** trust in AI output is much lower than enthusiasm for it. Training should emphasise verification, particularly for complex tasks where most users rate AI performance as only moderate.",
+      "**For analysts reusing this survey:** treat conditional questions (ai_sent, ai_acc, ai_complex, ai_threat) as structurally missing and never use them as predictors of the screening question; report effect sizes, not just p-values, because with tens of thousands of respondents everything is “significant”."
+     ]
+    },
+    {
+     "t": "h2",
+     "text": "5.3 Limitations"
+    },
+    {
+     "t": "bullets",
+     "items": [
+      "**Self-selected, self-reported data.** Results describe survey respondents, not all developers; compensation is unverified and in nominal USD without purchasing-power adjustment.",
+      "**Observational design.** No causal claims can be drawn (for example about remote work, education or AI use and pay).",
+      "**Single survey year and limited features.** Only single-response questions were available; languages, technologies and AI tools used could not be used as predictors.",
+      "**Modest predictive ceiling.** The salary model explains about 62 % of the variance in log-pay; the adoption model’s AUC is about 0.67. More informative predictors and more data are likely to help more than more complex algorithms (learning curve, Section 4.6; the four learners perform almost identically).",
+      "**Small subgroups.** India has about 1,000 salary reports, so Indian-specific estimates have wider uncertainty and may not represent all Indian developers."
+     ]
+    },
+    {
+     "t": "h1",
+     "text": "6. Future Scope"
+    },
+    {
+     "t": "bullets",
+     "items": [
+      "**Multi-year analysis:** repeat the pipeline on the 2019–2025 Stack Overflow surveys to measure how AI adoption, trust and the experience premium change over time, and to test whether the models generalise across years (temporal validation).",
+      "**Purchasing-power and cost-of-living adjustment:** convert salaries using PPP factors to separate genuine pay gaps from price-level differences, especially for the India-versus-USA comparison.",
+      "**Richer features:** use the multi-select questions (languages, databases, cloud platforms, AI tools used, learning sources) with multi-hot or embedding representations, which should lift both models above the current ceiling.",
+      "**Uncertainty-aware prediction:** quantile regression or conformal prediction to give salary *ranges* with guaranteed coverage instead of single point estimates.",
+      "**Hierarchical modelling:** mixed-effects (multilevel) models with country random effects to share strength between small and large countries.",
+      "**Causal inference:** propensity-score or instrumental-variable designs to study the effect of remote work or AI use on pay, which the observational analysis here cannot establish.",
+      "**Ordinal and fairness analyses:** ordinal logistic regression for attitudes; formal fairness audits of the salary model across gender, age and country groups.",
+      "**Deployment:** wrap the saved pipelines in a Streamlit or FastAPI application with SHAP-based per-person explanations and monitoring for data drift."
+     ]
+    },
+    {
+     "t": "h1",
+     "text": "7. References"
+    },
+    {
+     "t": "numbered",
+     "ref": "num3",
+     "items": [
+      "Stack Overflow, “2024 Developer Survey,” 2024. [Online]. Available: https://survey.stackoverflow.co/2024/",
+      "H. Khurana and the R4DS Online Learning Community, “TidyTuesday: Stack Overflow Annual Developer Survey 2024 (week 36),” GitHub repository rfordatascience/tidytuesday, 2024. [Online]. Available: https://github.com/rfordatascience/tidytuesday/tree/main/data/2024/2024-09-03",
+      "F. Pedregosa et al., “Scikit-learn: Machine learning in Python,” *Journal of Machine Learning Research*, vol. 12, pp. 2825–2830, 2011.",
+      "G. Ke et al., “LightGBM: A highly efficient gradient boosting decision tree,” in *Advances in Neural Information Processing Systems 30*, 2017, pp. 3146–3154.",
+      "S. M. Lundberg and S.-I. Lee, “A unified approach to interpreting model predictions,” in *Advances in Neural Information Processing Systems 30*, 2017, pp. 4765–4774.",
+      "L. Breiman, “Random forests,” *Machine Learning*, vol. 45, no. 1, pp. 5–32, 2001.",
+      "J. H. Friedman, “Greedy function approximation: A gradient boosting machine,” *Annals of Statistics*, vol. 29, no. 5, pp. 1189–1232, 2001.",
+      "A. E. Hoerl and R. W. Kennard, “Ridge regression: Biased estimation for nonorthogonal problems,” *Technometrics*, vol. 12, no. 1, pp. 55–67, 1970.",
+      "T. Hastie, R. Tibshirani and J. Friedman, *The Elements of Statistical Learning*, 2nd ed. New York: Springer, 2009.",
+      "S. Kaufman, S. Rosset, C. Perlich and O. Stitelman, “Leakage in data mining: Formulation, detection, and avoidance,” *ACM Transactions on Knowledge Discovery from Data*, vol. 6, no. 4, art. 15, 2012.",
+      "D. Micci-Barreca, “A preprocessing scheme for high-cardinality categorical attributes in classification and prediction problems,” *ACM SIGKDD Explorations*, vol. 3, no. 1, pp. 27–32, 2001.",
+      "W. H. Kruskal and W. A. Wallis, “Use of ranks in one-criterion variance analysis,” *Journal of the American Statistical Association*, vol. 47, no. 260, pp. 583–621, 1952.",
+      "H. Cramér, *Mathematical Methods of Statistics*. Princeton, NJ: Princeton University Press, 1946.",
+      "E. B. Wilson, “Probable inference, the law of succession, and statistical inference,” *Journal of the American Statistical Association*, vol. 22, no. 158, pp. 209–212, 1927.",
+      "S. Holm, “A simple sequentially rejective multiple test procedure,” *Scandinavian Journal of Statistics*, vol. 6, no. 2, pp. 65–70, 1979.",
+      "N. Cliff, “Dominance statistics: Ordinal analyses to answer ordinal questions,” *Psychological Bulletin*, vol. 114, no. 3, pp. 494–509, 1993.",
+      "J. G. MacKinnon and H. White, “Some heteroskedasticity-consistent covariance matrix estimators with improved finite sample properties,” *Journal of Econometrics*, vol. 29, no. 3, pp. 305–325, 1985.",
+      "B. Efron and R. J. Tibshirani, *An Introduction to the Bootstrap*. New York: Chapman & Hall, 1993.",
+      "W. S. Cleveland, “Robust locally weighted regression and smoothing scatterplots,” *Journal of the American Statistical Association*, vol. 74, no. 368, pp. 829–836, 1979.",
+      "S. Seabold and J. Perktold, “Statsmodels: Econometric and statistical modeling with Python,” in *Proc. 9th Python in Science Conference*, 2010, pp. 92–96.",
+      "P. Virtanen et al., “SciPy 1.0: Fundamental algorithms for scientific computing in Python,” *Nature Methods*, vol. 17, pp. 261–272, 2020.",
+      "C. R. Harris et al., “Array programming with NumPy,” *Nature*, vol. 585, pp. 357–362, 2020.",
+      "W. McKinney, “Data structures for statistical computing in Python,” in *Proc. 9th Python in Science Conference*, 2010, pp. 56–61.",
+      "J. D. Hunter, “Matplotlib: A 2D graphics environment,” *Computing in Science & Engineering*, vol. 9, no. 3, pp. 90–95, 2007.",
+      "M. L. Waskom, “seaborn: statistical data visualization,” *Journal of Open Source Software*, vol. 6, no. 60, art. 3021, 2021."
+     ]
+    }
+   ]
+  }
+ ]
+}

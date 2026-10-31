@@ -1,0 +1,13 @@
+column,reason excluded / restricted
+comp_total,Local-currency twin of the target (converted_comp_yearly = comp_total x FX rate).
+converted_comp_yearly,Target of the salary task.
+log_comp,Transform of the target.
+currency,Near-duplicate of country (information already encoded; adds sparse dummies).
+response_id,Identifier - no predictive meaning.
+survey_length,Opinion about the survey itself - unrelated to the prediction problem.
+survey_ease,Opinion about the survey itself - unrelated to the prediction problem.
+ai_sent,"Asked ONLY if ai_select in {Yes, plan to} -> its mere presence reveals the target."
+ai_acc,Asked ONLY if ai_select = Yes -> reveals the target of the adoption task.
+ai_complex,Asked ONLY if ai_select = Yes -> reveals the target of the adoption task.
+ai_threat,"Asked ONLY if ai_select in {Yes, plan to} -> reveals the target."
+ai_select,Target of the adoption task (allowed as a predictor in the salary task).

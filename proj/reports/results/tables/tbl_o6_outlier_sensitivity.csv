@@ -1,0 +1,4 @@
+policy,n,cv_rmse_log,cv_r2,cv_mae_log
+Absolute bounds only (USD 1k–1M),21007,0.6728,0.6024,0.4415
+Country 3×IQR (chosen),20796,0.6374,0.6271,0.4205
+Country 1.5×IQR (strict),20136,0.5832,0.6605,0.3877

@@ -1,0 +1,10 @@
+feature,definition,justification
+age_mid,Midpoint of age bracket,Turns an ordinal bracket into a numeric scale usable by all models
+ed_rank,Education level -> 1…7,Preserves natural order of qualifications
+org_log,log10(midpoint of organisation size),Company size spans 4 orders of magnitude; log makes effect approx. linear
+so_visit_rank,Stack Overflow visit frequency -> 1…5,Proxy for engagement / learning intensity
+exp_gap,years_code − years_code_pro,Years of coding before first paid job (education / hobby head-start)
+pro_share,years_code_pro / years_code,Share of the coding life spent professionally (career stage)
+years_pro_sq,years_code_pro²,Captures diminishing returns of experience in linear models
+Missing indicators,SimpleImputer(add_indicator=True),Non-response itself can be informative
+Target-encoded country / dev_type,Cross-fitted mean of target by category,"Compact numeric representation of high-cardinality variables, leakage-safe"

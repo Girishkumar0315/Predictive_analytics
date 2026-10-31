@@ -1,0 +1,9 @@
+objective,topic,headline result (computed from this notebook's own outputs),figures
+O1,Country explains pay,"Country alone explains R² = 0.51 of log-pay variance (η² = 0.49 among the 28 largest countries); India's median USD 17,945 is 0.12× the USA median (95 % CI 0.11–0.13)","fig09, fig10"
+O2,Experience premium,"Spearman ρ = 0.48; ≈ 9.2 % per extra year at entry, flattening at ≈ 24 yrs; India's early-career slope is steeper (interaction p < 0.001)","fig11, fig12"
+O3,Net effects,"Adding role, company size, work mode and education lifts R² from 0.540 to 0.574; remote work +29 % vs in-person after adjustment",fig13–fig15
+O4,AI adoption landscape,61.8 % use AI; adoption falls with age/experience; India 67.9 % vs rest 61.4 %,fig16–fig19
+O5,AI attitudes,74 % favourable but only 43 % trust accuracy; 12 % see AI as a job threat; experience effects are tiny (|ρ| < 0.06),fig20–fig23
+O6,Salary prediction,Best: LightGBM; test R² = 0.624; RMSE(log) cut by 39.7 % vs baseline,fig24–fig26
+O7,AI-adoption prediction,"Best: LightGBM; test ROC-AUC = 0.669, balanced accuracy = 0.622 at threshold 0.62",fig27–fig29
+O8,Explainability & errors,"Top salary drivers: Country, Professional years, Org. size (log); India MdAPE 37 % vs USA 24 %",fig30–fig36

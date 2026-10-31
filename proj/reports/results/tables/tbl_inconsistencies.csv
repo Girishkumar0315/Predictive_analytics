@@ -1,0 +1,11 @@
+check,records_affected
+Professional years > total years coded,504
+Professional years impossible for stated age bracket (age_upper - 14),119
+Total years coded impossible for stated age bracket (age_upper - 4),31
+"Compensation below USD 1,000 per year",545
+"Compensation above USD 1,000,000 per year",41
+comp_total present but converted_comp_yearly missing (currency conversion failed),10305
+Non-professional respondents reporting a salary,1886
+Age = 'Prefer not to say',322
+Organisation size = 'I don't know' (treated as missing),1068
+years_code / years_code_pro top-coded at 51 (more than 50 years),255
